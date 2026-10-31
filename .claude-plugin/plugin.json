@@ -1,0 +1,8 @@
+{
+  "name": "barra-consumo",
+  "version": "0.1.0",
+  "description": "Faixa acima do campo de mensagem com contexto, janela de 5h, janela semanal e previsão de esgotamento",
+  "author": { "name": "IT Operation" },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
