@@ -90,7 +90,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <main>
 <header>
   <h1>Migração OneX para Hostinger</h1>
-  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 6: Claude Code e Codex migram para o VPS sob o comando do Paperclip e do Hermes, e as assinaturas passam para a empresa.</p>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 7: com os números definidos: 20 GB de arquivos, R$ 50 de API por mês e três usuários.</p>
   <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
 </header>
 
@@ -98,9 +98,9 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <h2>Resumo</h2>
   <div class="kpis">
     <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 727</div><div class="n">R$ 495 da empresa + ~R$ 232 que você paga como pessoa física</div></div>
-    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 448</div><div class="n">tudo na empresa, −38,4% sobre o total de hoje</div></div>
-    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 518</div><div class="n">com a renovação do VPS, −28,7%</div></div>
-    <div class="kpi"><div class="l">Com R$ 200 de API dos agentes</div><div class="v">R$ 648</div><div class="n">−10,9% no 1º ciclo; −1,2% após a renovação</div></div>
+    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 448</div><div class="n">tudo na empresa, sem API, −38,4% sobre o total de hoje</div></div>
+    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 518</div><div class="n">sem API, com a renovação do VPS, −28,7%</div></div>
+    <div class="kpi main"><div class="l">Com R$ 50 de API dos agentes</div><div class="v">R$ 498</div><div class="n">−31,5% no 1º ciclo; −21,9% após a renovação</div></div>
   </div>
   <div class="verdict">
     <h3>Veredito</h3>
@@ -108,8 +108,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <li><b>Os apps desktop não migram, mas o trabalho deles sim.</b> O que roda 24 horas num VPS são os CLIs do Claude Code e do Codex, que são os mesmos motores. O PC e o celular viram clientes leves, e o PC pode ficar desligado.</li>
       <li><b>Paperclip é o painel de controle e o Hermes é a porta de entrada por chat.</b> O Paperclip organiza agentes, metas, orçamentos e aprovações. O Hermes conversa com você pelo celular e também executa. n8n cuida dos eventos e o Rundeck das rotinas. Você é o conselho que aprova.</li>
       <li><b>24 horas, sim; garantido, não.</b> A Hostinger anuncia 99,9% (cerca de 8,8 h fora do ar por ano) e não achei regra de compensação. Um VPS é ponto único de falha. Os agentes retomam de onde pararam porque o estado fica no banco, no Git e em volumes com backup.</li>
-      <li><b>Assinaturas para você, API para os agentes.</b> Em servidor, as assinaturas têm limite de 5 horas e teto semanal, e os termos sobre uso sem ninguém por perto são cinzentos. O trabalho autônomo deve usar chave de API com teto por agente.</li>
-      <li><b>O gasto de API é o item que decide se a conta fecha.</b> Com R$ 200 por mês (hipótese), o total é R$ 648 no 1º ciclo, ainda 10,9% abaixo do que você gasta hoje. Após a renovação do VPS, empata.</li>
+      <li><b>Cada pessoa usa a própria conta, e os agentes usam API.</b> Pro e Plus são individuais, e dividir um login entre três pessoas contraria os termos. Wanderlei e André, que usam menos, podem usar o sistema pelos agentes (chat do Hermes e painel do Paperclip) em vez de assinar. Os agentes autônomos usam chave de API com teto.</li>
+      <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto a empresa paga R$ 498, quase o que paga hoje só pelo VPS (R$ 495), e o total geral cai 31,5%.</li>
       <li><b>Passar as assinaturas para a PJ:</b> mantenha as contas, troque cartão e dados de cobrança. As faturas são em dólar e podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
       <li><b>Base:</b> MySQL, GO-Global e WhisperX saem. n8n self-hosted único e um PostgreSQL único (n8n, Rundeck, Paperclip). WhisperAI Pro por API. Notion sobe do Free para o Plus. Para clientes, instância separada, e antes de vender confirme a licença do n8n.</li>
       <li><b>Domínio e DNS:</b> você edita o DNS na OneX. Confirme que o domínio está no seu nome e mova o DNS para fora dela antes de cancelar.</li>
@@ -167,12 +167,13 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Hoje pago por você como pessoa física (Claude Pro e ChatGPT Plus)</td><td class="n">231,84</td><td class="n rec">–</td><td class="n">–</td></tr>
       <tr class="tot"><td>Total geral (empresa + você)</td><td class="n">726,84</td><td class="n rec">447,95</td><td class="n">517,95</td></tr>
       <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−38,4%)</td><td class="n neg">−208,89 (−28,7%)</td></tr>
-      <tr><td>Teto de API dos agentes no VPS (hipótese de partida)</td><td class="n">–</td><td class="n rec">+200,00</td><td class="n">+200,00</td></tr>
-      <tr class="tot"><td>Total geral com teto de API</td><td class="n">726,84</td><td class="n rec">647,95</td><td class="n">717,95</td></tr>
-      <tr><td>Diferença, com teto de API</td><td class="n">–</td><td class="n rec neg">−78,89 (−10,9%)</td><td class="n neg">−8,89 (−1,2%)</td></tr>
+      <tr><td>Teto de API dos agentes no VPS (definido por você)</td><td class="n">–</td><td class="n rec">+50,00</td><td class="n">+50,00</td></tr>
+      <tr class="tot"><td>Total geral com teto de API</td><td class="n">726,84</td><td class="n rec">497,95</td><td class="n">567,95</td></tr>
+      <tr><td>Diferença, total geral com teto de API</td><td class="n">–</td><td class="n rec neg">−228,89 (−31,5%)</td><td class="n neg">−158,89 (−21,9%)</td></tr>
+      <tr><td>Só a empresa, com teto de API, contra os R$ 495 de hoje</td><td class="n">–</td><td class="n rec pos">+2,95 (+0,6%)</td><td class="n pos">+72,95 (+14,7%)</td></tr>
     </tbody>
   </table></div>
-  <p class="note">Os valores de Claude Pro e ChatGPT Plus são estimativas: US$ 20 com IOF de 3,5%. Se você paga em outro valor, ajuste. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 200 de API são uma hipótese minha, não uma medida. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
+  <p class="note">Os valores de Claude Pro e ChatGPT Plus são estimativas: US$ 20 com IOF de 3,5%. Se você paga em outro valor, ajuste. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
 
   <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API)</h3>
   <div class="tw"><table>
@@ -180,8 +181,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <tbody>
       <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">430,56</td><td class="n">500,56</td></tr>
       <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">507,95</td><td class="n">~648</td></tr>
-      <tr><td>Claude Team, 2 vagas (US$ 20 cada, anual)</td><td class="n">+115,92</td><td class="n">563,87</td><td class="n">633,87</td></tr>
-      <tr><td>ChatGPT Business, 2 vagas (US$ 20 cada, anual)</td><td class="n">+115,92</td><td class="n">563,87</td><td class="n">633,87</td></tr>
+      <tr><td>Claude Team, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">679,79</td><td class="n">749,79</td></tr>
+      <tr><td>ChatGPT Business, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">679,79</td><td class="n">749,79</td></tr>
       <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">490,94</td><td class="n">~588-596</td></tr>
       <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">601,96</td><td class="n">671,96</td></tr>
       <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">592,85</td><td class="n">662,85</td></tr>
@@ -195,7 +196,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>Caixa com 12x no cartão</h3></div>
       <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total da empresa fica em <b>R$ 507,94</b> no 1º ano e <b>R$ 387,96</b> no 2º, sem a API.</p></div>
     <div class="card"><div class="top"><h3>O que decide a conta</h3></div>
-      <p>A margem do total geral é de R$ 279 por mês no 1º ciclo. É esse o espaço para a API dos agentes. O Paperclip trava cada agente quando ele estoura o orçamento mensal, então o teto é aplicável. Revise o valor após 60 dias com o custo real por agente.</p></div>
+      <p>A economia do total geral é de R$ 279 por mês no 1º ciclo, e o teto de R$ 50 de API consome parte dela. O Paperclip trava cada agente quando ele estoura o orçamento mensal, então o teto é aplicável. Revise o valor após 60 dias com o custo real por agente.</p></div>
   </div>
 </section>
 
@@ -378,7 +379,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
         <li>Documentos: Google Drive (rclone) ou Notion. Mídia e arquivos pesados ficam no Drive.</li>
         <li>Configuração dos agentes: um repositório privado de dotfiles, sem segredos.</li>
         <li>Segredos: arquivo <code>.env</code> com permissão 600 no VPS. Nunca no Git.</li>
-        <li>Espaço: dos 200 GB, restam ~140 a 150 GB para o workspace após sistema, Docker e bancos. Preciso do tamanho real.</li>
+        <li>Espaço: os 20 GB cabem com folga. Dos 200 GB, restam ~140 a 150 GB para o workspace após sistema, Docker e bancos, então os arquivos usam cerca de 14%. O KVM 8 não é necessário por causa do disco.</li>
         <li>Dados de cliente entram na LGPD. Cifrar os backups.</li>
       </ul></div>
     <div class="card"><div class="top"><h3>Segurança dos agentes</h3><span class="chip c-warn">checklist</span></div>
@@ -391,6 +392,35 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
         <li>Uma chave de API por agente, cada uma com teto, e as aprovações do Paperclip ligadas.</li>
       </ul></div>
   </div>
+  <h3>O que R$ 50 de API compram</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Modelo</th><th class="n">US$ por milhão de tokens (entrada / saída)</th><th class="n">1 pedido médio*</th><th class="n">Pedidos por R$ 50 (US$ 8,63)</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Haiku 5.5</td><td class="n">0,10 / 0,50</td><td class="n">US$ 0,02</td><td class="n">~430</td></tr>
+      <tr><td>Claude Sonnet 5.5</td><td class="n">2 / 10</td><td class="n">US$ 0,40</td><td class="n">~22</td></tr>
+      <tr><td>Claude Opus 5.5</td><td class="n">4 / 20</td><td class="n">US$ 0,80</td><td class="n">~11</td></tr>
+      <tr><td>GPT-5.3-Codex (Codex)</td><td class="n">1,75 / 14</td><td class="n">US$ 0,46</td><td class="n">~19</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">*Pedido médio: 100 mil tokens de entrada e 20 mil de saída, sem cache. Uma tarefa de agente faz vários pedidos e reenvia um contexto crescente, então custa mais que um pedido. O cache reduz bastante (no Sonnet 5.5, a leitura de cache custa US$ 0,10 por milhão). Preços vindos de sites secundários que citam as páginas oficiais, e o Haiku cobra bem mais em prompts acima de 100 mil tokens. Confira nas páginas de preço.</p>
+  <div class="card"><div class="top"><h3>Como gastar os R$ 50</h3></div>
+    <ul>
+      <li><b>~R$ 25 em rotinas com modelo barato</b> (Hermes e n8n com Haiku): triagem de e-mail, resumos, relatórios, avisos.</li>
+      <li><b>~R$ 25 em tarefas pequenas e aprovadas</b> para Claude Code ou Codex: correções, testes, documentação.</li>
+      <li><b>Programação pesada fica nas suas sessões ao vivo</b> no terminal do VPS, com a sua assinatura.</li>
+      <li><b>Modo alternativo:</b> deixar o Paperclip usar as assinaturas (token de servidor) evitaria o gasto de API, mas consome a cota de 5 horas e semanal e depende de os termos permitirem. Peça confirmação por escrito à Anthropic e à OpenAI antes.</li>
+    </ul></div>
+
+  <h3>Uso por três pessoas</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Opção</th><th class="n">Custo extra/mês</th><th>Como funciona</th></tr></thead>
+    <tbody>
+      <tr><td class="rec"><b>Wanderlei e André usam os agentes, sem assinatura própria (recomendado)</b></td><td class="rec n">R$ 0</td><td class="rec">falam com o Hermes por chat e acompanham no painel do Paperclip. O consumo sai do teto de R$ 50. Cada um tem usuário próprio, sem root</td></tr>
+      <tr><td>Assinatura individual para cada um (Claude Pro)</td><td class="n">+231,84</td><td>duas contas Pro de US$ 20, na empresa, cada um com o próprio login</td></tr>
+      <tr><td>Planos de equipe, 3 vagas</td><td class="n">+231,84 por plano</td><td>Claude Team ou ChatGPT Business, com administração central e termos comerciais de dados. Só se o uso deles crescer</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><b>Não compartilhe o login.</b> Claude Pro e ChatGPT Plus são individuais, e em geral os termos proíbem dividir credenciais. Um mesmo login usado por três pessoas, inclusive numa sessão do VPS, é o caso a evitar. Confirme nos termos de cada serviço.</div>
 </section>
 
 <section id="notion">
@@ -442,7 +472,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
         <li><b>B. Conta nova com e-mail corporativo.</b> Separa PF e PJ por completo, mas perde o histórico. Exporte os dados antes.</li>
       </ul></div>
     <div class="card"><div class="top"><h3>Planos de equipe</h3></div>
-      <p>Claude Team e ChatGPT Business têm mínimo de 2 vagas e custam US$ 20 por vaga no anual (US$ 25 no mensal). Para um único usuário, custam o dobro do Pro e do Plus. Valem quando houver uma segunda pessoa, administração central ou as garantias de dados comerciais. O ChatGPT Business inclui o Codex.</p></div>
+      <p>Claude Team e ChatGPT Business têm mínimo de 2 vagas e custam US$ 20 por vaga no anual (US$ 25 no mensal). Com 3 pessoas seriam 3 vagas: US$ 60 por mês (~R$ 348) em cada plano, contra R$ 116 do Pro ou do Plus. Como Wanderlei e André usam pouco, não compensa: eles podem usar os agentes em vez de assinar. Passe para Team ou Business se o uso deles crescer ou se dado de cliente passar pelo chat. O ChatGPT Business inclui o Codex.</p></div>
     <div class="card"><div class="top"><h3>Privacidade dos dados</h3><span class="chip c-warn">atenção</span></div>
       <p>Nos planos individuais do Claude há uma opção que permite o uso das suas conversas para treinamento. Se estiver desligada, a retenção é de 30 dias; ligada, 5 anos. Produtos comerciais e a API não entram nessa política, segundo o anúncio da Anthropic. No ChatGPT, revise a opção de melhorar o modelo nas configurações (não verifiquei o padrão atual). Para dados de cliente, use API ou plano de equipe.</p></div>
     <div class="card"><div class="top"><h3>Impostos e contador</h3><span class="chip c-warn">confirmar</span></div>
@@ -591,7 +621,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>Renovação do VPS</h3><span class="chip c-warn">médio</span></div>
       <p>R$ 59,99 vale por 24 meses. Depois, guias de terceiros apontam ~R$ 130. Marcar lembrete para o mês 22 para medir o uso e decidir entre manter o KVM 4, subir para o KVM 8 ou trocar de provedor.</p></div>
     <div class="card"><div class="top"><h3>Custo de LLM não está na conta</h3><span class="chip c-warn">médio</span></div>
-      <p>Hermes, Paperclip e os CLIs de Claude Code e Codex trabalhando sozinhos consomem tokens de API, que são variáveis. É o item que decide se a conta fecha. Ponto de partida: R$ 200 por mês (hipótese), com teto por agente no Paperclip e alerta de gasto. Reavalie após 60 dias com o custo real.</p></div>
+      <p>Hermes, Paperclip e os CLIs consomem tokens de API quando trabalham sozinhos. Você definiu R$ 50 por mês (~US$ 8,6), o que paga trabalho leve, não programação 24 horas. Use modelo barato (Haiku) nas rotinas, teto por agente no Paperclip e alerta de gasto. Reavalie após 60 dias com o custo real.</p></div>
     <div class="card"><div class="top"><h3>Dependências do Windows</h3><span class="chip c-info">fica para depois</span></div>
       <p>Inventariar jobs do Rundeck que chamam .bat, PowerShell ou WinRM, scripts Python/Node com caminhos <code>C:\</code>, Agendador de Tarefas e certificados. Esses itens precisam ser reescritos, e são o principal risco de prazo.</p></div>
     <div class="card"><div class="top"><h3>Encerrar MySQL e GO-Global</h3><span class="chip c-info">checklist</span></div>
@@ -610,7 +640,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <li><div><b>Base no Hostinger (3-5 dias)</b><span>Contratar o KVM 4 (garantia de 30 dias), região Brasil se houver. Instalar Ubuntu, Docker Compose, Caddy, PostgreSQL, VPN, firewall, backup para o Drive, snapshots e monitor de uptime. Nada de produção ainda.</span></div></li>
     <li><div><b>Mover o que já existe (semana 2)</b><span>n8n com a mesma <code>N8N_ENCRYPTION_KEY</code> e já no PostgreSQL, Rundeck por exportação de projeto, scripts Python e Node reescritos para Linux.</span></div></li>
     <li><div><b>Itens novos (semana 3)</b><span>Paperclip, Hermes, site com formulário ligado ao n8n, integração do n8n com o WhisperAI, teto de gasto em API de LLM.</span></div></li>
-    <li><div><b>Do PC para o VPS (semanas 3-5)</b><span>Inventariar e mover os arquivos locais (Git, Drive, dotfiles). Instalar os CLIs do Claude Code e do Codex no ambiente dos agentes. Login para uso ao vivo e chaves de API com teto para o autônomo. Configurar o Paperclip (adapters, orçamentos, aprovações) e o Hermes (canais de chat). Testar uma tarefa pequena de ponta a ponta e só então deixar o PC de fora.</span></div></li>
+    <li><div><b>Do PC para o VPS (semanas 3-5)</b><span>Inventariar e mover os arquivos locais (20 GB: Git, Drive, dotfiles). Instalar os CLIs do Claude Code e do Codex no ambiente dos agentes. Login para uso ao vivo e chaves de API com teto para o autônomo. Configurar o Paperclip (adapters, orçamentos, aprovações) e o Hermes (canais de chat). Criar usuários separados, sem root, para Wanderlei e André, sem login compartilhado. Testar uma tarefa pequena de ponta a ponta e só então deixar o PC de fora.</span></div></li>
     <li><div><b>Corte e sobreposição (semana 4 e mês 2)</b><span>Trocar o DNS do site, manter o OneX em paralelo enquanto valida (sem multa, 2 a 4 semanas bastam), testar a restauração dos backups e só então cancelar o OneX. Confirmar antes que o domínio e o DNS não dependem dele. Custo da sobreposição: até um mês de R$ 495.</span></div></li>
   </ol>
 </section>
@@ -625,10 +655,12 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
-      <tr><td>Qual o tamanho total e o tipo dos arquivos locais que vão para o VPS (código, documentos, mídia, dados de cliente)?</td><td>O disco tem 200 GB. Define o que vai para o Drive e se o KVM 8 será necessário.</td></tr>
-      <tr><td>Quanto de API por mês você aceita para os agentes (ponto de partida: R$ 200)?</td><td>É o valor que decide se a conta fecha e que vira orçamento no Paperclip.</td></tr>
-      <tr><td>Qual o regime tributário da IT Operation e o que o contador diz sobre faturas em dólar?</td><td>Pode acrescentar R$ 33 a R$ 41 por mês de tributos de importação.</td></tr>
-      <tr><td>Mais alguém vai usar Claude ou ChatGPT além de você?</td><td>Define se vale Claude Team e ChatGPT Business (mínimo de 2 vagas).</td></tr>
+      <tr><td>Wanderlei e André precisam de acesso a quê: chat do Hermes, painel do Paperclip, terminal? Têm assinatura própria hoje?</td><td>Define usuários, permissões e se alguém precisa de Pro ou Plus.</td></tr>
+      <tr><td>Qual canal de chat para o Hermes: Telegram, WhatsApp, Slack ou Signal?</td><td>O Hermes suporta vários. Muda a configuração e o risco de privacidade.</td></tr>
+      <tr><td>Quais os 3 primeiros trabalhos autônomos que você quer dos agentes?</td><td>Calibra o teto de R$ 50 e a escolha do modelo.</td></tr>
+      
+      
+      
       <tr><td>Os repositórios ficam no GitHub? O e-mail da conta do Notion é pessoal ou da empresa?</td><td>Define onde os agentes abrem pull requests e como trocar o titular do Notion.</td></tr>
       <tr><td>Clientes como serviço: quando, quantos e com que tipo de dado?</td><td>Decide entre VPS separado e nuvem, e o tratamento pela LGPD.</td></tr>
     </tbody>
@@ -661,6 +693,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <li><a href="https://developers.openai.com/codex/auth">Codex: autenticação</a> (<code>--device-auth</code> e <code>auth.json</code>)</li>
     <li><a href="https://claude.com/resources/articles/claude-team-updates">Claude Team</a> (2 vagas mínimas, US$ 20 anual) e <a href="https://help.openai.com/en/articles/8792828-chatgpt-business-overview">ChatGPT Business</a> (2 vagas, US$ 20 anual, inclui Codex)</li>
     <li><a href="https://www.anthropic.com/news/updates-to-our-consumer-terms">Anthropic: termos de consumo</a> (treinamento, 30 dias ou 5 anos de retenção)</li>
+    <li><a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic: preços da API</a> (via sites secundários: Sonnet 5.5 US$ 2/10, Haiku 5.5 US$ 0,10/0,50, Opus 5.5 US$ 4/20) e <a href="https://openai.com/api/pricing/">OpenAI: preços da API</a> (GPT-5.3-Codex US$ 1,75/14)</li>
     <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/">Hermes: gateway de mensagens</a> e <a href="https://raw.githubusercontent.com/paperclipai/paperclip/master/README.md">README do Paperclip</a> (orçamentos, aprovações, heartbeats)</li>
     <li><a href="https://www.hostinger.com/support/1583232-how-to-back-up-or-restore-a-vps-server/">Hostinger: backup e snapshot</a> e <a href="https://hostinger.com/vps-hosting">página do VPS</a> (99,9% de uptime)</li>
     <li><a href="https://www.rotinafiscal.com.br/operacoes-fiscais/importacao-de-servicos">Rotina Fiscal: importação de serviços</a> e <a href="https://www.contabeis.com.br/noticias/62078/compras-internacionais-de-servicos-e-softwares-3-coisas-que-voce-precisa-saber/">Contábeis: compras internacionais de serviços e softwares</a> (PIS/COFINS e ISS-importação)</li>
