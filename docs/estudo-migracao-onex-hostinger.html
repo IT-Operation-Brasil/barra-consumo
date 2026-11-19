@@ -90,17 +90,17 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <main>
 <header>
   <h1>Migração OneX para Hostinger</h1>
-  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 8: Hermes acessível por Telegram e Slack, com acesso restrito por ID e uma instância separada para a equipe.</p>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 9: Slack Pro entra na conta e passa para a empresa, e a instância da equipe ganha agenda, e-mail, consultas e transcrição.</p>
   <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
 </header>
 
 <section id="resumo">
   <h2>Resumo</h2>
   <div class="kpis">
-    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 727</div><div class="n">R$ 495 da empresa + ~R$ 232 que você paga como pessoa física</div></div>
-    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 448</div><div class="n">tudo na empresa, sem API, −38,4% sobre o total de hoje</div></div>
-    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 518</div><div class="n">sem API, com a renovação do VPS, −28,7%</div></div>
-    <div class="kpi main"><div class="l">Com R$ 50 de API dos agentes</div><div class="v">R$ 498</div><div class="n">−31,5% no 1º ciclo; −21,9% após a renovação</div></div>
+    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 879</div><div class="n">R$ 495 da empresa + ~R$ 384 que você paga como pessoa física (Claude, ChatGPT e Slack)</div></div>
+    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 600</div><div class="n">tudo na empresa, sem API, −31,7% sobre o total de hoje</div></div>
+    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 670</div><div class="n">sem API, com a renovação do VPS, −23,8%</div></div>
+    <div class="kpi main"><div class="l">Com R$ 50 de API dos agentes</div><div class="v">R$ 650</div><div class="n">−26,0% no 1º ciclo; −18,1% após a renovação</div></div>
   </div>
   <div class="verdict">
     <h3>Veredito</h3>
@@ -109,9 +109,9 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <li><b>Paperclip é o painel de controle e o Hermes é a porta de entrada por chat.</b> O Paperclip organiza agentes, metas, orçamentos e aprovações. O Hermes conversa com você pelo celular e também executa. n8n cuida dos eventos e o Rundeck das rotinas. Você é o conselho que aprova.</li>
       <li><b>24 horas, sim; garantido, não.</b> A Hostinger anuncia 99,9% (cerca de 8,8 h fora do ar por ano) e não achei regra de compensação. Um VPS é ponto único de falha. Os agentes retomam de onde pararam porque o estado fica no banco, no Git e em volumes com backup.</li>
       <li><b>Cada pessoa usa a própria conta, e os agentes usam API.</b> Pro e Plus são individuais, e dividir um login entre três pessoas contraria os termos. Wanderlei e André usam o sistema pelo chat do Hermes no Telegram, sem assinar nada e sem acesso ao terminal nem ao painel. Eles falam com uma instância separada e restrita do Hermes, com chave de API e teto próprios. Os agentes autônomos usam chave de API com teto.</li>
-      <li><b>Telegram e Slack abrem uma porta de entrada: restrinja por ID.</b> O Hermes nega tudo por padrão e só atende IDs numéricos liberados. Conversas com bots do Telegram não têm criptografia de ponta a ponta, então nenhum dado de cliente, senha ou chave pelos chats.</li>
-      <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto a empresa paga R$ 498, quase o que paga hoje só pelo VPS (R$ 495), e o total geral cai 31,5%.</li>
-      <li><b>Passar as assinaturas para a PJ:</b> mantenha as contas, troque cartão e dados de cobrança. As faturas são em dólar e podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
+      <li><b>Telegram e Slack abrem uma porta de entrada: restrinja por ID.</b> O Hermes nega tudo por padrão e só atende IDs numéricos liberados. Conversas com bots do Telegram não têm criptografia de ponta a ponta. Como as consultas incluem dados de cliente, use o Slack da empresa para isso, e no Telegram responda com link, não com o conteúdo.</li>
+      <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto, o total geral cai 26,0% (R$ 650 contra R$ 879).</li>
+      <li><b>Passar Claude Pro, ChatGPT Plus e Slack Pro para a PJ não cria custo novo, só muda quem paga.</b> A empresa vai de R$ 495 para R$ 650 por mês e você deixa de pagar ~R$ 384. Mantenha as contas e troque cartão e dados de cobrança. As faturas em dólar podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
       <li><b>Base:</b> MySQL, GO-Global e WhisperX saem. n8n self-hosted único e um PostgreSQL único (n8n, Rundeck, Paperclip). WhisperAI Pro por API. Notion sobe do Free para o Plus. Para clientes, instância separada, e antes de vender confirme a licença do n8n.</li>
       <li><b>Domínio e DNS:</b> você edita o DNS na OneX. Confirme que o domínio está no seu nome e mova o DNS para fora dela antes de cancelar.</li>
     </ul>
@@ -160,43 +160,43 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Google Workspace Starter, 3 contas, anual</td><td class="n">–</td><td class="n rec">98,16</td><td class="n">98,16</td></tr>
       <tr><td>Claude Pro, US$ 20 mensal</td><td class="n">115,92 (você, PF)</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
       <tr><td>ChatGPT Plus, US$ 20 mensal (estimativa)</td><td class="n">115,92 (você, PF)</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
+      <tr><td>Slack Pro, US$ 8,75 por membro mensal, 3 membros (hipótese)</td><td class="n">152,15 (você, PF)</td><td class="n rec">152,15</td><td class="n">152,15</td></tr>
       <tr><td>Notion Plus, 1 membro (US$ 10 no anual; convidados grátis)</td><td class="n">0,00 (Free)</td><td class="n rec">57,96</td><td class="n">57,96</td></tr>
       <tr><td>n8n self-hosted</td><td class="n">0,00</td><td class="n rec">0,00</td><td class="n">0,00</td></tr>
       <tr><td>WhisperAI Pro (já contratado, igual antes e depois)</td><td class="n">fora da conta</td><td class="n rec">fora da conta</td><td class="n">fora da conta</td></tr>
-      <tr class="tot"><td>Total pago pela empresa</td><td class="n">495,00</td><td class="n rec">447,95</td><td class="n">517,95</td></tr>
-      <tr><td>Diferença, só a empresa</td><td class="n">–</td><td class="n rec neg">−47,05 (−9,5%)</td><td class="n pos">+22,95 (+4,6%)</td></tr>
-      <tr><td>Hoje pago por você como pessoa física (Claude Pro e ChatGPT Plus)</td><td class="n">231,84</td><td class="n rec">–</td><td class="n">–</td></tr>
-      <tr class="tot"><td>Total geral (empresa + você)</td><td class="n">726,84</td><td class="n rec">447,95</td><td class="n">517,95</td></tr>
-      <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−38,4%)</td><td class="n neg">−208,89 (−28,7%)</td></tr>
+      <tr class="tot"><td>Total pago pela empresa</td><td class="n">495,00</td><td class="n rec">600,10</td><td class="n">670,10</td></tr>
+      <tr><td>Hoje pago por você como pessoa física (Claude Pro, ChatGPT Plus e Slack Pro)</td><td class="n">383,99</td><td class="n rec">–</td><td class="n">–</td></tr>
+      <tr class="tot"><td>Total geral (empresa + você)</td><td class="n">878,99</td><td class="n rec">600,10</td><td class="n">670,10</td></tr>
+      <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−31,7%)</td><td class="n neg">−208,89 (−23,8%)</td></tr>
       <tr><td>Teto de API dos agentes no VPS (definido por você)</td><td class="n">–</td><td class="n rec">+50,00</td><td class="n">+50,00</td></tr>
-      <tr class="tot"><td>Total geral com teto de API</td><td class="n">726,84</td><td class="n rec">497,95</td><td class="n">567,95</td></tr>
-      <tr><td>Diferença, total geral com teto de API</td><td class="n">–</td><td class="n rec neg">−228,89 (−31,5%)</td><td class="n neg">−158,89 (−21,9%)</td></tr>
-      <tr><td>Só a empresa, com teto de API, contra os R$ 495 de hoje</td><td class="n">–</td><td class="n rec pos">+2,95 (+0,6%)</td><td class="n pos">+72,95 (+14,7%)</td></tr>
+      <tr class="tot"><td>Total geral com teto de API</td><td class="n">878,99</td><td class="n rec">650,10</td><td class="n">720,10</td></tr>
+      <tr><td>Diferença, total geral com teto de API</td><td class="n">–</td><td class="n rec neg">−228,89 (−26,0%)</td><td class="n neg">−158,89 (−18,1%)</td></tr>
+      <tr><td>Só a empresa, com teto de API, contra os R$ 495 de hoje</td><td class="n">–</td><td class="n rec pos">+155,10 (+31,3%)</td><td class="n pos">+225,10 (+45,5%)</td></tr>
     </tbody>
   </table></div>
-  <p class="note">Os valores de Claude Pro e ChatGPT Plus são estimativas: US$ 20 com IOF de 3,5%. Se você paga em outro valor, ajuste. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
+  <p class="note">O que cai é o total geral. A empresa paga mais porque passa a assumir assinaturas que hoje saem do seu bolso, o que só muda quem paga. Claude Pro, ChatGPT Plus e Slack são estimativas: US$ com IOF de 3,5%. O número de membros do Slack (3) é hipótese minha, e o Slack pode cobrar em outra moeda: confirme. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
 
   <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API)</h3>
   <div class="tw"><table>
     <thead><tr><th>Opção</th><th class="n">Soma/mês</th><th class="n">Total, 24 meses</th><th class="n">Total, após renovação</th></tr></thead>
     <tbody>
-      <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">430,56</td><td class="n">500,56</td></tr>
-      <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">507,95</td><td class="n">~648</td></tr>
-      <tr><td>Claude Team, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">679,79</td><td class="n">749,79</td></tr>
-      <tr><td>ChatGPT Business, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">679,79</td><td class="n">749,79</td></tr>
-      <tr><td>Slack Pro, 3 usuários (US$ 7,25 cada, anual), se o Free não bastar</td><td class="n">+126,06</td><td class="n">574,01</td><td class="n">644,01</td></tr>
-      <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">490,94</td><td class="n">~588-596</td></tr>
-      <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">601,96</td><td class="n">671,96</td></tr>
-      <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">592,85</td><td class="n">662,85</td></tr>
-      <tr><td>Groq Whisper turbo, plano B (dispensável: o WhisperAI tem API)</td><td class="n">+6,03 a +9,97</td><td class="n">453,98 a 457,92</td><td class="n">523,98 a 527,92</td></tr>
+      <tr><td>Slack Pro no plano anual (US$ 7,25 por membro) em vez do mensal</td><td class="n neg">−26,09</td><td class="n">574,01</td><td class="n">644,01</td></tr>
+      <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">582,71</td><td class="n">652,71</td></tr>
+      <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">660,10</td><td class="n">~800</td></tr>
+      <tr><td>Claude Team, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">831,94</td><td class="n">901,94</td></tr>
+      <tr><td>ChatGPT Business, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">831,94</td><td class="n">901,94</td></tr>
+      <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">643,09</td><td class="n">~740-748</td></tr>
+      <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">754,11</td><td class="n">824,11</td></tr>
+      <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">745,00</td><td class="n">815,00</td></tr>
+      <tr><td>Groq Whisper turbo, plano B (dispensável: o WhisperAI tem API)</td><td class="n">+6,03 a +9,97</td><td class="n">606,13 a 610,07</td><td class="n">676,13 a 680,07</td></tr>
     </tbody>
   </table></div>
 
   <div class="grid2">
     <div class="card"><div class="top"><h3>Total em 24 e 36 meses</h3></div>
-      <p>Só a empresa: R$ 10.751 em 24 meses contra R$ 11.880 hoje (economia de R$ 1.129), e R$ 16.966 em 36 contra R$ 17.820 (R$ 854).<br>Total geral: o que você paga hoje somando PF e PJ seria R$ 17.444 em 24 meses e R$ 26.166 em 36. A economia é de <b>R$ 6.693</b> e <b>R$ 9.200</b>.</p></div>
+      <p>Total geral hoje, somando empresa e PF: R$ 21.096 em 24 meses e R$ 31.644 em 36. Na proposta, sem API: R$ 14.402 e R$ 22.444. A economia é de <b>R$ 6.693</b> e <b>R$ 9.200</b>. Com os R$ 50 de API por mês, cai para R$ 5.493 e R$ 7.400.</p></div>
     <div class="card"><div class="top"><h3>Caixa com 12x no cartão</h3></div>
-      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total da empresa fica em <b>R$ 507,94</b> no 1º ano e <b>R$ 387,96</b> no 2º, sem a API.</p></div>
+      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total da empresa fica em <b>R$ 660,09</b> no 1º ano e <b>R$ 540,11</b> no 2º, sem a API.</p></div>
     <div class="card"><div class="top"><h3>O que decide a conta</h3></div>
       <p>A economia do total geral é de R$ 279 por mês no 1º ciclo, e o teto de R$ 50 de API consome parte dela. O Paperclip trava cada agente quando ele estoura o orçamento mensal, então o teto é aplicável. Revise o valor após 60 dias com o custo real por agente.</p></div>
   </div>
@@ -388,12 +388,19 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>Telegram e Slack: quem pode falar com o Hermes</h3><span class="chip c-warn">atenção</span></div>
       <ul>
         <li>O gateway nega tudo por padrão. Libere só IDs numéricos: <code>TELEGRAM_ALLOWED_USERS</code> (o seu, o de Wanderlei e o de André) e <code>SLACK_ALLOWED_USERS</code> (IDs de membro do Slack). Nome de usuário não vale.</li>
-        <li><b>Duas instâncias do Hermes.</b> A pessoal, só com o seu ID e ferramentas completas. A da equipe, com você, Wanderlei e André, sem terminal e sem acesso aos repositórios. Cada uma com bot e chave de API próprios, o que dá um teto de custo separado (por exemplo R$ 15 dos R$ 50 para a equipe). Não achei na documentação restrição de ferramentas por usuário; se existir, uma instância basta.</li>
+        <li><b>Duas instâncias do Hermes.</b> A pessoal, só com o seu ID e ferramentas completas. A da equipe, com você, Wanderlei e André, sem terminal e sem acesso aos repositórios. Cada uma com bot e chave de API próprios, o que dá um teto de custo separado (por exemplo R$ 20 dos R$ 50 para a equipe). Não achei na documentação restrição de ferramentas por usuário; se existir, uma instância basta.</li>
         <li>Telegram: um bot por instância, criado no BotFather. O token é segredo. Conversas com bots não têm criptografia de ponta a ponta.</li>
         <li>Slack: app com Socket Mode (conexão de saída, sem abrir porta no VPS), token de bot (xoxb) e token de app (xapp). Sem o escopo de leitura de arquivos, o Hermes não lê anexos.</li>
-        <li>Plano Free do Slack: 90 dias de histórico e até 10 apps. O Pro custa US$ 7,25 por usuário no anual (~R$ 126 para 3), segundo fontes secundárias. Comece no Free e registre o que importa no Notion.</li>
-        <li>Não envie dado de cliente, senha ou chave pelos chats. O que se diz ao bot passa pelos servidores do Telegram ou do Slack.</li>
+        <li>Slack: o workspace IT Operation [BR] já está no plano Pro, com histórico e apps ilimitados. O Hermes entra como mais um app. Passe a cobrança para a empresa (ver seção de contratação).</li>
+        <li>Dado de cliente: prefira o Slack da empresa. No Telegram, a instância da equipe responde com link para o Notion ou o Drive, e não com o conteúdo. Nunca senha ou chave pelos chats.</li>
         <li>Revogue o acesso pelo CLI do Hermes quando alguém sair.</li>
+      </ul></div>
+    <div class="card"><div class="top"><h3>Uso da equipe: agenda, e-mail, clientes e transcrição</h3><span class="chip c-info">instância da equipe</span></div>
+      <ul>
+        <li><b>Agenda e e-mail:</b> cada pessoa autoriza a própria conta Google, sem caixa compartilhada. Escopos mínimos: ler a agenda e criar eventos, ler e-mail e criar rascunhos, sem enviar. Um e-mail recebido pode conter instruções maliciosas para o agente, por isso rascunho com confirmação humana.</li>
+        <li><b>Clientes e projetos:</b> leitura no Notion, só nas páginas compartilhadas com a integração. A resposta traz o link.</li>
+        <li><b>Transcrição:</b> o pedido no chat dispara um fluxo do n8n que chama a API do WhisperAI. Bots do Telegram têm limite pequeno para arquivos (cerca de 20 MB, conferir), então o áudio vai para uma pasta "Transcrever" do Drive. O n8n devolve a transcrição num Doc e avisa no chat. O áudio de cliente fica no Google e no WhisperAI, não no Telegram.</li>
+        <li><b>Custo:</b> com Haiku, uma consulta de 20 mil tokens de entrada e 2 mil de saída custa ~US$ 0,003. Dez consultas por dia por pessoa (900 por mês) ficam em ~US$ 2,7, ou ~R$ 16. Um teto de R$ 20 cobre esse uso discreto.</li>
       </ul></div>
     <div class="card"><div class="top"><h3>Segurança dos agentes</h3><span class="chip c-warn">checklist</span></div>
       <ul>
@@ -474,6 +481,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Claude Pro</td><td>US$, cartão internacional</td><td>trocar cartão e dados de cobrança na conta atual. Ideal: trocar o e-mail da conta para o corporativo</td><td>fatura em dólar. Confirmar se aceita CNPJ nos dados de cobrança</td></tr>
       <tr><td>ChatGPT Plus</td><td>US$, cartão internacional</td><td>idem</td><td>idem</td></tr>
       <tr><td>Notion</td><td>US$. Faturas públicas mostram dólar e tributo brasileiro zerado</td><td>subir o workspace do Free para o Plus e trocar o e-mail do titular para o corporativo</td><td>não achei nota fiscal brasileira. Perguntar ao suporte</td></tr>
+      <tr><td>Slack Pro</td><td>US$ (confirmar se cobra em reais)</td><td>trocar cartão e dados de cobrança no workspace IT Operation [BR] e passar o proprietário e o e-mail de cobrança para o corporativo</td><td>conferir a moeda, a nota fiscal e quantos membros são cobrados</td></tr>
       <tr><td>Google Workspace</td><td>R$, com nota fiscal brasileira</td><td>contratar em nome da empresa</td><td>simples</td></tr>
       <tr><td>Hostinger</td><td>R$</td><td>contratar em nome da empresa</td><td>simples</td></tr>
     </tbody>
@@ -489,7 +497,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>Privacidade dos dados</h3><span class="chip c-warn">atenção</span></div>
       <p>Nos planos individuais do Claude há uma opção que permite o uso das suas conversas para treinamento. Se estiver desligada, a retenção é de 30 dias; ligada, 5 anos. Produtos comerciais e a API não entram nessa política, segundo o anúncio da Anthropic. No ChatGPT, revise a opção de melhorar o modelo nas configurações (não verifiquei o padrão atual). Para dados de cliente, use API ou plano de equipe.</p></div>
     <div class="card"><div class="top"><h3>Impostos e contador</h3><span class="chip c-warn">confirmar</span></div>
-      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os três serviços em dólar (R$ 290 por mês), somariam de R$ 33 a R$ 41 por mês, estimativa minha. Não achei nada sobre dedutibilidade.</p>
+      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os quatro serviços em dólar (R$ 442 por mês, contando o Slack se for cobrado em dólar), somariam de R$ 50 a R$ 63 por mês, estimativa minha. Não achei nada sobre dedutibilidade.</p>
       <p>Levar ao contador: regime tributário, classificação do serviço, IOF no cartão corporativo e se a fatura em dólar vale como documento fiscal.</p></div>
   </div>
 </section>
@@ -580,7 +588,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <line class="ln" x1="770" y1="352" x2="800" y2="352" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="408" width="190" height="76" rx="6"/>
-    <text class="t" x="812" y="430">Telegram e Slack</text><text class="s" x="812" y="449">Telegram: você, Wanderlei e</text><text class="s" x="812" y="464">André. Só IDs liberados</text>
+    <text class="t" x="812" y="430">Telegram e Slack</text><text class="s" x="812" y="449">Telegram e Slack (IT Operation</text><text class="s" x="812" y="464">[BR], Pro). Só IDs liberados</text>
     <line class="ln" x1="770" y1="446" x2="800" y2="446" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="502" width="190" height="76" rx="6"/>
@@ -648,7 +656,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <h2>Plano de migração</h2>
   <ol class="steps">
     <li><div><b>Inventário no OneX (1-2 dias)</b><span>Titular, registro e DNS do domínio (e como assumir o controle), fluxos do n8n e projetos do Rundeck para exportar, scripts e tarefas agendadas, dump final do MySQL. Não há multa de saída: o OneX pode ser cancelado quando você validar a migração.</span></div></li>
-    <li><div><b>Assinaturas para a PJ (semana 1)</b><span>Cartão corporativo com limite em dólar. Trocar cartão e dados de cobrança no Claude e no ChatGPT. Subir o Notion do Free para o Plus, com o e-mail corporativo. Alinhar com o contador o tratamento de faturas em dólar.</span></div></li>
+    <li><div><b>Assinaturas para a PJ (semana 1)</b><span>Cartão corporativo com limite em dólar. Trocar cartão e dados de cobrança no Claude, no ChatGPT e no Slack (workspace IT Operation [BR]). Subir o Notion do Free para o Plus, com o e-mail corporativo. Alinhar com o contador o tratamento de faturas em dólar.</span></div></li>
     <li><div><b>Google Workspace (dias 1-7, em paralelo)</b><span>Contratar, criar as contas, verificar o domínio, migrar as caixas da OneX, configurar SPF, DKIM e DMARC e só então trocar o MX. Não depende do VPS.</span></div></li>
     <li><div><b>Base no Hostinger (3-5 dias)</b><span>Contratar o KVM 4 (garantia de 30 dias), região Brasil se houver. Instalar Ubuntu, Docker Compose, Caddy, PostgreSQL, VPN, firewall, backup para o Drive, snapshots e monitor de uptime. Nada de produção ainda.</span></div></li>
     <li><div><b>Mover o que já existe (semana 2)</b><span>n8n com a mesma <code>N8N_ENCRYPTION_KEY</code> e já no PostgreSQL, Rundeck por exportação de projeto, scripts Python e Node reescritos para Linux.</span></div></li>
@@ -668,8 +676,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
-      <tr><td>Já existe um workspace do Slack? Em qual plano e quem usa?</td><td>O plano Free tem 90 dias de histórico e limite de 10 apps. O Pro custaria ~R$ 126 por mês para 3.</td></tr>
-      <tr><td>Que tipo de pedido Wanderlei e André farão pelo Telegram (consultas, resumos, agenda, tarefas no Notion)?</td><td>Define as ferramentas da instância da equipe e o teto de API dela.</td></tr>
+      <tr><td>Quantos membros o workspace IT Operation [BR] cobra hoje, em que moeda, e o plano é anual ou mensal?</td><td>Define o custo exato do Slack (hipótese: 3 membros, US$ 8,75 mensal) e o tratamento fiscal.</td></tr>
+      <tr><td>Onde ficam os dados de clientes e projetos além do Notion (CRM, planilhas, Drive)?</td><td>Define as ferramentas de consulta da instância da equipe.</td></tr>
       
       
       
