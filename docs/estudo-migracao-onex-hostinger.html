@@ -109,8 +109,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <li><b>n8n: um só, no VPS, por enquanto.</b> O n8n Cloud Starter custaria R$ 154/mês por 2.500 execuções, e um fluxo que consulta algo a cada 5 minutos já gasta 8.640 por mês. Self-hosted tem execuções ilimitadas e custa R$ 0 a mais.</li>
       <li><b>O n8n precisa de banco, mas já traz um.</b> Por padrão usa SQLite. Recomendo PostgreSQL desde o início, e o mesmo contêiner serve ao Rundeck e ao Paperclip. O MySQL atual não deve ser reaproveitado: o n8n o descontinuou.</li>
       <li><b>Para clientes, instância separada em VPS separado.</b> Dividir o servidor com os seus próprios fluxos mistura risco. Antes de vender, confirme a licença do n8n por escrito (ver seção de clientes).</li>
-      <li><b>WhisperAI Pro fica como está.</b> A sua conta tem minutos ilimitados, separação de falantes e resumos, e isso libera de 3 a 6 GB de RAM de pico no VPS. O Groq só entra se você montar fluxos de áudio que rodem sozinhos (seção de transcrição).</li>
-      <li><b>O domínio está na OneX.</b> Confirme que o domínio e o DNS ficam sob seu controle antes de cancelar o plano, senão o site e o e-mail caem junto. Não há multa de saída, então o corte pode ser rápido.</li>
+      <li><b>WhisperAI Pro fica como está.</b> A sua conta tem minutos ilimitados, separação de falantes e resumos, e isso libera de 3 a 6 GB de RAM de pico no VPS. Como ele tem API, o n8n fala direto com ele e o Groq não é necessário (seção de transcrição).</li>
+      <li><b>Domínio e DNS: você edita o DNS na OneX.</b> Antes de cancelar o plano, confirme que o domínio está no seu nome e passe o DNS para um serviço independente, senão site e e-mail caem junto. Sem multa de saída, o corte pode ser rápido.</li>
       <li><b>Depois do mês 24 o VPS passa a ~R$ 130.</b> O número vem de guias de terceiros. Mesmo assim o total fica ~R$ 151 abaixo de hoje.</li>
     </ul>
   </div>
@@ -173,7 +173,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">428,08</td><td class="n">498,08</td></tr>
       <tr><td>n8n Cloud Starter, anual (€ 20)</td><td class="n">+128,34</td><td class="n">402,41</td><td class="n">472,41</td></tr>
       <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">418,97</td><td class="n">488,97</td></tr>
-      <tr><td>Groq Whisper turbo, só para fluxos automáticos (26-43 h/mês)</td><td class="n">+6,03 a +9,97</td><td class="n">280,10 a 284,04</td><td class="n">350,10 a 354,04</td></tr>
+      <tr><td>Groq Whisper turbo, plano B (dispensável: o WhisperAI tem API)</td><td class="n">+6,03 a +9,97</td><td class="n">280,10 a 284,04</td><td class="n">350,10 a 354,04</td></tr>
       <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">317,06</td><td class="n">~414-422</td></tr>
     </tbody>
   </table></div>
@@ -247,7 +247,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <h2>Transcrição: WhisperAI Pro e Groq</h2>
   <div class="verdict">
     <h3>Em uma frase</h3>
-    <p>Mantenha o WhisperAI Pro para reuniões e entrevistas. O Groq é uma API muito rápida e barata para transcrever sozinha, dentro de fluxos do n8n, mas não separa falantes nem resume. Para o seu uso atual, ele não substitui o que você já tem.</p>
+    <p>Mantenha o WhisperAI Pro para tudo, inclusive as automações: como ele tem API, o n8n envia o áudio direto e recebe transcrição, falantes e resumo prontos. O Groq fica como plano B, se um dia o WhisperAI falhar ou encarecer, e não entra no desenho base.</p>
   </div>
 
   <div class="grid2">
@@ -308,7 +308,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <thead><tr><th>Situação</th><th>Use</th><th>Motivo</th></tr></thead>
     <tbody>
       <tr><td>Reuniões, entrevistas, vários falantes, resumo pronto</td><td class="rec"><b>WhisperAI Pro</b></td><td>tem separação de falantes e resumo, e os minutos são ilimitados</td></tr>
-      <tr><td>Áudio curto que entra sozinho num fluxo (WhatsApp, formulário, caixa de voz)</td><td><b>Groq</b>, se o WhisperAI não tiver API</td><td>R$ 0,23 por hora de áudio, ~17 s por hora, sem interface</td></tr>
+      <tr><td>Áudio curto que entra sozinho num fluxo (WhatsApp, formulário, caixa de voz)</td><td class="rec"><b>WhisperAI Pro por API</b></td><td>você confirmou que ele tem API. O Groq fica só como plano B</td></tr>
       <tr><td>Áudio sensível de cliente</td><td>caso a caso</td><td>comparar contratos de dados. Groq com ZDR e DPA, ou o serviço que oferecer as melhores garantias</td></tr>
       <tr><td>Precisa de separação de falantes por API</td><td>AssemblyAI ou Deepgram</td><td>oferecem esse recurso. Não pesquisei o preço deles</td></tr>
       <tr><td>WhisperX no seu VPS</td><td><span class="chip c-bad">descartado</span></td><td>sem GPU na Hostinger, e o WhisperAI já cobre o uso</td></tr>
@@ -376,7 +376,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <line class="ln" x1="770" y1="147" x2="800" y2="147" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="220" width="190" height="76" rx="6"/>
-    <text class="t" x="812" y="242">WhisperAI Pro (contratado)</text><text class="s" x="812" y="261">minutos ilimitados; API a</text><text class="s" x="812" y="276">confirmar. Groq: opcional</text>
+    <text class="t" x="812" y="242">WhisperAI Pro (contratado)</text><text class="s" x="812" y="261">minutos ilimitados; o n8n</text><text class="s" x="812" y="276">chama a API dele</text>
     <line class="ln" x1="770" y1="258" x2="800" y2="258" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="314" width="190" height="76" rx="6"/>
@@ -423,12 +423,12 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <section id="atencao">
   <h2>Pontos de atenção</h2>
   <div class="grid2">
-    <div class="card"><div class="top"><h3>Domínio e DNS estão na OneX</h3><span class="chip c-bad">alto</span></div>
+    <div class="card"><div class="top"><h3>Domínio e DNS: sair da OneX antes de cancelar</h3><span class="chip c-warn">médio</span></div>
       <p>Se o domínio ou o DNS dependem do contrato do VPS, cancelar o plano derruba site e e-mail. Confirmar quem é o titular do domínio e se a OneX é só o provedor do DNS. Se for .br, o titular fica no Registro.br e dá para apontar os servidores DNS para outro lugar. Se for outro registrador, pedir o código de transferência. Considere mover o DNS para um serviço gratuito e independente (como o Cloudflare) antes de mexer em e-mail e site. Só cancele o VPS depois disso.</p></div>
     <div class="card"><div class="top"><h3>E-mail: migrar da OneX para o Google</h3><span class="chip c-warn">médio</span></div>
       <p>Essa etapa não depende do VPS e pode ir primeiro. As 3 contas cabem nos 30 GB por conta do Starter. Copiar as mensagens com a ferramenta de migração do Google, trocar o MX e configurar SPF, DKIM e DMARC. Baixar o TTL do DNS 48 h antes.</p></div>
-    <div class="card"><div class="top"><h3>WhisperAI: manter e ligar ao n8n</h3><span class="chip c-info">confirmar</span></div>
-      <p>6 a 10 h por semana são 26 a 43 h por mês. Confirmar se o plano tem API ou webhook para o n8n enviar áudios e receber transcrições. Para comparação: a API da Groq (Whisper large-v3-turbo, US$ 0,04 por hora) custaria ~R$ 6 a 10 por mês nesse volume, sem separação de falantes. Se me disser o valor do seu plano, comparo.</p></div>
+    <div class="card"><div class="top"><h3>WhisperAI: manter e ligar ao n8n</h3><span class="chip c-ok">API confirmada</span></div>
+      <p>6 a 10 h por semana são 26 a 43 h por mês, dentro dos minutos ilimitados do Pro. Como há API, o n8n pode enviar o áudio e receber transcrição, falantes e resumo. Falta conferir na documentação do WhisperAI como autenticar e se existe webhook de conclusão, para não ficar consultando o status. O Groq fica como plano B.</p></div>
     <div class="card"><div class="top"><h3>Renovação do VPS</h3><span class="chip c-warn">médio</span></div>
       <p>R$ 59,99 vale por 24 meses. Depois, guias de terceiros apontam ~R$ 130. Marcar lembrete para o mês 22 para medir o uso e decidir entre KVM 4, KVM 2 ou outro provedor.</p></div>
     <div class="card"><div class="top"><h3>Custo de LLM não está na conta</h3><span class="chip c-warn">médio</span></div>
@@ -460,8 +460,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <thead><tr><th>Pergunta</th><th>Por que importa</th></tr></thead>
     <tbody>
       
-      <tr><td>O WhisperAI Pro tem API ou webhook para o n8n? Há áudios que deveriam ser transcritos sozinhos (ex.: WhatsApp)?</td><td>Se não tiver API, o Groq é o caminho para automações de áudio.</td></tr>
-      <tr><td>O domínio é .com.br ou outro? Quem é o titular, e você edita o DNS no painel da OneX?</td><td>É preciso editar A, MX, SPF, DKIM e DMARC, e o domínio não pode ficar preso ao contrato que será cancelado.</td></tr>
+      
+      <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
       <tr><td>Clientes como serviço: quando, quantos e com que tipo de dado?</td><td>Decide entre VPS separado e nuvem, e o tratamento pela LGPD.</td></tr>
