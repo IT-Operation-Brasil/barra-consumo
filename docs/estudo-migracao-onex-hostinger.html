@@ -90,17 +90,17 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <main>
 <header>
   <h1>Migração OneX para Hostinger</h1>
-  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 12: o WhisperAI Pro entra na conta e passa para a empresa.</p>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 13: WhisperAI Pro, a US$ 24,99 por mês, entra na conta e passa para a empresa.</p>
   <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
 </header>
 
 <section id="resumo">
   <h2>Resumo</h2>
   <div class="kpis">
-    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 778</div><div class="n">R$ 495 da empresa + ~R$ 283 que você paga como pessoa física (Claude, ChatGPT e Slack), sem o WhisperAI</div></div>
-    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 499</div><div class="n">tudo na empresa, sem API, −35,9% sobre o total de hoje</div></div>
-    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 569</div><div class="n">sem API, com a renovação do VPS, −26,9%</div></div>
-    <div class="kpi main"><div class="l">Com R$ 50 de API dos agentes</div><div class="v">R$ 549</div><div class="n">−29,4% no 1º ciclo; −20,4% após a renovação</div></div>
+    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 922</div><div class="n">R$ 495 da empresa + ~R$ 427 que você paga como pessoa física (Claude, ChatGPT, Slack e WhisperAI)</div></div>
+    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 644</div><div class="n">tudo na empresa, sem API, −30,2% sobre o total de hoje</div></div>
+    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 714</div><div class="n">sem API, com a renovação do VPS, −22,6%</div></div>
+    <div class="kpi main"><div class="l">Com R$ 50 de API dos agentes</div><div class="v">R$ 694</div><div class="n">−24,8% no 1º ciclo; −17,2% após a renovação</div></div>
   </div>
   <div class="verdict">
     <h3>Veredito</h3>
@@ -110,9 +110,9 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <li><b>24 horas, sim; garantido, não.</b> A Hostinger anuncia 99,9% (cerca de 8,8 h fora do ar por ano) e não achei regra de compensação. Um VPS é ponto único de falha. Os agentes retomam de onde pararam porque o estado fica no banco, no Git e em volumes com backup.</li>
       <li><b>Cada pessoa usa a própria conta, e os agentes usam API.</b> Pro e Plus são individuais, e dividir um login entre três pessoas contraria os termos. Wanderlei e André usam o sistema pelo chat do Hermes no Telegram, sem assinar nada e sem acesso ao terminal nem ao painel. Eles falam com uma instância separada e restrita do Hermes, com chave de API e teto próprios. Os agentes autônomos usam chave de API com teto.</li>
       <li><b>Telegram e Slack abrem uma porta de entrada: restrinja por ID.</b> O Hermes nega tudo por padrão e só atende IDs numéricos liberados. Conversas com bots do Telegram não têm criptografia de ponta a ponta. Como as consultas incluem dados de cliente, o Telegram responde com link para o Notion, não com o conteúdo. O Slack da empresa tem só você hoje.</li>
-      <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto, o total geral cai 29,4% (R$ 549 contra R$ 778).</li>
-      <li><b>O WhisperAI Pro entra na conta, mas ainda não sei o valor.</b> Você paga hoje e vai passar para a empresa, então ele soma nos dois lados e a economia de R$ 279 por mês não muda. Os totais acima estão sem ele; a seção de custos mostra o efeito para US$ 10, 20 e 30.</li>
-      <li><b>Passar Claude Pro, ChatGPT Plus, Slack Pro e WhisperAI Pro para a PJ não cria custo novo, só muda quem paga.</b> A empresa vai de R$ 495 para R$ 549 por mês (com a API) e você deixa de pagar ~R$ 283. Mantenha as contas e troque cartão e dados de cobrança. As faturas em dólar podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
+      <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto, o total geral cai 24,8% (R$ 694 contra R$ 922).</li>
+      <li><b>O WhisperAI Pro fica e passa para a empresa.</b> Custa US$ 24,99 por mês (~R$ 145), cobrado em dólar. Soma nos dois lados da comparação, então a economia de R$ 279 por mês não muda.</li>
+      <li><b>Passar Claude Pro, ChatGPT Plus, Slack Pro e WhisperAI Pro para a PJ não cria custo novo, só muda quem paga.</b> A empresa vai de R$ 495 para R$ 694 por mês (com a API) e você deixa de pagar ~R$ 427. Mantenha as contas e troque cartão e dados de cobrança. As faturas em dólar podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
       <li><b>Base:</b> MySQL, GO-Global e WhisperX saem. n8n self-hosted único e um PostgreSQL único (n8n, Rundeck, Paperclip). WhisperAI Pro por API. Notion sobe do Free para o Plus. Para clientes, instância separada, e antes de vender confirme a licença do n8n.</li>
       <li><b>Domínio e DNS:</b> você edita o DNS na OneX. Confirme que o domínio está no seu nome e mova o DNS para fora dela antes de cancelar.</li>
     </ul>
@@ -161,55 +161,43 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Google Workspace Starter, 3 contas, anual</td><td class="n">–</td><td class="n rec">98,16</td><td class="n">98,16</td></tr>
       <tr><td>Claude Pro, US$ 20 mensal</td><td class="n">115,92 (você, PF)</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
       <tr><td>ChatGPT Plus, US$ 20 mensal (estimativa)</td><td class="n">115,92 (você, PF)</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
+      <tr><td>WhisperAI Pro, US$ 24,99 mensal (fatura de 10/11/2026)</td><td class="n">144,84 (você, PF)</td><td class="n rec">144,84</td><td class="n">144,84</td></tr>
       <tr><td>Slack Pro, 1 membro, US$ 8,75 mensal (hipótese de moeda e periodicidade)</td><td class="n">50,72 (você, PF)</td><td class="n rec">50,72</td><td class="n">50,72</td></tr>
       <tr><td>Notion Plus, 1 membro (US$ 10 no anual; convidados grátis)</td><td class="n">0,00 (Free)</td><td class="n rec">57,96</td><td class="n">57,96</td></tr>
       <tr><td>n8n self-hosted</td><td class="n">0,00</td><td class="n rec">0,00</td><td class="n">0,00</td></tr>
-      <tr><td>WhisperAI Pro (valor a informar; você paga hoje e passa para a empresa)</td><td class="n">W (você, PF)</td><td class="n rec">W</td><td class="n">W</td></tr>
-      <tr class="tot"><td>Total pago pela empresa, sem o WhisperAI (+ W)</td><td class="n">495,00</td><td class="n rec">498,67</td><td class="n">568,67</td></tr>
-      <tr><td>Hoje pago por você como pessoa física (Claude Pro, ChatGPT Plus e Slack Pro), sem o WhisperAI</td><td class="n">282,56</td><td class="n rec">–</td><td class="n">–</td></tr>
-      <tr class="tot"><td>Total geral (empresa + você), sem o WhisperAI (+ W nos dois lados)</td><td class="n">777,56</td><td class="n rec">498,67</td><td class="n">568,67</td></tr>
-      <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−35,9%)</td><td class="n neg">−208,89 (−26,9%)</td></tr>
+      <tr class="tot"><td>Total pago pela empresa</td><td class="n">495,00</td><td class="n rec">643,51</td><td class="n">713,51</td></tr>
+      <tr><td>Hoje pago por você como pessoa física (Claude Pro, ChatGPT Plus, WhisperAI Pro e Slack Pro)</td><td class="n">427,40</td><td class="n rec">–</td><td class="n">–</td></tr>
+      <tr class="tot"><td>Total geral (empresa + você)</td><td class="n">922,40</td><td class="n rec">643,51</td><td class="n">713,51</td></tr>
+      <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−30,2%)</td><td class="n neg">−208,89 (−22,6%)</td></tr>
       <tr><td>Teto de API dos agentes no VPS (definido por você)</td><td class="n">–</td><td class="n rec">+50,00</td><td class="n">+50,00</td></tr>
-      <tr class="tot"><td>Total geral com teto de API</td><td class="n">777,56</td><td class="n rec">548,67</td><td class="n">618,67</td></tr>
-      <tr><td>Diferença, total geral com teto de API</td><td class="n">–</td><td class="n rec neg">−228,89 (−29,4%)</td><td class="n neg">−158,89 (−20,4%)</td></tr>
-      <tr><td>Só a empresa, com teto de API, contra os R$ 495 de hoje</td><td class="n">–</td><td class="n rec pos">+53,67 (+10,8%)</td><td class="n pos">+123,67 (+25,0%)</td></tr>
+      <tr class="tot"><td>Total geral com teto de API</td><td class="n">922,40</td><td class="n rec">693,51</td><td class="n">763,51</td></tr>
+      <tr><td>Diferença, total geral com teto de API</td><td class="n">–</td><td class="n rec neg">−228,89 (−24,8%)</td><td class="n neg">−158,89 (−17,2%)</td></tr>
+      <tr><td>Só a empresa, com teto de API, contra os R$ 495 de hoje</td><td class="n">–</td><td class="n rec pos">+198,51 (+40,1%)</td><td class="n pos">+268,51 (+54,2%)</td></tr>
     </tbody>
   </table></div>
-  <p class="note">O que cai é o total geral. A empresa paga um pouco mais porque assume assinaturas que hoje saem do seu bolso, o que só muda quem paga. Claude Pro, ChatGPT Plus e Slack são estimativas: US$ com IOF de 3,5%. O Slack tem 1 membro hoje; a moeda e a periodicidade são hipótese minha. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez). O WhisperAI Pro tem linha própria (W) porque não sei o valor.</p>
+  <p class="note">O que cai é o total geral. A empresa paga mais porque assume assinaturas que hoje saem do seu bolso, o que só muda quem paga. As assinaturas em dólar estão convertidas a US$ 1 = R$ 5,60 com IOF de 3,5%. O Claude Pro e o ChatGPT Plus são estimativas. O WhisperAI vem da sua fatura. O Slack tem 1 membro hoje, e a moeda e a periodicidade são hipótese minha. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação) e um mês de sobreposição com o OneX na virada (R$ 495 uma vez).</p>
 
-  <h3>Efeito do WhisperAI Pro nos totais</h3>
-  <div class="tw"><table>
-    <thead><tr><th>Se o WhisperAI custar</th><th class="n">Hoje, total geral</th><th class="n rec">24 meses</th><th class="n">Após renovação</th><th class="n">24 meses, com API</th><th class="n">Após renovação, com API</th></tr></thead>
-    <tbody>
-      <tr><td>US$ 10 (R$ 57,96)</td><td class="n">835,52</td><td class="n rec">556,63 (−33,4%)</td><td class="n">626,63 (−25,0%)</td><td class="n">606,63 (−27,4%)</td><td class="n">676,63 (−19,0%)</td></tr>
-      <tr><td>US$ 20 (R$ 115,92)</td><td class="n">893,48</td><td class="n rec">614,59 (−31,2%)</td><td class="n">684,59 (−23,4%)</td><td class="n">664,59 (−25,6%)</td><td class="n">734,59 (−17,8%)</td></tr>
-      <tr><td>US$ 30 (R$ 173,88)</td><td class="n">951,44</td><td class="n rec">672,55 (−29,3%)</td><td class="n">742,55 (−22,0%)</td><td class="n">722,55 (−24,1%)</td><td class="n">792,55 (−16,7%)</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">Valores hipotéticos: não achei página oficial com o preço do WhisperAI Pro, e os resultados que vi eram de produtos parecidos. Informe o valor, a moeda e se é mensal ou anual, e eu fecho a conta. O WhisperAI entra nos dois lados (hoje e proposta), então a economia de R$ 279 por mês não muda, só o percentual.</p>
-
-  <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API e sem o WhisperAI)</h3>
+  <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API)</h3>
   <div class="tw"><table>
     <thead><tr><th>Opção</th><th class="n">Soma/mês</th><th class="n">Total, 24 meses</th><th class="n">Total, após renovação</th></tr></thead>
     <tbody>
-      <tr><td>Slack Pro no plano anual (US$ 7,25 por membro) em vez do mensal</td><td class="n neg">−8,70</td><td class="n">489,97</td><td class="n">559,97</td></tr>
-      <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">481,28</td><td class="n">551,28</td></tr>
-      <tr><td>Wanderlei e André no Slack (2 membros, mensal), se precisarem do conteúdo no chat</td><td class="n">+101,44</td><td class="n">600,11</td><td class="n">670,11</td></tr>
-      <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">558,67</td><td class="n">~699</td></tr>
-      <tr><td>Claude Team, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">730,51</td><td class="n">800,51</td></tr>
-      <tr><td>ChatGPT Business, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">730,51</td><td class="n">800,51</td></tr>
-      <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">541,66</td><td class="n">~639-647</td></tr>
-      <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">652,68</td><td class="n">722,68</td></tr>
-      <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">643,57</td><td class="n">713,57</td></tr>
-      <tr><td>Groq Whisper turbo, plano B (dispensável: o WhisperAI tem API)</td><td class="n">+6,03 a +9,97</td><td class="n">504,70 a 508,64</td><td class="n">574,70 a 578,64</td></tr>
+      <tr><td>Slack Pro no plano anual (US$ 7,25 por membro) em vez do mensal</td><td class="n neg">−8,70</td><td class="n">634,81</td><td class="n">704,81</td></tr>
+      <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">626,12</td><td class="n">696,12</td></tr>
+      <tr><td>Wanderlei e André no Slack (2 membros, mensal), se precisarem do conteúdo no chat</td><td class="n">+101,44</td><td class="n">744,95</td><td class="n">814,95</td></tr>
+      <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">703,51</td><td class="n">~844</td></tr>
+      <tr><td>Claude Team, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">875,35</td><td class="n">945,35</td></tr>
+      <tr><td>ChatGPT Business, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">875,35</td><td class="n">945,35</td></tr>
+      <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">686,50</td><td class="n">~784-792</td></tr>
+      <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">797,52</td><td class="n">867,52</td></tr>
+      <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">788,41</td><td class="n">858,41</td></tr>
     </tbody>
   </table></div>
 
   <div class="grid2">
     <div class="card"><div class="top"><h3>Total em 24 e 36 meses</h3></div>
-      <p>Total geral hoje, somando empresa e PF: R$ 18.661 em 24 meses e R$ 27.992 em 36. Na proposta, sem API: R$ 11.968 e R$ 18.792. A economia é de <b>R$ 6.693</b> e <b>R$ 9.200</b>. Com os R$ 50 de API por mês, cai para R$ 5.493 e R$ 7.400.</p></div>
+      <p>Total geral hoje, somando empresa e PF: R$ 22.138 em 24 meses e R$ 33.206 em 36. Na proposta, sem API: R$ 15.444 e R$ 24.006. A economia é de <b>R$ 6.693</b> e <b>R$ 9.200</b>. Com os R$ 50 de API por mês, cai para R$ 5.493 e R$ 7.400.</p></div>
     <div class="card"><div class="top"><h3>Caixa com 12x no cartão</h3></div>
-      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total da empresa fica em <b>R$ 558,66</b> no 1º ano e <b>R$ 438,68</b> no 2º, sem a API.</p></div>
+      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total da empresa fica em <b>R$ 703,50</b> no 1º ano e <b>R$ 583,52</b> no 2º, sem a API.</p></div>
     <div class="card"><div class="top"><h3>O que decide a conta</h3></div>
       <p>A economia do total geral é de R$ 279 por mês no 1º ciclo, e o teto de R$ 50 de API consome parte dela. O Paperclip trava cada agente quando ele estoura o orçamento mensal, então o teto é aplicável. Revise o valor após 60 dias com o custo real por agente.</p></div>
   </div>
@@ -270,76 +258,23 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 </section>
 
 <section id="transcricao">
-  <h2>Transcrição: WhisperAI Pro e Groq</h2>
+  <h2>Transcrição: WhisperAI Pro</h2>
   <div class="verdict">
     <h3>Em uma frase</h3>
-    <p>Mantenha o WhisperAI Pro para tudo, inclusive as automações: como ele tem API, o n8n envia o áudio direto e recebe transcrição, falantes e resumo prontos. O Groq fica como plano B, se um dia o WhisperAI falhar ou encarecer, e não entra no desenho base.</p>
+    <p>O WhisperAI Pro fica, passa a ser pago pela empresa e é a única peça de transcrição do desenho. Como ele tem API, o n8n envia o áudio direto e recebe transcrição, falantes e resumo prontos.</p>
   </div>
-
   <div class="grid2">
-    <div class="card"><div class="top"><h3>O que é o Groq</h3><span class="chip c-info">com Q, não é o Grok</span></div>
-      <p>Empresa americana que criou chips próprios para rodar IA e vende acesso por API, o GroqCloud. Não tem relação com o Grok da xAI. Hospeda modelos abertos: na voz, o Whisper da OpenAI; também roda LLMs abertos. A API segue o formato da OpenAI, então qualquer ferramenta que fale com a OpenAI funciona trocando o endereço e a chave.</p>
-      <p>Não há tela de upload, resumo nem edição. É só API: você manda o áudio e recebe o texto.</p></div>
-    <div class="card"><div class="top"><h3>O que a sua conta WhisperAI tem hoje</h3><span class="chip c-ok">consultado</span></div>
-      <p>Plano Pro, <b>minutos ilimitados</b>, arquivos de até 5 GB, 99+ idiomas, separação de falantes, resumos com itens de ação, tradução para 50+ idiomas e exportação TXT, SRT e VTT. O contador mostra 330 minutos usados neste período.</p></div>
-  </div>
-
-  <div class="tw"><table>
-    <thead><tr><th>Critério</th><th class="rec">WhisperAI Pro (seu)</th><th>Groq whisper-large-v3-turbo</th><th>Groq whisper-large-v3</th></tr></thead>
-    <tbody>
-      <tr><td>Custo</td><td class="rec">valor a informar (você paga hoje)</td><td>US$ 0,04/h ≈ R$ 0,23/h</td><td>US$ 0,111/h ≈ R$ 0,64/h</td></tr>
-      <tr><td>Para 26-43 h/mês</td><td class="rec">incluído no plano (minutos ilimitados)</td><td>R$ 6 a 10</td><td>R$ 17 a 28</td></tr>
-      <tr><td>Velocidade</td><td class="rec">não medida</td><td>~216x tempo real (1 h em ~17 s)</td><td>~189x (1 h em ~19 s)</td></tr>
-      <tr><td>Erro médio de palavras*</td><td class="rec">não divulgado</td><td>~12%</td><td>~10,3%</td></tr>
-      <tr><td>Separação de falantes</td><td class="rec"><span class="chip c-ok">sim</span></td><td><span class="chip c-bad">não</span></td><td><span class="chip c-bad">não</span></td></tr>
-      <tr><td>Resumo e itens de ação</td><td class="rec"><span class="chip c-ok">sim</span></td><td>não (montar com LLM no n8n)</td><td>não (idem)</td></tr>
-      <tr><td>Tradução</td><td class="rec">50+ idiomas</td><td>não</td><td>para inglês</td></tr>
-      <tr><td>Texto com marcas de tempo</td><td class="rec">TXT, SRT, VTT</td><td>por segmento (<code>verbose_json</code>). SRT você gera no n8n</td><td>idem</td></tr>
-      <tr><td>Tamanho do arquivo</td><td class="rec">5 GB</td><td>25 MB (free), 100 MB (Developer) ou envio por URL</td><td>idem</td></tr>
-      <tr><td>Limites de uso</td><td class="rec">minutos ilimitados</td><td>Free: ~2 h de áudio por hora, ~8 h por dia (terceiros)</td><td>idem</td></tr>
-      <tr><td>Interface</td><td class="rec">app e web</td><td>nenhuma, só API</td><td>nenhuma, só API</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">*Números da própria Groq, em benchmark agregado e em inglês. Não encontrei medida em português. O mínimo cobrado é 10 segundos por requisição. Os limites do Free vêm de fontes de terceiros; confira na página de limites do console. Cobrança em dólar, com IOF de 3,5% no cartão.</p>
-
-  <div class="grid2">
-    <div class="card"><div class="top"><h3>Qualidade</h3></div>
-      <p>O Groq roda o mesmo Whisper large-v3 que você rodaria no seu servidor, e o WhisperX usa esse modelo como base. Então a qualidade é a do modelo, não da Groq. O turbo é uma versão enxuta, um pouco pior no benchmark. A própria Groq indica o large-v3 para uso sensível a erro e o turbo para melhor preço.</p>
-      <p>Em português o Whisper costuma ir bem. Tropeça em nomes próprios, siglas, jargão e áudio ruim. O parâmetro <code>prompt</code>, no formato OpenAI, aceita um vocabulário para ajudar (confirmar na documentação). Teste com 3 áudios seus nos dois modelos antes de decidir.</p></div>
-    <div class="card"><div class="top"><h3>Privacidade e LGPD</h3><span class="chip c-warn">atenção</span></div>
-      <p>O áudio vai para servidores da Groq, nos EUA. A documentação diz que, por padrão, não retém dados de inferência, e há opção de Zero Data Retention nas configurações da conta. A mesma página menciona 30 dias de retenção em outro trecho, então ative o ZDR e leia o DPA. Quanto a treinamento, só encontrei uma resposta de funcionário em fórum dizendo que não usam. Confirme no contrato.</p>
-      <p>Para áudio de cliente, exija DPA e ZDR. Para áudio sensível, o WhisperAI também é um serviço externo e vale ler a política dele.</p></div>
-    <div class="card"><div class="top"><h3>Como implementar no n8n</h3><span class="chip c-info">passo a passo</span></div>
+    <div class="card"><div class="top"><h3>O que a sua conta tem</h3><span class="chip c-ok">consultado</span></div>
+      <p>Plano Pro, <b>US$ 24,99 por mês</b> (~R$ 145), com minutos ilimitados, arquivos de até 5 GB, 99+ idiomas, separação de falantes, resumos com itens de ação, tradução para 50+ idiomas e exportação TXT, SRT e VTT. A primeira fatura é de 10/11/2026 e a próxima cobrança, de 10/12/2026.</p></div>
+    <div class="card"><div class="top"><h3>Como ligar ao n8n</h3><span class="chip c-info">a confirmar</span></div>
       <ul>
-        <li>Criar conta em console.groq.com, gerar a chave de API e ligar o Zero Data Retention em Data Controls.</li>
-        <li>No n8n, criar uma credencial <b>Header Auth</b> com <code>Authorization: Bearer &lt;sua chave&gt;</code>.</li>
-        <li>Nó <b>HTTP Request</b>: POST para <code>https://api.groq.com/openai/v1/audio/transcriptions</code>, corpo multipart com <code>file</code> (binário), <code>model</code>, <code>language=pt</code> e <code>response_format</code>.</li>
-        <li>Cuidado: se o arquivo chegar como <code>application/octet-stream</code> a API pode recusar. Defina nome e tipo (ex.: <code>audio.mp3</code>) antes do envio.</li>
-        <li>Arquivos grandes: reduzir para mono 16 kHz com ffmpeg, ou enviar por URL.</li>
-        <li>Depois do texto: um nó de LLM (Claude por API) para resumo e itens de ação, e gravar no Drive ou no Notion.</li>
-        <li>Há modelos prontos no n8n (áudio do Telegram e do WhatsApp para texto via Groq) e pacotes comunitários como <code>n8n-nodes-groq</code>. Revise antes de instalar: é código de terceiros com a sua chave.</li>
+        <li>Conferir na documentação da API do WhisperAI como autenticar, como enviar o áudio (upload ou URL) e se existe webhook de conclusão, para não ficar consultando o status.</li>
+        <li>Fluxo do n8n: recebe o pedido, envia o áudio, aguarda a transcrição e grava o resultado no Drive e no Notion.</li>
+        <li>Para a equipe: o áudio vai para a pasta "Transcrever" do Drive, o n8n envia ao WhisperAI e devolve a transcrição num Doc, com aviso no chat.</li>
       </ul></div>
-    <div class="card"><div class="top"><h3>Teste rápido pelo terminal</h3></div>
-      <p>Antes de montar o fluxo, valide a chave e a qualidade com um áudio seu:</p>
-      <pre class="cmd">curl https://api.groq.com/openai/v1/audio/transcriptions \
-  -H "Authorization: Bearer $GROQ_API_KEY" \
-  -F model=whisper-large-v3-turbo \
-  -F language=pt \
-  -F response_format=verbose_json \
-  -F file=@audio.mp3</pre></div>
+    <div class="card"><div class="top"><h3>Privacidade</h3><span class="chip c-warn">atenção</span></div>
+      <p>O áudio vai para o serviço do WhisperAI. Para áudio de cliente, leia a política de privacidade e de retenção dele e confirme como ele trata os dados. O WhisperX no VPS fica descartado: a Hostinger não tem GPU.</p></div>
   </div>
-
-  <h3>Quando usar cada um</h3>
-  <div class="tw"><table>
-    <thead><tr><th>Situação</th><th>Use</th><th>Motivo</th></tr></thead>
-    <tbody>
-      <tr><td>Reuniões, entrevistas, vários falantes, resumo pronto</td><td class="rec"><b>WhisperAI Pro</b></td><td>tem separação de falantes e resumo, e os minutos são ilimitados</td></tr>
-      <tr><td>Áudio curto que entra sozinho num fluxo (WhatsApp, formulário, caixa de voz)</td><td class="rec"><b>WhisperAI Pro por API</b></td><td>você confirmou que ele tem API. O Groq fica só como plano B</td></tr>
-      <tr><td>Áudio sensível de cliente</td><td>caso a caso</td><td>comparar contratos de dados. Groq com ZDR e DPA, ou o serviço que oferecer as melhores garantias</td></tr>
-      <tr><td>Precisa de separação de falantes por API</td><td>AssemblyAI ou Deepgram</td><td>oferecem esse recurso. Não pesquisei o preço deles</td></tr>
-      <tr><td>WhisperX no seu VPS</td><td><span class="chip c-bad">descartado</span></td><td>sem GPU na Hostinger, e o WhisperAI já cobre o uso</td></tr>
-    </tbody>
-  </table></div>
 </section>
 
 <section id="agentes">
@@ -502,7 +437,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Claude Pro</td><td>US$, cartão internacional</td><td>trocar cartão e dados de cobrança na conta atual. Ideal: trocar o e-mail da conta para o corporativo</td><td>fatura em dólar. Confirmar se aceita CNPJ nos dados de cobrança</td></tr>
       <tr><td>ChatGPT Plus</td><td>US$, cartão internacional</td><td>idem</td><td>idem</td></tr>
       <tr><td>Notion</td><td>US$. Faturas públicas mostram dólar e tributo brasileiro zerado</td><td>subir o workspace do Free para o Plus e trocar o e-mail do titular para o corporativo</td><td>não achei nota fiscal brasileira. Perguntar ao suporte</td></tr>
-      <tr><td>WhisperAI Pro</td><td>a confirmar (moeda e periodicidade)</td><td>trocar cartão e dados de cobrança na conta atual e, se possível, o e-mail da conta para o corporativo</td><td>conferir se emite fatura com CNPJ. Os transcritos e o histórico ficam na conta</td></tr>
+      <tr><td>WhisperAI Pro</td><td>US$ 24,99 mensal (próxima cobrança em 10/12/2026)</td><td>trocar cartão e dados de cobrança na conta atual e, se possível, o e-mail da conta para o corporativo</td><td>a fatura em PDF já existe; conferir se aceita CNPJ. Os transcritos e o histórico ficam na conta</td></tr>
       <tr><td>Slack Pro</td><td>US$ (confirmar se cobra em reais)</td><td>trocar cartão e dados de cobrança no workspace IT Operation [BR] e passar o proprietário e o e-mail de cobrança para o corporativo</td><td>conferir a moeda e a nota fiscal. Hoje há 1 membro</td></tr>
       <tr><td>Google Workspace</td><td>R$, com nota fiscal brasileira</td><td>contratar em nome da empresa</td><td>simples</td></tr>
       <tr><td>Hostinger</td><td>R$</td><td>contratar em nome da empresa</td><td>simples</td></tr>
@@ -519,7 +454,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>Privacidade dos dados</h3><span class="chip c-warn">atenção</span></div>
       <p>Nos planos individuais do Claude há uma opção que permite o uso das suas conversas para treinamento. Se estiver desligada, a retenção é de 30 dias; ligada, 5 anos. Produtos comerciais e a API não entram nessa política, segundo o anúncio da Anthropic. No ChatGPT, revise a opção de melhorar o modelo nas configurações (não verifiquei o padrão atual). Para dados de cliente, use API ou plano de equipe.</p></div>
     <div class="card"><div class="top"><h3>Impostos e contador</h3><span class="chip c-warn">confirmar</span></div>
-      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os quatro serviços em dólar (R$ 341 por mês, contando o Slack se for cobrado em dólar), somariam de R$ 38 a R$ 49 por mês, estimativa minha, mais cerca de 11% a 14% do valor do WhisperAI se ele for cobrado em dólar. Não achei nada sobre dedutibilidade.</p>
+      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os cinco serviços em dólar (R$ 485 por mês, contando o Slack se for cobrado em dólar), somariam de R$ 55 a R$ 69 por mês, estimativa minha. Não achei nada sobre dedutibilidade.</p>
       <p>Levar ao contador: regime tributário, classificação do serviço, IOF no cartão corporativo e se a fatura em dólar vale como documento fiscal.</p></div>
   </div>
 </section>
@@ -660,7 +595,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>E-mail: migrar da OneX para o Google</h3><span class="chip c-warn">médio</span></div>
       <p>Essa etapa não depende do VPS e pode ir primeiro. As 3 contas cabem nos 30 GB por conta do Starter. Copiar as mensagens com a ferramenta de migração do Google, trocar o MX e configurar SPF, DKIM e DMARC. Baixar o TTL do DNS 48 h antes.</p></div>
     <div class="card"><div class="top"><h3>WhisperAI: manter e ligar ao n8n</h3><span class="chip c-ok">API confirmada</span></div>
-      <p>6 a 10 h por semana são 26 a 43 h por mês, dentro dos minutos ilimitados do Pro. Como há API, o n8n pode enviar o áudio e receber transcrição, falantes e resumo. Falta conferir na documentação do WhisperAI como autenticar e se existe webhook de conclusão, para não ficar consultando o status. O Groq fica como plano B.</p></div>
+      <p>6 a 10 h por semana são 26 a 43 h por mês, dentro dos minutos ilimitados do Pro. Como há API, o n8n pode enviar o áudio e receber transcrição, falantes e resumo. Falta conferir na documentação do WhisperAI como autenticar e se existe webhook de conclusão, para não ficar consultando o status.</p></div>
     <div class="card"><div class="top"><h3>Renovação do VPS</h3><span class="chip c-warn">médio</span></div>
       <p>R$ 59,99 vale por 24 meses. Depois, guias de terceiros apontam ~R$ 130. Marcar lembrete para o mês 22 para medir o uso e decidir entre manter o KVM 4, subir para o KVM 8 ou trocar de provedor.</p></div>
     <div class="card"><div class="top"><h3>Custo de LLM não está na conta</h3><span class="chip c-warn">médio</span></div>
@@ -698,7 +633,6 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
-      <tr><td>Quanto você paga hoje no WhisperAI Pro, em que moeda, e é mensal ou anual?</td><td>Entra nos dois lados do total. Não muda a economia, mas fecha o número real. Com o valor, comparo também com os R$ 6 a 10 do Groq.</td></tr>
       <tr><td>O Slack Pro é cobrado em dólar ou em reais, mensal ou anual?</td><td>Define o custo exato (hoje, 1 membro; hipótese de US$ 8,75 mensal) e o tratamento fiscal.</td></tr>
       
       
@@ -724,12 +658,6 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <li><a href="https://docs.rundeck.com/docs/administration/configuration/database/">Rundeck docs: banco de dados</a> (H2 não é seguro em produção)</li>
     <li><a href="https://canaltech.com.br/inteligencia-artificial/como-assinar-claude-mais-barato/">Canaltech</a> e <a href="https://www.ssdnodes.com/learn/claude-pro-in-brazil-what-you-pay">SSD Nodes</a> (Claude Pro US$ 20; há fonte indicando R$ 110 fixo)</li>
     <li><a href="https://supabase.com/pricing.md">Supabase pricing</a> (Free pausa em 7 dias, Pro US$ 25)</li>
-    <li><a href="https://groq.com/pricing">Groq pricing</a> (Whisper large-v3-turbo, US$ 0,04 por hora)</li>
-    <li><a href="https://console.groq.com/docs/speech-to-text">Groq docs: speech-to-text</a> (endpoints, limite de arquivo 25 MB e 100 MB, URL)</li>
-    <li><a href="https://groq.com/GroqDocs/Groq%20ASR%20Model%20Guide.pdf">Groq ASR Model Guide</a> (erro médio de palavras e fator de velocidade)</li>
-    <li><a href="https://console.groq.com/docs/your-data">Groq docs: seus dados</a> (retenção e Zero Data Retention)</li>
-    <li><a href="https://www.eesel.ai/blog/groq-pricing">eesel: limites do plano gratuito</a> (terceiros, não verificado)</li>
-    <li><a href="https://n8n.io/workflows/10037-audio-transcription-with-telegram-and-groq-whisper/">Modelo n8n: áudio do Telegram com Groq Whisper</a></li>
     <li><a href="https://contabo.com/blog/what-is-paperclip-ai/">Contabo: Paperclip</a> e <a href="https://railway.com/deploy/paperclip-ai-company">template Railway</a> (Node 24+, Postgres)</li>
     <li><a href="https://hermes-agent.nousresearch.com/docs">Hermes Agent docs</a> (MIT, modelo via API)</li>
     <li><a href="https://docs.paperclip.ing/adapters/overview">Paperclip: visão geral dos adapters</a> e <a href="https://docs.paperclip.ing/reference/adapters/hermes-local">adapter do Hermes</a> (CLIs rodam na mesma máquina do Paperclip)</li>
