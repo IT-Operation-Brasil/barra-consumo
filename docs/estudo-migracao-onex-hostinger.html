@@ -90,7 +90,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <main>
 <header>
   <h1>Migração OneX para Hostinger</h1>
-  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 7: com os números definidos: 20 GB de arquivos, R$ 50 de API por mês e três usuários.</p>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 8: Hermes acessível por Telegram e Slack, com acesso restrito por ID e uma instância separada para a equipe.</p>
   <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
 </header>
 
@@ -108,7 +108,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <li><b>Os apps desktop não migram, mas o trabalho deles sim.</b> O que roda 24 horas num VPS são os CLIs do Claude Code e do Codex, que são os mesmos motores. O PC e o celular viram clientes leves, e o PC pode ficar desligado.</li>
       <li><b>Paperclip é o painel de controle e o Hermes é a porta de entrada por chat.</b> O Paperclip organiza agentes, metas, orçamentos e aprovações. O Hermes conversa com você pelo celular e também executa. n8n cuida dos eventos e o Rundeck das rotinas. Você é o conselho que aprova.</li>
       <li><b>24 horas, sim; garantido, não.</b> A Hostinger anuncia 99,9% (cerca de 8,8 h fora do ar por ano) e não achei regra de compensação. Um VPS é ponto único de falha. Os agentes retomam de onde pararam porque o estado fica no banco, no Git e em volumes com backup.</li>
-      <li><b>Cada pessoa usa a própria conta, e os agentes usam API.</b> Pro e Plus são individuais, e dividir um login entre três pessoas contraria os termos. Wanderlei e André, que usam menos, podem usar o sistema pelos agentes (chat do Hermes e painel do Paperclip) em vez de assinar. Os agentes autônomos usam chave de API com teto.</li>
+      <li><b>Cada pessoa usa a própria conta, e os agentes usam API.</b> Pro e Plus são individuais, e dividir um login entre três pessoas contraria os termos. Wanderlei e André usam o sistema pelo chat do Hermes no Telegram, sem assinar nada e sem acesso ao terminal nem ao painel. Eles falam com uma instância separada e restrita do Hermes, com chave de API e teto próprios. Os agentes autônomos usam chave de API com teto.</li>
+      <li><b>Telegram e Slack abrem uma porta de entrada: restrinja por ID.</b> O Hermes nega tudo por padrão e só atende IDs numéricos liberados. Conversas com bots do Telegram não têm criptografia de ponta a ponta, então nenhum dado de cliente, senha ou chave pelos chats.</li>
       <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto a empresa paga R$ 498, quase o que paga hoje só pelo VPS (R$ 495), e o total geral cai 31,5%.</li>
       <li><b>Passar as assinaturas para a PJ:</b> mantenha as contas, troque cartão e dados de cobrança. As faturas são em dólar e podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
       <li><b>Base:</b> MySQL, GO-Global e WhisperX saem. n8n self-hosted único e um PostgreSQL único (n8n, Rundeck, Paperclip). WhisperAI Pro por API. Notion sobe do Free para o Plus. Para clientes, instância separada, e antes de vender confirme a licença do n8n.</li>
@@ -141,13 +142,13 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Sistema</td><td>Windows Server</td><td class="rec">Ubuntu 24.04 LTS + Docker</td></tr>
       <tr><td>vCPU</td><td>4 × 2,4 GHz</td><td class="rec">4 (AMD EPYC; clock a confirmar)</td></tr>
       <tr><td>RAM</td><td>12 GB (Windows ocupa 2-3 GB)</td><td class="rec">16 GB (Linux ocupa ~0,9 GB)</td></tr>
-      <tr><td>RAM em uso estimada</td><td>não medida</td><td class="rec">~8,3 GB em repouso, ~12,8 GB com 2 agentes ativos</td></tr>
+      <tr><td>RAM em uso estimada</td><td>não medida</td><td class="rec">~8,9 GB em repouso, ~13,4 GB com 2 agentes ativos</td></tr>
       <tr><td>Disco</td><td>500 GB SSD</td><td class="rec">200 GB NVMe <span class="chip c-ok">atende</span></td></tr>
       <tr><td>Custo/mês, ciclo de 24 meses</td><td class="n">495,00</td><td class="rec n">59,99</td></tr>
       <tr><td>Custo/mês, renovação*</td><td class="n">495,00</td><td class="rec n">~129,99</td></tr>
     </tbody>
   </table></div>
-  <p class="note">Sem WhisperX e sem MySQL, a RAM em repouso é de ~8,3 GB e chega a ~12,8 GB com 2 agentes de código trabalhando. O KVM 2 (8 GB) não serve. Se os agentes pedirem mais, o KVM 8 (32 GB) é o passo seguinte. Na contratação, escolher a região Brasil (São Paulo) se estiver disponível. *Renovação vem de guias de terceiros (horadecodar.com.br).</p>
+  <p class="note">Sem WhisperX e sem MySQL, a RAM em repouso é de ~8,9 GB e chega a ~13,4 GB com 2 agentes de código trabalhando. O KVM 2 (8 GB) não serve. Se os agentes pedirem mais, o KVM 8 (32 GB) é o passo seguinte. Na contratação, escolher a região Brasil (São Paulo) se estiver disponível. *Renovação vem de guias de terceiros (horadecodar.com.br).</p>
 </section>
 
 <section id="custos">
@@ -183,6 +184,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">507,95</td><td class="n">~648</td></tr>
       <tr><td>Claude Team, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">679,79</td><td class="n">749,79</td></tr>
       <tr><td>ChatGPT Business, 3 vagas (US$ 20 cada, anual)</td><td class="n">+231,84</td><td class="n">679,79</td><td class="n">749,79</td></tr>
+      <tr><td>Slack Pro, 3 usuários (US$ 7,25 cada, anual), se o Free não bastar</td><td class="n">+126,06</td><td class="n">574,01</td><td class="n">644,01</td></tr>
       <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">490,94</td><td class="n">~588-596</td></tr>
       <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">601,96</td><td class="n">671,96</td></tr>
       <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">592,85</td><td class="n">662,85</td></tr>
@@ -339,8 +341,9 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <thead><tr><th>Papel</th><th>Peça</th><th>O que faz</th></tr></thead>
     <tbody>
       <tr><td>Conselho</td><td>você, pelo navegador, terminal e celular</td><td>aprova contratação de agentes, aumento de orçamento e merges</td></tr>
+      <tr><td>Equipe</td><td>Wanderlei e André, pelo Telegram</td><td>pedem e consultam pelo chat da instância restrita do Hermes. Sem terminal e sem painel do Paperclip</td></tr>
       <tr><td>Painel de controle</td><td><b>Paperclip</b> (VPS, painel só pela VPN)</td><td>organograma de agentes, metas, tarefas, orçamento por agente com parada automática, aprovações e trilha de auditoria. Cada agente trabalha em ciclos curtos: acorda, olha as tarefas, age e sai</td></tr>
-      <tr><td>Porta de entrada e executor</td><td><b>Hermes Agent</b> (contêiner próprio)</td><td>conversa com você por Telegram, WhatsApp, Slack, Signal e outros canais. Tem memória, skills, agendador de tarefas e acesso a ferramentas por MCP. Também é um agente que o Paperclip aciona</td></tr>
+      <tr><td>Porta de entrada e executor</td><td><b>Hermes Agent</b> (2 instâncias em contêineres próprios: pessoal e equipe)</td><td>conversa por Telegram e Slack (o Hermes suporta outros canais). Tem memória, skills, agendador de tarefas e acesso a ferramentas por MCP. A instância pessoal também é um agente que o Paperclip aciona</td></tr>
       <tr><td>Agentes de código</td><td><b>Claude Code CLI</b> e <b>Codex CLI</b> (adapters do Paperclip)</td><td>escrevem código, rodam testes e abrem pull requests</td></tr>
       <tr><td>Eventos</td><td>n8n</td><td>e-mail, WhisperAI, Notion e webhooks viram tarefas e avisos</td></tr>
       <tr><td>Rotinas</td><td>Rundeck</td><td>backups e jobs agendados</td></tr>
@@ -354,7 +357,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <p>Para trabalho ao vivo, use o terminal com <code>tmux</code>: a sessão continua rodando quando você desconecta.</p></div>
     <div class="card"><div class="top"><h3>Como você fala com o sistema</h3></div>
       <ul>
-        <li>Celular: chat com o Hermes para pedir, acompanhar e aprovar.</li>
+        <li>Celular: Telegram e Slack com o Hermes pessoal, para pedir, acompanhar e aprovar.</li>
         <li>Navegador: painel do Paperclip, editor do n8n e Rundeck, pela VPN.</li>
         <li>Terminal SSH com tmux: trabalho interativo com Claude Code ou Codex.</li>
         <li>GitHub: revisão e merge de pull requests. Notion: briefs e decisões.</li>
@@ -381,6 +384,16 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
         <li>Segredos: arquivo <code>.env</code> com permissão 600 no VPS. Nunca no Git.</li>
         <li>Espaço: os 20 GB cabem com folga. Dos 200 GB, restam ~140 a 150 GB para o workspace após sistema, Docker e bancos, então os arquivos usam cerca de 14%. O KVM 8 não é necessário por causa do disco.</li>
         <li>Dados de cliente entram na LGPD. Cifrar os backups.</li>
+      </ul></div>
+    <div class="card"><div class="top"><h3>Telegram e Slack: quem pode falar com o Hermes</h3><span class="chip c-warn">atenção</span></div>
+      <ul>
+        <li>O gateway nega tudo por padrão. Libere só IDs numéricos: <code>TELEGRAM_ALLOWED_USERS</code> (o seu, o de Wanderlei e o de André) e <code>SLACK_ALLOWED_USERS</code> (IDs de membro do Slack). Nome de usuário não vale.</li>
+        <li><b>Duas instâncias do Hermes.</b> A pessoal, só com o seu ID e ferramentas completas. A da equipe, com você, Wanderlei e André, sem terminal e sem acesso aos repositórios. Cada uma com bot e chave de API próprios, o que dá um teto de custo separado (por exemplo R$ 15 dos R$ 50 para a equipe). Não achei na documentação restrição de ferramentas por usuário; se existir, uma instância basta.</li>
+        <li>Telegram: um bot por instância, criado no BotFather. O token é segredo. Conversas com bots não têm criptografia de ponta a ponta.</li>
+        <li>Slack: app com Socket Mode (conexão de saída, sem abrir porta no VPS), token de bot (xoxb) e token de app (xapp). Sem o escopo de leitura de arquivos, o Hermes não lê anexos.</li>
+        <li>Plano Free do Slack: 90 dias de histórico e até 10 apps. O Pro custa US$ 7,25 por usuário no anual (~R$ 126 para 3), segundo fontes secundárias. Comece no Free e registre o que importa no Notion.</li>
+        <li>Não envie dado de cliente, senha ou chave pelos chats. O que se diz ao bot passa pelos servidores do Telegram ou do Slack.</li>
+        <li>Revogue o acesso pelo CLI do Hermes quando alguém sair.</li>
       </ul></div>
     <div class="card"><div class="top"><h3>Segurança dos agentes</h3><span class="chip c-warn">checklist</span></div>
       <ul>
@@ -415,7 +428,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <div class="tw"><table>
     <thead><tr><th>Opção</th><th class="n">Custo extra/mês</th><th>Como funciona</th></tr></thead>
     <tbody>
-      <tr><td class="rec"><b>Wanderlei e André usam os agentes, sem assinatura própria (recomendado)</b></td><td class="rec n">R$ 0</td><td class="rec">falam com o Hermes por chat e acompanham no painel do Paperclip. O consumo sai do teto de R$ 50. Cada um tem usuário próprio, sem root</td></tr>
+      <tr><td class="rec"><b>Wanderlei e André usam os agentes, sem assinatura própria (recomendado)</b></td><td class="rec n">R$ 0</td><td class="rec">falam com a instância da equipe do Hermes pelo Telegram, sem terminal e sem painel do Paperclip. Teto de API próprio dentro dos R$ 50. Não precisam de usuário no VPS</td></tr>
       <tr><td>Assinatura individual para cada um (Claude Pro)</td><td class="n">+231,84</td><td>duas contas Pro de US$ 20, na empresa, cada um com o próprio login</td></tr>
       <tr><td>Planos de equipe, 3 vagas</td><td class="n">+231,84 por plano</td><td>Claude Team ou ChatGPT Business, com administração central e termos comerciais de dados. Só se o uso deles crescer</td></tr>
     </tbody>
@@ -535,7 +548,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <text class="t" x="512" y="300">Paperclip (painel de controle)</text><text class="s" x="512" y="318">organograma, metas, orçamento por</text><text class="s" x="512" y="333">agente, aprovações e auditoria</text>
 
     <rect class="core" x="230" y="356" width="250" height="62" rx="6"/>
-    <text class="t" x="242" y="376">Hermes Agent (porta de entrada)</text><text class="s" x="242" y="394">chat por Telegram, WhatsApp etc.,</text><text class="s" x="242" y="409">memória, skills e agendador</text>
+    <text class="t" x="242" y="376">Hermes Agent (2 instâncias)</text><text class="s" x="242" y="394">pessoal e equipe; chat Telegram e</text><text class="s" x="242" y="409">Slack, memória, skills, agendador</text>
     <rect class="box" x="500" y="356" width="250" height="62" rx="6"/>
     <text class="t" x="512" y="376">PostgreSQL 17 (instância única)</text><text class="s" x="512" y="394">3 bases: n8n, rundeck, paperclip</text><text class="s" x="512" y="409">usuários separados · sem porta pública</text>
 
@@ -567,7 +580,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <line class="ln" x1="770" y1="352" x2="800" y2="352" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="408" width="190" height="76" rx="6"/>
-    <text class="t" x="812" y="430">Canais de chat</text><text class="s" x="812" y="449">Telegram, WhatsApp, Slack ou</text><text class="s" x="812" y="464">Signal: você fala com o Hermes</text>
+    <text class="t" x="812" y="430">Telegram e Slack</text><text class="s" x="812" y="449">Telegram: você, Wanderlei e</text><text class="s" x="812" y="464">André. Só IDs liberados</text>
     <line class="ln" x1="770" y1="446" x2="800" y2="446" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="502" width="190" height="76" rx="6"/>
@@ -598,12 +611,12 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Rundeck</td><td class="n">3,5 GB</td><td>JVM. O estudo anterior reservou 4 GB. Limitar o heap</td></tr>
       <tr><td>PostgreSQL (n8n + Rundeck + Paperclip)</td><td class="n">1,0 GB</td><td>uma instância, três bases</td></tr>
       <tr><td>Paperclip</td><td class="n">0,8 GB</td><td>mínimo de terceiros: 512 MB</td></tr>
-      <tr><td>Hermes Agent</td><td class="n">0,8 GB</td><td>modelos via API, com o gateway de chat ligado</td></tr>
+      <tr><td>Hermes Agent (2 instâncias: pessoal e equipe)</td><td class="n">1,4 GB</td><td>modelos via API, com o gateway de Telegram e Slack ligado</td></tr>
       <tr><td>Site</td><td class="n">0,3 GB</td><td>estático. WordPress + banco chegaria a ~1 GB</td></tr>
-      <tr class="tot"><td>Total em repouso</td><td class="n">8,3 GB</td><td>sobram ~7,7 GB de 16 GB</td></tr>
+      <tr class="tot"><td>Total em repouso</td><td class="n">8,9 GB</td><td>sobram ~7,1 GB de 16 GB</td></tr>
       <tr><td>Claude Code CLI e Codex CLI (2 execuções simultâneas)</td><td class="n">2,0 GB</td><td>só enquanto rodam uma tarefa. Limite de 2 ao mesmo tempo</td></tr>
       <tr><td>Ferramentas dos agentes (npm, testes, builds)</td><td class="n">2,5 GB</td><td>depende dos projetos. Medir na primeira semana</td></tr>
-      <tr class="tot"><td>Pico com 2 agentes ativos</td><td class="n">12,8 GB</td><td>sobram ~3,2 GB de 16 GB. Se faltar, KVM 8</td></tr>
+      <tr class="tot"><td>Pico com 2 agentes ativos</td><td class="n">13,4 GB</td><td>sobram ~2,6 GB de 16 GB. Criar 4 GB de swap e limite de memória por contêiner. Se faltar, KVM 8</td></tr>
     </tbody>
   </table></div>
   <p class="note">São estimativas minhas, não medições. Medir no primeiro mês. Com o trabalho dos agentes, o KVM 2 deixou de ser opção. Se precisar de mais de 2 agentes ao mesmo tempo ou de builds pesados, o próximo passo é o KVM 8 (+R$ 60 no 1º ciclo; o botão de upgrade fica na conta Hostinger).</p>
@@ -640,7 +653,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <li><div><b>Base no Hostinger (3-5 dias)</b><span>Contratar o KVM 4 (garantia de 30 dias), região Brasil se houver. Instalar Ubuntu, Docker Compose, Caddy, PostgreSQL, VPN, firewall, backup para o Drive, snapshots e monitor de uptime. Nada de produção ainda.</span></div></li>
     <li><div><b>Mover o que já existe (semana 2)</b><span>n8n com a mesma <code>N8N_ENCRYPTION_KEY</code> e já no PostgreSQL, Rundeck por exportação de projeto, scripts Python e Node reescritos para Linux.</span></div></li>
     <li><div><b>Itens novos (semana 3)</b><span>Paperclip, Hermes, site com formulário ligado ao n8n, integração do n8n com o WhisperAI, teto de gasto em API de LLM.</span></div></li>
-    <li><div><b>Do PC para o VPS (semanas 3-5)</b><span>Inventariar e mover os arquivos locais (20 GB: Git, Drive, dotfiles). Instalar os CLIs do Claude Code e do Codex no ambiente dos agentes. Login para uso ao vivo e chaves de API com teto para o autônomo. Configurar o Paperclip (adapters, orçamentos, aprovações) e o Hermes (canais de chat). Criar usuários separados, sem root, para Wanderlei e André, sem login compartilhado. Testar uma tarefa pequena de ponta a ponta e só então deixar o PC de fora.</span></div></li>
+    <li><div><b>Do PC para o VPS (semanas 3-5)</b><span>Inventariar e mover os arquivos locais (20 GB: Git, Drive, dotfiles). Instalar os CLIs do Claude Code e do Codex no ambiente dos agentes. Login para uso ao vivo e chaves de API com teto para o autônomo. Configurar o Paperclip (adapters, orçamentos, aprovações) e o Hermes (canais de chat). Criar as duas instâncias do Hermes (pessoal e equipe), cadastrar os IDs do Telegram e do Slack e definir um teto de API para cada uma. Testar uma tarefa pequena de ponta a ponta e só então deixar o PC de fora.</span></div></li>
     <li><div><b>Corte e sobreposição (semana 4 e mês 2)</b><span>Trocar o DNS do site, manter o OneX em paralelo enquanto valida (sem multa, 2 a 4 semanas bastam), testar a restauração dos backups e só então cancelar o OneX. Confirmar antes que o domínio e o DNS não dependem dele. Custo da sobreposição: até um mês de R$ 495.</span></div></li>
   </ol>
 </section>
@@ -655,9 +668,9 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
-      <tr><td>Wanderlei e André precisam de acesso a quê: chat do Hermes, painel do Paperclip, terminal? Têm assinatura própria hoje?</td><td>Define usuários, permissões e se alguém precisa de Pro ou Plus.</td></tr>
-      <tr><td>Qual canal de chat para o Hermes: Telegram, WhatsApp, Slack ou Signal?</td><td>O Hermes suporta vários. Muda a configuração e o risco de privacidade.</td></tr>
-      <tr><td>Quais os 3 primeiros trabalhos autônomos que você quer dos agentes?</td><td>Calibra o teto de R$ 50 e a escolha do modelo.</td></tr>
+      <tr><td>Já existe um workspace do Slack? Em qual plano e quem usa?</td><td>O plano Free tem 90 dias de histórico e limite de 10 apps. O Pro custaria ~R$ 126 por mês para 3.</td></tr>
+      <tr><td>Que tipo de pedido Wanderlei e André farão pelo Telegram (consultas, resumos, agenda, tarefas no Notion)?</td><td>Define as ferramentas da instância da equipe e o teto de API dela.</td></tr>
+      
       
       
       
@@ -695,6 +708,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <li><a href="https://www.anthropic.com/news/updates-to-our-consumer-terms">Anthropic: termos de consumo</a> (treinamento, 30 dias ou 5 anos de retenção)</li>
     <li><a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic: preços da API</a> (via sites secundários: Sonnet 5.5 US$ 2/10, Haiku 5.5 US$ 0,10/0,50, Opus 5.5 US$ 4/20) e <a href="https://openai.com/api/pricing/">OpenAI: preços da API</a> (GPT-5.3-Codex US$ 1,75/14)</li>
     <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/">Hermes: gateway de mensagens</a> e <a href="https://raw.githubusercontent.com/paperclipai/paperclip/master/README.md">README do Paperclip</a> (orçamentos, aprovações, heartbeats)</li>
+    <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram">Hermes: Telegram</a> e <a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/slack">Hermes: Slack</a> (lista de IDs permitidos, pareamento, Socket Mode)</li>
+    <li><a href="https://api.slack.com/pricing">Slack: preços</a> (Free com 90 dias de histórico e 10 apps; Pro US$ 7,25 no anual; fontes secundárias divergem)</li>
     <li><a href="https://www.hostinger.com/support/1583232-how-to-back-up-or-restore-a-vps-server/">Hostinger: backup e snapshot</a> e <a href="https://hostinger.com/vps-hosting">página do VPS</a> (99,9% de uptime)</li>
     <li><a href="https://www.rotinafiscal.com.br/operacoes-fiscais/importacao-de-servicos">Rotina Fiscal: importação de serviços</a> e <a href="https://www.contabeis.com.br/noticias/62078/compras-internacionais-de-servicos-e-softwares-3-coisas-que-voce-precisa-saber/">Contábeis: compras internacionais de serviços e softwares</a> (PIS/COFINS e ISS-importação)</li>
     <li><a href="https://code.claude.com/docs/en/desktop">Claude Code Desktop</a> e <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Claude Code com o plano Pro ou Max</a> (limites compartilhados, SSH)</li>
