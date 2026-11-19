@@ -90,14 +90,14 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <main>
 <header>
   <h1>Migração OneX para Hostinger</h1>
-  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 11: desenho fechado. O link para o Notion basta para Wanderlei e André.</p>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 12: o WhisperAI Pro entra na conta e passa para a empresa.</p>
   <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
 </header>
 
 <section id="resumo">
   <h2>Resumo</h2>
   <div class="kpis">
-    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 778</div><div class="n">R$ 495 da empresa + ~R$ 283 que você paga como pessoa física (Claude, ChatGPT e Slack)</div></div>
+    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 778</div><div class="n">R$ 495 da empresa + ~R$ 283 que você paga como pessoa física (Claude, ChatGPT e Slack), sem o WhisperAI</div></div>
     <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 499</div><div class="n">tudo na empresa, sem API, −35,9% sobre o total de hoje</div></div>
     <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 569</div><div class="n">sem API, com a renovação do VPS, −26,9%</div></div>
     <div class="kpi main"><div class="l">Com R$ 50 de API dos agentes</div><div class="v">R$ 549</div><div class="n">−29,4% no 1º ciclo; −20,4% após a renovação</div></div>
@@ -111,7 +111,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <li><b>Cada pessoa usa a própria conta, e os agentes usam API.</b> Pro e Plus são individuais, e dividir um login entre três pessoas contraria os termos. Wanderlei e André usam o sistema pelo chat do Hermes no Telegram, sem assinar nada e sem acesso ao terminal nem ao painel. Eles falam com uma instância separada e restrita do Hermes, com chave de API e teto próprios. Os agentes autônomos usam chave de API com teto.</li>
       <li><b>Telegram e Slack abrem uma porta de entrada: restrinja por ID.</b> O Hermes nega tudo por padrão e só atende IDs numéricos liberados. Conversas com bots do Telegram não têm criptografia de ponta a ponta. Como as consultas incluem dados de cliente, o Telegram responde com link para o Notion, não com o conteúdo. O Slack da empresa tem só você hoje.</li>
       <li><b>R$ 50 de API (~US$ 8,6) pagam trabalho autônomo leve, não programação 24 horas.</b> É cerca de 430 pedidos médios no Haiku 5.5, ou uns 20 no Sonnet 5.5 ou no Codex. Use modelo barato nas rotinas e deixe o código pesado para sessões suas, ao vivo. Com esse teto, o total geral cai 29,4% (R$ 549 contra R$ 778).</li>
-      <li><b>Passar Claude Pro, ChatGPT Plus e Slack Pro para a PJ não cria custo novo, só muda quem paga.</b> A empresa vai de R$ 495 para R$ 549 por mês (com a API) e você deixa de pagar ~R$ 283. Mantenha as contas e troque cartão e dados de cobrança. As faturas em dólar podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
+      <li><b>O WhisperAI Pro entra na conta, mas ainda não sei o valor.</b> Você paga hoje e vai passar para a empresa, então ele soma nos dois lados e a economia de R$ 279 por mês não muda. Os totais acima estão sem ele; a seção de custos mostra o efeito para US$ 10, 20 e 30.</li>
+      <li><b>Passar Claude Pro, ChatGPT Plus, Slack Pro e WhisperAI Pro para a PJ não cria custo novo, só muda quem paga.</b> A empresa vai de R$ 495 para R$ 549 por mês (com a API) e você deixa de pagar ~R$ 283. Mantenha as contas e troque cartão e dados de cobrança. As faturas em dólar podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
       <li><b>Base:</b> MySQL, GO-Global e WhisperX saem. n8n self-hosted único e um PostgreSQL único (n8n, Rundeck, Paperclip). WhisperAI Pro por API. Notion sobe do Free para o Plus. Para clientes, instância separada, e antes de vender confirme a licença do n8n.</li>
       <li><b>Domínio e DNS:</b> você edita o DNS na OneX. Confirme que o domínio está no seu nome e mova o DNS para fora dela antes de cancelar.</li>
     </ul>
@@ -163,10 +164,10 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Slack Pro, 1 membro, US$ 8,75 mensal (hipótese de moeda e periodicidade)</td><td class="n">50,72 (você, PF)</td><td class="n rec">50,72</td><td class="n">50,72</td></tr>
       <tr><td>Notion Plus, 1 membro (US$ 10 no anual; convidados grátis)</td><td class="n">0,00 (Free)</td><td class="n rec">57,96</td><td class="n">57,96</td></tr>
       <tr><td>n8n self-hosted</td><td class="n">0,00</td><td class="n rec">0,00</td><td class="n">0,00</td></tr>
-      <tr><td>WhisperAI Pro (já contratado, igual antes e depois)</td><td class="n">fora da conta</td><td class="n rec">fora da conta</td><td class="n">fora da conta</td></tr>
-      <tr class="tot"><td>Total pago pela empresa</td><td class="n">495,00</td><td class="n rec">498,67</td><td class="n">568,67</td></tr>
-      <tr><td>Hoje pago por você como pessoa física (Claude Pro, ChatGPT Plus e Slack Pro)</td><td class="n">282,56</td><td class="n rec">–</td><td class="n">–</td></tr>
-      <tr class="tot"><td>Total geral (empresa + você)</td><td class="n">777,56</td><td class="n rec">498,67</td><td class="n">568,67</td></tr>
+      <tr><td>WhisperAI Pro (valor a informar; você paga hoje e passa para a empresa)</td><td class="n">W (você, PF)</td><td class="n rec">W</td><td class="n">W</td></tr>
+      <tr class="tot"><td>Total pago pela empresa, sem o WhisperAI (+ W)</td><td class="n">495,00</td><td class="n rec">498,67</td><td class="n">568,67</td></tr>
+      <tr><td>Hoje pago por você como pessoa física (Claude Pro, ChatGPT Plus e Slack Pro), sem o WhisperAI</td><td class="n">282,56</td><td class="n rec">–</td><td class="n">–</td></tr>
+      <tr class="tot"><td>Total geral (empresa + você), sem o WhisperAI (+ W nos dois lados)</td><td class="n">777,56</td><td class="n rec">498,67</td><td class="n">568,67</td></tr>
       <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−35,9%)</td><td class="n neg">−208,89 (−26,9%)</td></tr>
       <tr><td>Teto de API dos agentes no VPS (definido por você)</td><td class="n">–</td><td class="n rec">+50,00</td><td class="n">+50,00</td></tr>
       <tr class="tot"><td>Total geral com teto de API</td><td class="n">777,56</td><td class="n rec">548,67</td><td class="n">618,67</td></tr>
@@ -174,9 +175,20 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Só a empresa, com teto de API, contra os R$ 495 de hoje</td><td class="n">–</td><td class="n rec pos">+53,67 (+10,8%)</td><td class="n pos">+123,67 (+25,0%)</td></tr>
     </tbody>
   </table></div>
-  <p class="note">O que cai é o total geral. A empresa paga um pouco mais porque assume assinaturas que hoje saem do seu bolso, o que só muda quem paga. Claude Pro, ChatGPT Plus e Slack são estimativas: US$ com IOF de 3,5%. O Slack tem 1 membro hoje; a moeda e a periodicidade são hipótese minha. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
+  <p class="note">O que cai é o total geral. A empresa paga um pouco mais porque assume assinaturas que hoje saem do seu bolso, o que só muda quem paga. Claude Pro, ChatGPT Plus e Slack são estimativas: US$ com IOF de 3,5%. O Slack tem 1 membro hoje; a moeda e a periodicidade são hipótese minha. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 50 de API são o teto que você definiu. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez). O WhisperAI Pro tem linha própria (W) porque não sei o valor.</p>
 
-  <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API)</h3>
+  <h3>Efeito do WhisperAI Pro nos totais</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Se o WhisperAI custar</th><th class="n">Hoje, total geral</th><th class="n rec">24 meses</th><th class="n">Após renovação</th><th class="n">24 meses, com API</th><th class="n">Após renovação, com API</th></tr></thead>
+    <tbody>
+      <tr><td>US$ 10 (R$ 57,96)</td><td class="n">835,52</td><td class="n rec">556,63 (−33,4%)</td><td class="n">626,63 (−25,0%)</td><td class="n">606,63 (−27,4%)</td><td class="n">676,63 (−19,0%)</td></tr>
+      <tr><td>US$ 20 (R$ 115,92)</td><td class="n">893,48</td><td class="n rec">614,59 (−31,2%)</td><td class="n">684,59 (−23,4%)</td><td class="n">664,59 (−25,6%)</td><td class="n">734,59 (−17,8%)</td></tr>
+      <tr><td>US$ 30 (R$ 173,88)</td><td class="n">951,44</td><td class="n rec">672,55 (−29,3%)</td><td class="n">742,55 (−22,0%)</td><td class="n">722,55 (−24,1%)</td><td class="n">792,55 (−16,7%)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Valores hipotéticos: não achei página oficial com o preço do WhisperAI Pro, e os resultados que vi eram de produtos parecidos. Informe o valor, a moeda e se é mensal ou anual, e eu fecho a conta. O WhisperAI entra nos dois lados (hoje e proposta), então a economia de R$ 279 por mês não muda, só o percentual.</p>
+
+  <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API e sem o WhisperAI)</h3>
   <div class="tw"><table>
     <thead><tr><th>Opção</th><th class="n">Soma/mês</th><th class="n">Total, 24 meses</th><th class="n">Total, após renovação</th></tr></thead>
     <tbody>
@@ -275,8 +287,8 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <div class="tw"><table>
     <thead><tr><th>Critério</th><th class="rec">WhisperAI Pro (seu)</th><th>Groq whisper-large-v3-turbo</th><th>Groq whisper-large-v3</th></tr></thead>
     <tbody>
-      <tr><td>Custo</td><td class="rec">já contratado</td><td>US$ 0,04/h ≈ R$ 0,23/h</td><td>US$ 0,111/h ≈ R$ 0,64/h</td></tr>
-      <tr><td>Para 26-43 h/mês</td><td class="rec">sem custo extra</td><td>R$ 6 a 10</td><td>R$ 17 a 28</td></tr>
+      <tr><td>Custo</td><td class="rec">valor a informar (você paga hoje)</td><td>US$ 0,04/h ≈ R$ 0,23/h</td><td>US$ 0,111/h ≈ R$ 0,64/h</td></tr>
+      <tr><td>Para 26-43 h/mês</td><td class="rec">incluído no plano (minutos ilimitados)</td><td>R$ 6 a 10</td><td>R$ 17 a 28</td></tr>
       <tr><td>Velocidade</td><td class="rec">não medida</td><td>~216x tempo real (1 h em ~17 s)</td><td>~189x (1 h em ~19 s)</td></tr>
       <tr><td>Erro médio de palavras*</td><td class="rec">não divulgado</td><td>~12%</td><td>~10,3%</td></tr>
       <tr><td>Separação de falantes</td><td class="rec"><span class="chip c-ok">sim</span></td><td><span class="chip c-bad">não</span></td><td><span class="chip c-bad">não</span></td></tr>
@@ -490,6 +502,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Claude Pro</td><td>US$, cartão internacional</td><td>trocar cartão e dados de cobrança na conta atual. Ideal: trocar o e-mail da conta para o corporativo</td><td>fatura em dólar. Confirmar se aceita CNPJ nos dados de cobrança</td></tr>
       <tr><td>ChatGPT Plus</td><td>US$, cartão internacional</td><td>idem</td><td>idem</td></tr>
       <tr><td>Notion</td><td>US$. Faturas públicas mostram dólar e tributo brasileiro zerado</td><td>subir o workspace do Free para o Plus e trocar o e-mail do titular para o corporativo</td><td>não achei nota fiscal brasileira. Perguntar ao suporte</td></tr>
+      <tr><td>WhisperAI Pro</td><td>a confirmar (moeda e periodicidade)</td><td>trocar cartão e dados de cobrança na conta atual e, se possível, o e-mail da conta para o corporativo</td><td>conferir se emite fatura com CNPJ. Os transcritos e o histórico ficam na conta</td></tr>
       <tr><td>Slack Pro</td><td>US$ (confirmar se cobra em reais)</td><td>trocar cartão e dados de cobrança no workspace IT Operation [BR] e passar o proprietário e o e-mail de cobrança para o corporativo</td><td>conferir a moeda e a nota fiscal. Hoje há 1 membro</td></tr>
       <tr><td>Google Workspace</td><td>R$, com nota fiscal brasileira</td><td>contratar em nome da empresa</td><td>simples</td></tr>
       <tr><td>Hostinger</td><td>R$</td><td>contratar em nome da empresa</td><td>simples</td></tr>
@@ -506,7 +519,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>Privacidade dos dados</h3><span class="chip c-warn">atenção</span></div>
       <p>Nos planos individuais do Claude há uma opção que permite o uso das suas conversas para treinamento. Se estiver desligada, a retenção é de 30 dias; ligada, 5 anos. Produtos comerciais e a API não entram nessa política, segundo o anúncio da Anthropic. No ChatGPT, revise a opção de melhorar o modelo nas configurações (não verifiquei o padrão atual). Para dados de cliente, use API ou plano de equipe.</p></div>
     <div class="card"><div class="top"><h3>Impostos e contador</h3><span class="chip c-warn">confirmar</span></div>
-      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os quatro serviços em dólar (R$ 341 por mês, contando o Slack se for cobrado em dólar), somariam de R$ 38 a R$ 49 por mês, estimativa minha. Não achei nada sobre dedutibilidade.</p>
+      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os quatro serviços em dólar (R$ 341 por mês, contando o Slack se for cobrado em dólar), somariam de R$ 38 a R$ 49 por mês, estimativa minha, mais cerca de 11% a 14% do valor do WhisperAI se ele for cobrado em dólar. Não achei nada sobre dedutibilidade.</p>
       <p>Levar ao contador: regime tributário, classificação do serviço, IOF no cartão corporativo e se a fatura em dólar vale como documento fiscal.</p></div>
   </div>
 </section>
@@ -665,7 +678,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <h2>Plano de migração</h2>
   <ol class="steps">
     <li><div><b>Inventário no OneX (1-2 dias)</b><span>Titular, registro e DNS do domínio (e como assumir o controle), fluxos do n8n e projetos do Rundeck para exportar, scripts e tarefas agendadas, dump final do MySQL. Não há multa de saída: o OneX pode ser cancelado quando você validar a migração.</span></div></li>
-    <li><div><b>Assinaturas para a PJ (semana 1)</b><span>Cartão corporativo com limite em dólar. Trocar cartão e dados de cobrança no Claude, no ChatGPT e no Slack (workspace IT Operation [BR]). Subir o Notion do Free para o Plus, com o e-mail corporativo. Alinhar com o contador o tratamento de faturas em dólar.</span></div></li>
+    <li><div><b>Assinaturas para a PJ (semana 1)</b><span>Cartão corporativo com limite em dólar. Trocar cartão e dados de cobrança no Claude, no ChatGPT, no WhisperAI e no Slack (workspace IT Operation [BR]). Subir o Notion do Free para o Plus, com o e-mail corporativo. Alinhar com o contador o tratamento de faturas em dólar.</span></div></li>
     <li><div><b>Google Workspace (dias 1-7, em paralelo)</b><span>Contratar, criar as contas, verificar o domínio, migrar as caixas da OneX, configurar SPF, DKIM e DMARC e só então trocar o MX. Não depende do VPS.</span></div></li>
     <li><div><b>Base no Hostinger (3-5 dias)</b><span>Contratar o KVM 4 (garantia de 30 dias), região Brasil se houver. Instalar Ubuntu, Docker Compose, Caddy, PostgreSQL, VPN, firewall, backup para o Drive, snapshots e monitor de uptime. Nada de produção ainda.</span></div></li>
     <li><div><b>Mover o que já existe (semana 2)</b><span>n8n com a mesma <code>N8N_ENCRYPTION_KEY</code> e já no PostgreSQL, Rundeck por exportação de projeto, scripts Python e Node reescritos para Linux.</span></div></li>
@@ -685,6 +698,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
+      <tr><td>Quanto você paga hoje no WhisperAI Pro, em que moeda, e é mensal ou anual?</td><td>Entra nos dois lados do total. Não muda a economia, mas fecha o número real. Com o valor, comparo também com os R$ 6 a 10 do Groq.</td></tr>
       <tr><td>O Slack Pro é cobrado em dólar ou em reais, mensal ou anual?</td><td>Define o custo exato (hoje, 1 membro; hipótese de US$ 8,75 mensal) e o tratamento fiscal.</td></tr>
       
       
