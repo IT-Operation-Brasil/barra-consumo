@@ -90,31 +90,29 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 <main>
 <header>
   <h1>Migração OneX para Hostinger</h1>
-  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 5: acrescenta Claude Code, Codex, Hermes e Paperclip trabalhando juntos, e o Notion.</p>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) para um VPS Linux, trazendo e-mail, agenda e office para o Google Workspace. Revisão 6: Claude Code e Codex migram para o VPS sob o comando do Paperclip e do Hermes, e as assinaturas passam para a empresa.</p>
   <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
 </header>
 
 <section id="resumo">
   <h2>Resumo</h2>
   <div class="kpis">
-    <div class="kpi"><div class="l">Hoje (OneX)</div><div class="v">R$ 495</div><div class="n">por mês, VPS e e-mail</div></div>
-    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 332</div><div class="n">VPS + Workspace + Claude Pro + Notion, −32,9%</div></div>
-    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 402</div><div class="n">com a renovação do VPS, −18,8%</div></div>
-    <div class="kpi"><div class="l">Sobra por mês</div><div class="v">R$ 163</div><div class="n">no primeiro ciclo, para tokens de API e extras</div></div>
+    <div class="kpi"><div class="l">Hoje, tudo somado</div><div class="v">R$ 727</div><div class="n">R$ 495 da empresa + ~R$ 232 que você paga como pessoa física</div></div>
+    <div class="kpi main"><div class="l">Proposta, 24 primeiros meses</div><div class="v">R$ 448</div><div class="n">tudo na empresa, −38,4% sobre o total de hoje</div></div>
+    <div class="kpi main"><div class="l">Proposta, após o mês 24</div><div class="v">R$ 518</div><div class="n">com a renovação do VPS, −28,7%</div></div>
+    <div class="kpi"><div class="l">Com R$ 200 de API dos agentes</div><div class="v">R$ 648</div><div class="n">−10,9% no 1º ciclo; −1,2% após a renovação</div></div>
   </div>
   <div class="verdict">
     <h3>Veredito</h3>
     <ul>
-      <li><b>O desenho ficou mais simples e mais barato.</b> MySQL, GO-Global e WhisperX saem do servidor. Ficam n8n, Rundeck, Paperclip, Hermes, site e um único PostgreSQL, tudo em Docker no KVM 4.</li>
-      <li><b>n8n: um só, no VPS, por enquanto.</b> O n8n Cloud Starter custaria R$ 154/mês por 2.500 execuções, e um fluxo que consulta algo a cada 5 minutos já gasta 8.640 por mês. Self-hosted tem execuções ilimitadas e custa R$ 0 a mais.</li>
-      <li><b>O n8n precisa de banco, mas já traz um.</b> Por padrão usa SQLite. Recomendo PostgreSQL desde o início, e o mesmo contêiner serve ao Rundeck e ao Paperclip. O MySQL atual não deve ser reaproveitado: o n8n o descontinuou.</li>
-      <li><b>Para clientes, instância separada em VPS separado.</b> Dividir o servidor com os seus próprios fluxos mistura risco. Antes de vender, confirme a licença do n8n por escrito (ver seção de clientes).</li>
-      <li><b>WhisperAI Pro fica como está.</b> A sua conta tem minutos ilimitados, separação de falantes e resumos, e isso libera de 3 a 6 GB de RAM de pico no VPS. Como ele tem API, o n8n fala direto com ele e o Groq não é necessário (seção de transcrição).</li>
-      <li><b>Domínio e DNS: você edita o DNS na OneX.</b> Antes de cancelar o plano, confirme que o domínio está no seu nome e passe o DNS para um serviço independente, senão site e e-mail caem junto. Sem multa de saída, o corte pode ser rápido.</li>
-      <li><b>Claude Code Desktop e Codex Desktop ficam no seu PC; Hermes e Paperclip, no VPS.</b> Eles não precisam estar no mesmo contêiner nem na mesma máquina. Trabalham juntos por Git, Notion e n8n. O desenho completo está na seção de agentes.</li>
-      <li><b>Notion Plus com 1 membro custa ~R$ 58 por mês.</b> Os 3 convidados não pagam. Confirme no momento da compra que 3 convidados cabem no plano.</li>
-      <li><b>O Codex pede um ChatGPT Plus (~R$ 116), se você ainda não tiver.</b> Com ele, o total vai a R$ 448 no primeiro ciclo e R$ 518 depois da renovação, ou seja, R$ 23 acima de hoje. Os agentes no VPS devem usar chaves de API com teto, não as suas assinaturas.</li>
-      <li><b>Depois do mês 24 o VPS passa a ~R$ 130.</b> O número vem de guias de terceiros. Mesmo assim o total sem ChatGPT Plus fica ~R$ 93 abaixo de hoje (R$ 402 contra R$ 495).</li>
+      <li><b>Os apps desktop não migram, mas o trabalho deles sim.</b> O que roda 24 horas num VPS são os CLIs do Claude Code e do Codex, que são os mesmos motores. O PC e o celular viram clientes leves, e o PC pode ficar desligado.</li>
+      <li><b>Paperclip é o painel de controle e o Hermes é a porta de entrada por chat.</b> O Paperclip organiza agentes, metas, orçamentos e aprovações. O Hermes conversa com você pelo celular e também executa. n8n cuida dos eventos e o Rundeck das rotinas. Você é o conselho que aprova.</li>
+      <li><b>24 horas, sim; garantido, não.</b> A Hostinger anuncia 99,9% (cerca de 8,8 h fora do ar por ano) e não achei regra de compensação. Um VPS é ponto único de falha. Os agentes retomam de onde pararam porque o estado fica no banco, no Git e em volumes com backup.</li>
+      <li><b>Assinaturas para você, API para os agentes.</b> Em servidor, as assinaturas têm limite de 5 horas e teto semanal, e os termos sobre uso sem ninguém por perto são cinzentos. O trabalho autônomo deve usar chave de API com teto por agente.</li>
+      <li><b>O gasto de API é o item que decide se a conta fecha.</b> Com R$ 200 por mês (hipótese), o total é R$ 648 no 1º ciclo, ainda 10,9% abaixo do que você gasta hoje. Após a renovação do VPS, empata.</li>
+      <li><b>Passar as assinaturas para a PJ:</b> mantenha as contas, troque cartão e dados de cobrança. As faturas são em dólar e podem gerar tributos de importação de serviço, que o contador precisa confirmar.</li>
+      <li><b>Base:</b> MySQL, GO-Global e WhisperX saem. n8n self-hosted único e um PostgreSQL único (n8n, Rundeck, Paperclip). WhisperAI Pro por API. Notion sobe do Free para o Plus. Para clientes, instância separada, e antes de vender confirme a licença do n8n.</li>
+      <li><b>Domínio e DNS:</b> você edita o DNS na OneX. Confirme que o domínio está no seu nome e mova o DNS para fora dela antes de cancelar.</li>
     </ul>
   </div>
 </section>
@@ -143,13 +141,13 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Sistema</td><td>Windows Server</td><td class="rec">Ubuntu 24.04 LTS + Docker</td></tr>
       <tr><td>vCPU</td><td>4 × 2,4 GHz</td><td class="rec">4 (AMD EPYC; clock a confirmar)</td></tr>
       <tr><td>RAM</td><td>12 GB (Windows ocupa 2-3 GB)</td><td class="rec">16 GB (Linux ocupa ~0,9 GB)</td></tr>
-      <tr><td>RAM em uso estimada</td><td>não medida</td><td class="rec">~8,1 GB em repouso, ~10,8 GB com agentes ativos</td></tr>
+      <tr><td>RAM em uso estimada</td><td>não medida</td><td class="rec">~8,3 GB em repouso, ~12,8 GB com 2 agentes ativos</td></tr>
       <tr><td>Disco</td><td>500 GB SSD</td><td class="rec">200 GB NVMe <span class="chip c-ok">atende</span></td></tr>
       <tr><td>Custo/mês, ciclo de 24 meses</td><td class="n">495,00</td><td class="rec n">59,99</td></tr>
       <tr><td>Custo/mês, renovação*</td><td class="n">495,00</td><td class="rec n">~129,99</td></tr>
     </tbody>
   </table></div>
-  <p class="note">Sem WhisperX e sem MySQL, o uso de RAM em repouso cai para ~8,1 GB. Com isso o KVM 2 (8 GB) ainda não serve, porque ficaria sem folga. Vale reavaliar no mês 22, com uso medido: se couber, o KVM 2 renova por ~R$ 70-78 contra ~R$ 130. Na contratação, escolher a região Brasil (São Paulo) se estiver disponível. *Renovação vem de guias de terceiros (horadecodar.com.br).</p>
+  <p class="note">Sem WhisperX e sem MySQL, a RAM em repouso é de ~8,3 GB e chega a ~12,8 GB com 2 agentes de código trabalhando. O KVM 2 (8 GB) não serve. Se os agentes pedirem mais, o KVM 8 (32 GB) é o passo seguinte. Na contratação, escolher a região Brasil (São Paulo) se estiver disponível. *Renovação vem de guias de terceiros (horadecodar.com.br).</p>
 </section>
 
 <section id="custos">
@@ -159,41 +157,46 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <tbody>
       <tr><td>VPS (OneX hoje; Hostinger KVM 4 depois)</td><td class="n">495,00</td><td class="n rec">59,99</td><td class="n">129,99</td></tr>
       <tr><td>Google Workspace Starter, 3 contas, anual</td><td class="n">–</td><td class="n rec">98,16</td><td class="n">98,16</td></tr>
-      <tr><td>Claude Pro, US$ 20 mensal</td><td class="n">–</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
-      <tr><td>Notion Plus, 1 membro (US$ 10 no anual; convidados grátis)</td><td class="n">–</td><td class="n rec">57,96</td><td class="n">57,96</td></tr>
+      <tr><td>Claude Pro, US$ 20 mensal</td><td class="n">115,92 (você, PF)</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
+      <tr><td>ChatGPT Plus, US$ 20 mensal (estimativa)</td><td class="n">115,92 (você, PF)</td><td class="n rec">115,92</td><td class="n">115,92</td></tr>
+      <tr><td>Notion Plus, 1 membro (US$ 10 no anual; convidados grátis)</td><td class="n">0,00 (Free)</td><td class="n rec">57,96</td><td class="n">57,96</td></tr>
       <tr><td>n8n self-hosted</td><td class="n">0,00</td><td class="n rec">0,00</td><td class="n">0,00</td></tr>
-      <tr><td>WhisperAI (já contratado, igual antes e depois)</td><td class="n">fora da conta</td><td class="n rec">fora da conta</td><td class="n">fora da conta</td></tr>
-      <tr class="tot"><td>Total</td><td class="n">495,00</td><td class="n rec">332,03</td><td class="n">402,03</td></tr>
-      <tr><td>ChatGPT Plus para o Codex (US$ 20), só se ainda não tiver</td><td class="n">–</td><td class="n rec">+115,92</td><td class="n">+115,92</td></tr>
-      <tr class="tot"><td>Total com ChatGPT Plus</td><td class="n">495,00</td><td class="n rec">447,95</td><td class="n">517,95</td></tr>
-      <tr><td>Diferença contra hoje, sem ChatGPT Plus</td><td class="n">–</td><td class="n rec neg">−162,97 (−32,9%)</td><td class="n neg">−92,97 (−18,8%)</td></tr>
-      <tr><td>Diferença contra hoje, com ChatGPT Plus</td><td class="n">–</td><td class="n rec neg">−47,05 (−9,5%)</td><td class="n pos">+22,95 (+4,6%)</td></tr>
+      <tr><td>WhisperAI Pro (já contratado, igual antes e depois)</td><td class="n">fora da conta</td><td class="n rec">fora da conta</td><td class="n">fora da conta</td></tr>
+      <tr class="tot"><td>Total pago pela empresa</td><td class="n">495,00</td><td class="n rec">447,95</td><td class="n">517,95</td></tr>
+      <tr><td>Diferença, só a empresa</td><td class="n">–</td><td class="n rec neg">−47,05 (−9,5%)</td><td class="n pos">+22,95 (+4,6%)</td></tr>
+      <tr><td>Hoje pago por você como pessoa física (Claude Pro e ChatGPT Plus)</td><td class="n">231,84</td><td class="n rec">–</td><td class="n">–</td></tr>
+      <tr class="tot"><td>Total geral (empresa + você)</td><td class="n">726,84</td><td class="n rec">447,95</td><td class="n">517,95</td></tr>
+      <tr><td>Diferença, total geral</td><td class="n">–</td><td class="n rec neg">−278,89 (−38,4%)</td><td class="n neg">−208,89 (−28,7%)</td></tr>
+      <tr><td>Teto de API dos agentes no VPS (hipótese de partida)</td><td class="n">–</td><td class="n rec">+200,00</td><td class="n">+200,00</td></tr>
+      <tr class="tot"><td>Total geral com teto de API</td><td class="n">726,84</td><td class="n rec">647,95</td><td class="n">717,95</td></tr>
+      <tr><td>Diferença, com teto de API</td><td class="n">–</td><td class="n rec neg">−78,89 (−10,9%)</td><td class="n neg">−8,89 (−1,2%)</td></tr>
     </tbody>
   </table></div>
-  <p class="note">Se o e-mail da OneX hoje for cobrado à parte dos R$ 495, a economia real é maior. Se o WhisperAI tiver custo, ele entra igual nos dois lados e não altera a diferença. O Notion está no preço anual de US$ 10; o mensal pode ser maior (não confirmei). O ChatGPT Plus usa US$ 20 como estimativa, porque não conferi o preço em reais.</p>
+  <p class="note">Os valores de Claude Pro e ChatGPT Plus são estimativas: US$ 20 com IOF de 3,5%. Se você paga em outro valor, ajuste. O Notion está no preço anual; o mensal pode ser maior (não confirmei). Os R$ 200 de API são uma hipótese minha, não uma medida. Não entram: tributos de importação de serviço (ver seção de contratação), um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
 
-  <h3>Opcionais: o que cada um soma ao total (sem ChatGPT Plus)</h3>
+  <h3>Opcionais: o que cada um soma ao total da empresa (sem teto de API)</h3>
   <div class="tw"><table>
     <thead><tr><th>Opção</th><th class="n">Soma/mês</th><th class="n">Total, 24 meses</th><th class="n">Total, após renovação</th></tr></thead>
     <tbody>
-      <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">314,64</td><td class="n">384,64</td></tr>
-      <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">486,04</td><td class="n">556,04</td></tr>
-      <tr><td>n8n Cloud Starter, anual (€ 20)</td><td class="n">+128,34</td><td class="n">460,37</td><td class="n">530,37</td></tr>
-      <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">476,93</td><td class="n">546,93</td></tr>
-      <tr><td>Groq Whisper turbo, plano B (dispensável: o WhisperAI tem API)</td><td class="n">+6,03 a +9,97</td><td class="n">338,06 a 342,00</td><td class="n">408,06 a 412,00</td></tr>
-      <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">375,02</td><td class="n">~472-480</td></tr>
+      <tr><td>Claude Pro anual (US$ 17 por mês)</td><td class="n neg">−17,39</td><td class="n">430,56</td><td class="n">500,56</td></tr>
+      <tr><td>Upgrade do VPS para KVM 8 (32 GB), se os agentes pedirem</td><td class="n">+60,00 (renova ~+130)</td><td class="n">507,95</td><td class="n">~648</td></tr>
+      <tr><td>Claude Team, 2 vagas (US$ 20 cada, anual)</td><td class="n">+115,92</td><td class="n">563,87</td><td class="n">633,87</td></tr>
+      <tr><td>ChatGPT Business, 2 vagas (US$ 20 cada, anual)</td><td class="n">+115,92</td><td class="n">563,87</td><td class="n">633,87</td></tr>
+      <tr><td>VPS KVM 2 só para clientes (R$ 42,99; renova ~R$ 70-78)</td><td class="n">+42,99</td><td class="n">490,94</td><td class="n">~588-596</td></tr>
+      <tr><td>n8n Cloud Starter, mensal (€ 24)</td><td class="n">+154,01</td><td class="n">601,96</td><td class="n">671,96</td></tr>
+      <tr><td>Supabase Pro (US$ 25)</td><td class="n">+144,90</td><td class="n">592,85</td><td class="n">662,85</td></tr>
+      <tr><td>Groq Whisper turbo, plano B (dispensável: o WhisperAI tem API)</td><td class="n">+6,03 a +9,97</td><td class="n">453,98 a 457,92</td><td class="n">523,98 a 527,92</td></tr>
     </tbody>
   </table></div>
 
   <div class="grid2">
     <div class="card"><div class="top"><h3>Total em 24 e 36 meses</h3></div>
-      <p>24 meses: <b>R$ 7.969</b> contra R$ 11.880 hoje. Economia de <b>R$ 3.911</b>.<br>36 meses: <b>R$ 12.793</b> contra R$ 17.820. Economia de <b>R$ 5.027</b>.<br>Com o ChatGPT Plus, a economia cai para R$ 1.129 em 24 meses e R$ 854 em 36.</p></div>
+      <p>Só a empresa: R$ 10.751 em 24 meses contra R$ 11.880 hoje (economia de R$ 1.129), e R$ 16.966 em 36 contra R$ 17.820 (R$ 854).<br>Total geral: o que você paga hoje somando PF e PJ seria R$ 17.444 em 24 meses e R$ 26.166 em 36. A economia é de <b>R$ 6.693</b> e <b>R$ 9.200</b>.</p></div>
     <div class="card"><div class="top"><h3>Caixa com 12x no cartão</h3></div>
-      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total mensal fica em <b>R$ 392,02</b> no 1º ano e <b>R$ 272,04</b> no 2º (sem ChatGPT Plus).</p></div>
-    <div class="card"><div class="top"><h3>Uso dos R$ 163 que sobram</h3></div>
-      <p>Sem o ChatGPT Plus, sobram R$ 163 por mês no primeiro ciclo. A primeira reserva é o custo variável de tokens de API dos agentes no VPS (Hermes, Paperclip e os CLIs). Com o ChatGPT Plus sobram R$ 47, e depois da renovação a conta passa de R$ 495. Nesse caso, avalie usar o Codex por chave de API em vez da assinatura.</p></div>
+      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. O total da empresa fica em <b>R$ 507,94</b> no 1º ano e <b>R$ 387,96</b> no 2º, sem a API.</p></div>
+    <div class="card"><div class="top"><h3>O que decide a conta</h3></div>
+      <p>A margem do total geral é de R$ 279 por mês no 1º ciclo. É esse o espaço para a API dos agentes. O Paperclip trava cada agente quando ele estoura o orçamento mensal, então o teto é aplicável. Revise o valor após 60 dias com o custo real por agente.</p></div>
   </div>
-  <p class="note">Não entram: tokens de API dos agentes, um mês de sobreposição com o OneX na virada (R$ 495 uma vez) e o valor do WhisperAI.</p>
 </section>
 
 <section id="n8n">
@@ -324,48 +327,68 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
 </section>
 
 <section id="agentes">
-  <h2>Agentes de código: Claude Code, Codex, Hermes e Paperclip</h2>
+  <h2>Agentes 24 horas no VPS: Claude Code, Codex, Hermes e Paperclip</h2>
   <div class="verdict">
-    <h3>Como eles trabalham juntos</h3>
-    <p>Os apps desktop são as suas mãos: você trabalha neles no PC, revisa e decide. Paperclip e Hermes são a equipe que trabalha no VPS, 24 horas, mesmo com o PC desligado. O ponto de encontro é o <b>Git</b> (código), o <b>Notion</b> (briefs, decisões, backlog) e o <b>n8n</b> (eventos e automações). Nenhum precisa estar no mesmo contêiner nem na mesma máquina.</p>
+    <h3>O que migra e o que não migra</h3>
+    <p>Os apps desktop são janelas gráficas e não rodam num VPS sem tela. O que roda 24 horas são os CLIs do Claude Code e do Codex, que são os mesmos motores, com as mesmas configurações. Sua rotina passa a ser: o Paperclip e o Hermes comandam os agentes no VPS, e você acompanha e decide pelo navegador, pelo terminal ou pelo celular. O PC vira cliente leve.</p>
   </div>
 
+  <h3>Quem pilota quem</h3>
   <div class="tw"><table>
-    <thead><tr><th>Peça</th><th>Onde roda</th><th>Conecta-se por</th><th>Login e cobrança</th></tr></thead>
+    <thead><tr><th>Papel</th><th>Peça</th><th>O que faz</th></tr></thead>
     <tbody>
-      <tr><td>Claude Code Desktop</td><td>seu PC</td><td>Git, MCP (Notion, n8n) e, se quiser, sessão SSH no VPS</td><td>Claude Pro. Limite de 5 h e semanal, dividido com o chat e a web</td></tr>
-      <tr><td>Codex Desktop</td><td>seu PC (macOS ou Windows)</td><td>Git e MCP (Notion, n8n)</td><td>ChatGPT Plus ou superior, também com limite de 5 h e semanal</td></tr>
-      <tr><td>Claude Code CLI no VPS</td><td>ambiente do Paperclip (adapter <code>claude_local</code>)</td><td>workspace Git</td><td>chave de API paga por uso, com teto</td></tr>
-      <tr><td>Codex CLI no VPS</td><td>ambiente do Paperclip (adapter <code>codex_local</code>)</td><td>workspace Git</td><td>chave de API paga por uso, com teto</td></tr>
-      <tr><td>Hermes Agent</td><td>contêiner próprio no VPS</td><td>Paperclip (adapter do Hermes, local ou remoto) e n8n</td><td>chave de API do modelo escolhido</td></tr>
-      <tr><td>Paperclip</td><td>VPS, painel só pela VPN</td><td>adapters e PostgreSQL</td><td>sem licença paga (MIT)</td></tr>
-      <tr><td>Notion</td><td>nuvem</td><td>API e MCP</td><td>Plus, 1 membro</td></tr>
+      <tr><td>Conselho</td><td>você, pelo navegador, terminal e celular</td><td>aprova contratação de agentes, aumento de orçamento e merges</td></tr>
+      <tr><td>Painel de controle</td><td><b>Paperclip</b> (VPS, painel só pela VPN)</td><td>organograma de agentes, metas, tarefas, orçamento por agente com parada automática, aprovações e trilha de auditoria. Cada agente trabalha em ciclos curtos: acorda, olha as tarefas, age e sai</td></tr>
+      <tr><td>Porta de entrada e executor</td><td><b>Hermes Agent</b> (contêiner próprio)</td><td>conversa com você por Telegram, WhatsApp, Slack, Signal e outros canais. Tem memória, skills, agendador de tarefas e acesso a ferramentas por MCP. Também é um agente que o Paperclip aciona</td></tr>
+      <tr><td>Agentes de código</td><td><b>Claude Code CLI</b> e <b>Codex CLI</b> (adapters do Paperclip)</td><td>escrevem código, rodam testes e abrem pull requests</td></tr>
+      <tr><td>Eventos</td><td>n8n</td><td>e-mail, WhisperAI, Notion e webhooks viram tarefas e avisos</td></tr>
+      <tr><td>Rotinas</td><td>Rundeck</td><td>backups e jobs agendados</td></tr>
+      <tr><td>Fontes de verdade</td><td>Git, Notion, PostgreSQL, volumes</td><td>código no Git, trabalho no Notion, estado do Paperclip no PostgreSQL, memória do Hermes em volume com backup</td></tr>
     </tbody>
   </table></div>
 
   <div class="grid2">
-    <div class="card"><div class="top"><h3>Exemplo de fluxo de ponta a ponta</h3></div>
+    <div class="card"><div class="top"><h3>O que acontece com os apps desktop</h3></div>
+      <p>As configurações vão para o VPS: <code>CLAUDE.md</code>, pasta <code>~/.claude</code> (skills, comandos, agentes), <code>AGENTS.md</code>, <code>~/.codex/config.toml</code> e os arquivos de MCP, sem segredos. O Claude Code Desktop pode continuar como janela do VPS por SSH, o que a Anthropic documenta. Para o Codex, use o terminal ou o VS Code Remote-SSH; não confirmei se o app do Codex abre sessões por SSH.</p>
+      <p>Para trabalho ao vivo, use o terminal com <code>tmux</code>: a sessão continua rodando quando você desconecta.</p></div>
+    <div class="card"><div class="top"><h3>Como você fala com o sistema</h3></div>
       <ul>
-        <li>Uma reunião é gravada e o WhisperAI transcreve. O n8n gera a ata e cria a página no Notion.</li>
-        <li>Uma tarefa no Notion, ou um comando seu, vira ordem para o Paperclip.</li>
-        <li>O Paperclip aciona Hermes, Claude Code ou Codex no VPS. Eles trabalham numa cópia do repositório e abrem um pull request no GitHub.</li>
-        <li>Você revisa no Claude Code Desktop ou no Codex Desktop, pede ajustes e faz o merge.</li>
-        <li>O n8n avisa por e-mail que terminou e atualiza o status no Notion.</li>
+        <li>Celular: chat com o Hermes para pedir, acompanhar e aprovar.</li>
+        <li>Navegador: painel do Paperclip, editor do n8n e Rundeck, pela VPN.</li>
+        <li>Terminal SSH com tmux: trabalho interativo com Claude Code ou Codex.</li>
+        <li>GitHub: revisão e merge de pull requests. Notion: briefs e decisões.</li>
+      </ul>
+      <p class="note">Lacuna: não confirmei na documentação como um pedido feito no chat do Hermes vira tarefa no Paperclip. Dá para desenhar via n8n e a API do Paperclip.</p></div>
+    <div class="card"><div class="top"><h3>Login em servidor, cobrança e limites</h3><span class="chip c-warn">atenção</span></div>
+      <p><b>Claude Code:</b> a documentação oficial prevê um token de longa duração (<code>claude setup-token</code>) para planos Pro, Max e Team em máquinas sem navegador. Ele não funciona no modo <code>--bare</code> nem para Remote Control. Resumos dos termos indicam que o CLI é permitido com assinatura, mas produtos construídos sobre o Agent SDK devem usar chave de API. O Paperclip aciona o próprio <code>claude</code>, mas rodando sem ninguém por perto é zona cinzenta: confirme com a Anthropic. Cuidado: uma <code>ANTHROPIC_API_KEY</code> exportada sobrepõe a assinatura e passa a cobrar API sem aviso.</p>
+      <p><b>Codex:</b> <code>codex login --device-auth</code> faz o login sem navegador, e é preciso habilitar o login por código de dispositivo nas configurações do ChatGPT. A alternativa de copiar <code>~/.codex/auth.json</code> expõe tokens: proteger. Para o autônomo, chave de API.</p>
+      <p><b>Regra proposta:</b> assinatura para o que você faz ao vivo. Chave de API com teto por agente para o trabalho autônomo. Agentes 24 horas gastariam a cota de 5 horas e o teto semanal da sua assinatura e te travariam.</p></div>
+    <div class="card"><div class="top"><h3>24 horas: o que dá para garantir</h3><span class="chip c-warn">limite</span></div>
+      <p>A Hostinger anuncia 99,9% de disponibilidade, cerca de 8,8 horas por ano fora do ar. Não encontrei regra de compensação. Um único VPS é ponto único de falha.</p>
+      <ul>
+        <li>Backup automático semanal da Hostinger. O snapshot manual guarda um só, e as fontes divergem sobre a retenção (1 a 20 dias). Não dependa deles.</li>
+        <li>Backup próprio diário, cifrado (por exemplo restic), enviado ao Drive por job do Rundeck, e teste de restauração a cada trimestre.</li>
+        <li>Monitor de uptime externo com aviso no celular.</li>
+        <li>Se disponibilidade virar requisito, um segundo VPS pequeno em outro provedor como reserva.</li>
       </ul></div>
-    <div class="card"><div class="top"><h3>O desktop não é comandado pelo Paperclip</h3><span class="chip c-info">importante</span></div>
-      <p>Os adapters <code>claude_local</code> e <code>codex_local</code> do Paperclip iniciam o CLI na mesma máquina em que o Paperclip roda. Eles não controlam os apps desktop do seu PC. Por isso são duas camadas: no PC você usa os apps de forma interativa, e no VPS o Paperclip usa os CLIs equivalentes. As duas trabalham nos mesmos repositórios e no mesmo Notion.</p>
-      <p>Comece com os CLIs dentro do ambiente do Paperclip. Para isolá-los em outro contêiner, o caminho seria o adapter HTTP (confirmar na versão que você instalar). O Claude Code Desktop consegue abrir sessões no VPS por SSH, útil para ver o que o agente fez.</p></div>
-    <div class="card"><div class="top"><h3>Login e cobrança</h3><span class="chip c-warn">atenção</span></div>
-      <p>Claude Pro e ChatGPT Plus são assinaturas com janela de 5 horas e teto semanal, divididas entre todos os lugares em que você usa (desktop, CLI e web). Se um agente no VPS usar a mesma assinatura, ele gasta a sua cota e pode te travar no meio do trabalho.</p>
-      <p>Por isso: assinatura para você, nos desktops. Chave de API com teto mensal para os agentes do VPS. Antes de logar uma assinatura em servidor sem ninguém por perto, leia os termos da Anthropic e da OpenAI. Não encontrei resposta definitiva nas fontes que consultei.</p></div>
+    <div class="card"><div class="top"><h3>Migração dos arquivos do PC</h3></div>
+      <ul>
+        <li>Inventariar por tipo e tamanho: código, documentos, mídia, dados de cliente.</li>
+        <li>Código: repositórios privados no GitHub, com clones em <code>/workspace</code> no VPS.</li>
+        <li>Documentos: Google Drive (rclone) ou Notion. Mídia e arquivos pesados ficam no Drive.</li>
+        <li>Configuração dos agentes: um repositório privado de dotfiles, sem segredos.</li>
+        <li>Segredos: arquivo <code>.env</code> com permissão 600 no VPS. Nunca no Git.</li>
+        <li>Espaço: dos 200 GB, restam ~140 a 150 GB para o workspace após sistema, Docker e bancos. Preciso do tamanho real.</li>
+        <li>Dados de cliente entram na LGPD. Cifrar os backups.</li>
+      </ul></div>
     <div class="card"><div class="top"><h3>Segurança dos agentes</h3><span class="chip c-warn">checklist</span></div>
       <ul>
-        <li>Agentes executam comandos. Manter rede e volume separados do n8n e do PostgreSQL.</li>
-        <li>Nunca montar a pasta de segredos do n8n, nem a <code>N8N_ENCRYPTION_KEY</code>, nos contêineres dos agentes.</li>
+        <li>Agentes executam comandos. Contêineres próprios, rede e volumes separados do n8n, usuário sem privilégios e sem acesso ao socket do Docker.</li>
+        <li>Limite por contêiner (por exemplo 2 vCPU e 3 GB) e no máximo 2 agentes ao mesmo tempo.</li>
+        <li>Nunca montar os segredos do n8n, nem a <code>N8N_ENCRYPTION_KEY</code>, nos contêineres dos agentes.</li>
         <li>Token do GitHub só para os repositórios necessários. Branch principal protegido, com pull request obrigatório: o agente propõe, você aprova.</li>
-        <li>Integração do Notion com acesso só às páginas de que o agente precisa.</li>
-        <li>Escopos mínimos no Google para o Hermes (leitura quando possível).</li>
-        <li>Uma chave de API por agente, cada uma com teto de gasto, para saber quem gastou.</li>
+        <li>Integração do Notion com acesso só às páginas necessárias, e escopos mínimos no Google para o Hermes.</li>
+        <li>Uma chave de API por agente, cada uma com teto, e as aprovações do Paperclip ligadas.</li>
       </ul></div>
   </div>
 </section>
@@ -374,7 +397,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <h2>Notion</h2>
   <div class="verdict">
     <h3>Recomendação</h3>
-    <p>Plus, com 1 membro (você) e os 3 convidados sem custo: US$ 10 por mês no plano anual, cerca de R$ 58. Os agentes já fazem o trabalho de IA, então não vale pagar o Business só pelo Notion AI. Se quiser testar antes, comece no Free por um mês e suba para o Plus se esbarrar em algum limite.</p>
+    <p>Suba o workspace atual do Free para o Plus, sem mover nenhum conteúdo: US$ 10 por mês no anual (~R$ 58), 1 membro, e os 3 convidados sem custo. Antes de contratar, troque o e-mail da sua conta no Notion para o corporativo do Workspace, para manter um único membro (um segundo membro custaria mais US$ 10). Os agentes fazem o trabalho de IA, então o Business só valeria pela IA nativa do Notion.</p>
   </div>
   <div class="tw"><table>
     <thead><tr><th>Item</th><th>Free</th><th class="rec">Plus (recomendado)</th><th>Business</th></tr></thead>
@@ -382,7 +405,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Preço por membro</td><td>US$ 0</td><td class="rec">US$ 10 (≈ R$ 58) no anual</td><td>US$ 20 (≈ R$ 116)</td></tr>
       <tr><td>Convidados</td><td>sem custo; um trecho cita limite de 10 (não confirmado)</td><td class="rec">sem custo; um guia de 2025 cita 100 (não confirmado)</td><td>sem custo; o mesmo guia cita 250</td></tr>
       <tr><td>IA do Notion</td><td>só teste</td><td class="rec">só teste</td><td>Notion Agent e notas de reunião com IA</td></tr>
-      <tr><td>Para o seu uso</td><td>serve para testar</td><td class="rec">recomendado</td><td>só se quiser a IA nativa</td></tr>
+      <tr><td>Para o seu uso</td><td>onde você está hoje</td><td class="rec">recomendado</td><td>só se quiser a IA nativa</td></tr>
     </tbody>
   </table></div>
   <p class="note">Preços em dólar vindos de pesquisa na página de preços do Notion. O limite de convidados varia entre as fontes. Confirme na compra que 3 convidados cabem no plano escolhido.</p>
@@ -396,20 +419,50 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   </div>
 </section>
 
+<section id="pj">
+  <h2>Contratação formal pela IT Operation (PJ)</h2>
+  <div class="verdict">
+    <h3>Recomendação</h3>
+    <p>Mantenha as contas que você já usa, com histórico, projetos e configurações, e troque o cartão e os dados de cobrança pelos da empresa. Evite criar conta nova só por causa do CNPJ. Passe para planos de equipe quando houver uma segunda pessoa ou dado de cliente no meio.</p>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Serviço</th><th>Cobrança</th><th>Como passar para a PJ</th><th>Atenção</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Pro</td><td>US$, cartão internacional</td><td>trocar cartão e dados de cobrança na conta atual. Ideal: trocar o e-mail da conta para o corporativo</td><td>fatura em dólar. Confirmar se aceita CNPJ nos dados de cobrança</td></tr>
+      <tr><td>ChatGPT Plus</td><td>US$, cartão internacional</td><td>idem</td><td>idem</td></tr>
+      <tr><td>Notion</td><td>US$. Faturas públicas mostram dólar e tributo brasileiro zerado</td><td>subir o workspace do Free para o Plus e trocar o e-mail do titular para o corporativo</td><td>não achei nota fiscal brasileira. Perguntar ao suporte</td></tr>
+      <tr><td>Google Workspace</td><td>R$, com nota fiscal brasileira</td><td>contratar em nome da empresa</td><td>simples</td></tr>
+      <tr><td>Hostinger</td><td>R$</td><td>contratar em nome da empresa</td><td>simples</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2">
+    <div class="card"><div class="top"><h3>Duas formas de mover a assinatura</h3></div>
+      <ul>
+        <li><b>A. Trocar cartão e dados na mesma conta (recomendado).</b> Mantém histórico, projetos, memória e configurações.</li>
+        <li><b>B. Conta nova com e-mail corporativo.</b> Separa PF e PJ por completo, mas perde o histórico. Exporte os dados antes.</li>
+      </ul></div>
+    <div class="card"><div class="top"><h3>Planos de equipe</h3></div>
+      <p>Claude Team e ChatGPT Business têm mínimo de 2 vagas e custam US$ 20 por vaga no anual (US$ 25 no mensal). Para um único usuário, custam o dobro do Pro e do Plus. Valem quando houver uma segunda pessoa, administração central ou as garantias de dados comerciais. O ChatGPT Business inclui o Codex.</p></div>
+    <div class="card"><div class="top"><h3>Privacidade dos dados</h3><span class="chip c-warn">atenção</span></div>
+      <p>Nos planos individuais do Claude há uma opção que permite o uso das suas conversas para treinamento. Se estiver desligada, a retenção é de 30 dias; ligada, 5 anos. Produtos comerciais e a API não entram nessa política, segundo o anúncio da Anthropic. No ChatGPT, revise a opção de melhorar o modelo nas configurações (não verifiquei o padrão atual). Para dados de cliente, use API ou plano de equipe.</p></div>
+    <div class="card"><div class="top"><h3>Impostos e contador</h3><span class="chip c-warn">confirmar</span></div>
+      <p>SaaS estrangeiro pago por PJ pode gerar PIS/COFINS-importação (1,65% e 7,6%) e ISS-importação (2% a 5%, conforme o município), segundo as fontes que consultei. A Receita entendeu, na Solução de Consulta Cosit 107/2023, que licenciamento de software enviado ao exterior sofre PIS/COFINS-importação, e há controvérsia na Justiça. Se incidirem sobre os três serviços em dólar (R$ 290 por mês), somariam de R$ 33 a R$ 41 por mês, estimativa minha. Não achei nada sobre dedutibilidade.</p>
+      <p>Levar ao contador: regime tributário, classificação do serviço, IOF no cartão corporativo e se a fatura em dólar vale como documento fiscal.</p></div>
+  </div>
+</section>
+
 <section id="arquitetura">
   <h2>Arquitetura proposta</h2>
   <div class="diagram">
-  <svg viewBox="0 0 1000 730" role="img" aria-label="Diagrama da arquitetura: um VPS Hostinger com Docker hospeda site, n8n, Rundeck, Paperclip com os CLIs do Claude Code e do Codex, Hermes, PostgreSQL único e um workspace de agentes. No seu PC ficam o Claude Code Desktop e o Codex Desktop, ligados ao GitHub, ao Notion e ao VPS. Google Workspace, WhisperAI, APIs de LLM e um monitor de uptime ficam fora do servidor. Supabase e uma segunda instância de n8n para clientes são opcionais.">
+  <svg viewBox="0 0 1000 826" role="img" aria-label="Diagrama da arquitetura: um VPS Hostinger com Docker hospeda site, n8n, Rundeck, Paperclip como painel de controle, Hermes como porta de entrada por chat, PostgreSQL único, agentes de código Claude Code CLI e Codex CLI, e um workspace de agentes. Você acessa pelo PC e pelo celular como cliente leve. Google Workspace, WhisperAI, APIs de LLM, canais de chat, monitor de uptime e assinaturas ficam fora do servidor. GitHub e Notion também. Supabase e uma segunda instância de n8n para clientes são opcionais.">
     <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ar" d="M0 0L10 5L0 10z"/></marker></defs>
 
-    <!-- DNS -->
     <rect class="box" x="370" y="8" width="260" height="46" rx="6"/>
     <text class="t" x="500" y="28" text-anchor="middle">DNS do domínio</text>
     <text class="s" x="500" y="44" text-anchor="middle">registro A para o VPS · MX para o Google</text>
     <line class="ln" x1="500" y1="54" x2="500" y2="90" marker-end="url(#ah)"/><text class="lbl" x="508" y="76">A</text>
     <path class="ln" d="M630 31H880V90" marker-end="url(#ah)"/><text class="lbl" x="750" y="25">MX</text>
 
-    <!-- coluna esquerda -->
     <rect class="box" x="10" y="130" width="170" height="96" rx="6"/>
     <text class="t" x="95" y="156" text-anchor="middle">Equipe e clientes</text>
     <text class="s" x="95" y="176" text-anchor="middle">site e webhooks</text><text class="s" x="95" y="192" text-anchor="middle">via HTTPS (única</text>
@@ -417,13 +470,11 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <line class="ln" x1="180" y1="178" x2="210" y2="178" marker-end="url(#ah)"/>
 
     <rect class="core" x="10" y="250" width="170" height="150" rx="6"/>
-    <text class="t" x="95" y="274" text-anchor="middle">Seu PC</text>
-    <text class="s" x="95" y="296" text-anchor="middle">Claude Code Desktop</text><text class="s" x="95" y="312" text-anchor="middle">Codex Desktop</text>
-    <text class="s" x="95" y="328" text-anchor="middle">Git + MCP (Notion, n8n)</text><text class="s" x="95" y="344" text-anchor="middle">SSH e VPN para o VPS</text>
-    <text class="s" x="95" y="360" text-anchor="middle">(editor do n8n, Rundeck</text><text class="s" x="95" y="376" text-anchor="middle">e banco só por aqui)</text>
+    <text class="t" x="95" y="274" text-anchor="middle">Você (PC e celular)</text>
+    <text class="s" x="95" y="296" text-anchor="middle">Painel Paperclip, n8n e</text><text class="s" x="95" y="312" text-anchor="middle">Rundeck no navegador (VPN)</text>
+    <text class="s" x="95" y="328" text-anchor="middle">Terminal SSH com tmux</text><text class="s" x="95" y="344" text-anchor="middle">Claude Code Desktop via</text>
+    <text class="s" x="95" y="360" text-anchor="middle">SSH (opcional)</text><text class="s" x="95" y="376" text-anchor="middle">Celular: chat com o Hermes</text>
     <line class="ln" x1="180" y1="325" x2="210" y2="325" marker-end="url(#ah)"/>
-    <line class="ln" x1="95" y1="400" x2="95" y2="424" marker-end="url(#ah)"/>
-    <path class="ld" d="M10 340H4V556H10" marker-end="url(#ah)"/>
 
     <rect class="ext" x="10" y="424" width="170" height="62" rx="6"/>
     <text class="t" x="95" y="446" text-anchor="middle">GitHub</text>
@@ -435,8 +486,7 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <text class="s" x="95" y="550" text-anchor="middle">você + 3 convidados</text><text class="s" x="95" y="566" text-anchor="middle">briefs, decisões, tarefas</text><text class="s" x="95" y="582" text-anchor="middle">e portal dos convidados</text>
     <line class="ln" x1="180" y1="556" x2="210" y2="556" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
-    <!-- VPS -->
-    <rect class="host" x="210" y="92" width="560" height="516" rx="10"/>
+    <rect class="host" x="210" y="92" width="560" height="608" rx="10"/>
     <text class="h" x="230" y="118">Hostinger VPS KVM 4</text>
     <text class="s" x="230" y="136">Ubuntu 24.04 LTS · Docker Compose · 4 vCPU · 16 GB · 200 GB NVMe</text>
 
@@ -447,29 +497,33 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <rect class="box" x="230" y="204" width="250" height="62" rx="6"/>
     <text class="t" x="242" y="224">Site institucional</text><text class="s" x="242" y="242">estático (Astro/HTML) ou WordPress</text><text class="s" x="242" y="257">formulários disparam webhook no n8n</text>
     <rect class="box" x="500" y="204" width="250" height="62" rx="6"/>
-    <text class="t" x="512" y="224">n8n (auto-hospedado, uso próprio)</text><text class="s" x="512" y="242">automações, Notion e WhisperAI</text><text class="s" x="512" y="257">guardar a chave de criptografia fora</text>
+    <text class="t" x="512" y="224">n8n (auto-hospedado, uso próprio)</text><text class="s" x="512" y="242">eventos: e-mail, Notion, WhisperAI</text><text class="s" x="512" y="257">guardar a chave de criptografia fora</text>
 
     <rect class="box" x="230" y="280" width="250" height="62" rx="6"/>
     <text class="t" x="242" y="300">Rundeck</text><text class="s" x="242" y="318">orquestra jobs batch e backups</text><text class="s" x="242" y="333">limite de heap em 2 GB</text>
-    <rect class="box" x="500" y="280" width="250" height="62" rx="6"/>
-    <text class="t" x="512" y="300">Paperclip</text><text class="s" x="512" y="318">orquestra agentes (adapters:</text><text class="s" x="512" y="333">Claude Code, Codex e Hermes)</text>
+    <rect class="core" x="500" y="280" width="250" height="62" rx="6"/>
+    <text class="t" x="512" y="300">Paperclip (painel de controle)</text><text class="s" x="512" y="318">organograma, metas, orçamento por</text><text class="s" x="512" y="333">agente, aprovações e auditoria</text>
 
-    <rect class="box" x="230" y="356" width="250" height="62" rx="6"/>
-    <text class="t" x="242" y="376">Hermes Agent</text><text class="s" x="242" y="394">agente com modelos via API,</text><text class="s" x="242" y="409">contêiner próprio</text>
-    <rect class="core" x="500" y="356" width="250" height="62" rx="6"/>
+    <rect class="core" x="230" y="356" width="250" height="62" rx="6"/>
+    <text class="t" x="242" y="376">Hermes Agent (porta de entrada)</text><text class="s" x="242" y="394">chat por Telegram, WhatsApp etc.,</text><text class="s" x="242" y="409">memória, skills e agendador</text>
+    <rect class="box" x="500" y="356" width="250" height="62" rx="6"/>
     <text class="t" x="512" y="376">PostgreSQL 17 (instância única)</text><text class="s" x="512" y="394">3 bases: n8n, rundeck, paperclip</text><text class="s" x="512" y="409">usuários separados · sem porta pública</text>
 
-    <rect class="box" x="230" y="432" width="520" height="62" rx="6"/>
-    <text class="t" x="242" y="452">Workspace de agentes (volume Docker)</text>
-    <text class="s" x="242" y="470">clones Git dos projetos, usados por Paperclip, Hermes e pelos CLIs (Claude Code, Codex).</text>
-    <text class="s" x="242" y="485">Rede e volume separados do n8n e do PostgreSQL, sem acesso às suas credenciais.</text>
+    <rect class="core" x="230" y="432" width="520" height="62" rx="6"/>
+    <text class="t" x="242" y="452">Agentes de código: Claude Code CLI e Codex CLI</text>
+    <text class="s" x="242" y="470">executados pelo Paperclip (adapters). Até 2 ao mesmo tempo, com limite de CPU e memória,</text>
+    <text class="s" x="242" y="485">usuário sem privilégios, sem acesso ao Docker nem aos segredos do n8n.</text>
 
-    <rect class="box" x="230" y="508" width="520" height="44" rx="6"/>
-    <text class="t" x="242" y="527">Backup diário (job Rundeck)</text><text class="s" x="242" y="543">dump do PostgreSQL + volumes, enviado ao Google Drive; snapshot semanal da Hostinger</text>
-    <rect class="box" x="230" y="564" width="520" height="44" rx="6"/>
-    <text class="t" x="242" y="583">Segurança</text><text class="s" x="242" y="599">UFW, fail2ban, login SSH só por chave, atualizações automáticas, segredos fora do repositório</text>
+    <rect class="box" x="230" y="508" width="520" height="62" rx="6"/>
+    <text class="t" x="242" y="528">Workspace e dados dos agentes (volumes Docker)</text>
+    <text class="s" x="242" y="546">clones Git dos projetos, arquivos migrados do seu PC, memória e skills do Hermes.</text>
+    <text class="s" x="242" y="561">Rede e volumes separados dos do n8n, sem acesso às suas credenciais.</text>
 
-    <!-- coluna direita -->
+    <rect class="box" x="230" y="584" width="520" height="44" rx="6"/>
+    <text class="t" x="242" y="603">Backup diário cifrado (job Rundeck)</text><text class="s" x="242" y="619">dump do PostgreSQL + volumes, enviado ao Google Drive; snapshot semanal da Hostinger</text>
+    <rect class="box" x="230" y="640" width="520" height="44" rx="6"/>
+    <text class="t" x="242" y="659">Segurança</text><text class="s" x="242" y="675">UFW, fail2ban, login SSH só por chave, atualizações automáticas, segredos fora do repositório</text>
+
     <rect class="ext" x="800" y="92" width="190" height="110" rx="6"/>
     <text class="t" x="812" y="114">Google Workspace</text><text class="s" x="812" y="134">Gmail (MX), Agenda, Drive,</text><text class="s" x="812" y="150">Docs. Substitui o e-mail</text><text class="s" x="812" y="166">da OneX. n8n e Hermes</text><text class="s" x="812" y="182">usam as APIs (OAuth)</text>
     <line class="ln" x1="770" y1="147" x2="800" y2="147" marker-start="url(#ah)" marker-end="url(#ah)"/>
@@ -479,28 +533,31 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <line class="ln" x1="770" y1="258" x2="800" y2="258" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="314" width="190" height="76" rx="6"/>
-    <text class="t" x="812" y="336">APIs de LLM</text><text class="s" x="812" y="355">Claude, OpenAI e outros,</text><text class="s" x="812" y="370">para n8n, Hermes e CLIs</text>
+    <text class="t" x="812" y="336">APIs de LLM (com teto)</text><text class="s" x="812" y="355">Claude, OpenAI e outros: uma</text><text class="s" x="812" y="370">chave por agente, teto mensal</text>
     <line class="ln" x1="770" y1="352" x2="800" y2="352" marker-end="url(#ah)"/>
 
     <rect class="ext" x="800" y="408" width="190" height="76" rx="6"/>
-    <text class="t" x="812" y="430">Monitor de uptime</text><text class="s" x="812" y="449">UptimeRobot ou similar, grátis:</text><text class="s" x="812" y="464">avisa se o site ou n8n caírem</text>
-    <line class="ln" x1="800" y1="446" x2="770" y2="446" marker-end="url(#ah)"/>
+    <text class="t" x="812" y="430">Canais de chat</text><text class="s" x="812" y="449">Telegram, WhatsApp, Slack ou</text><text class="s" x="812" y="464">Signal: você fala com o Hermes</text>
+    <line class="ln" x1="770" y1="446" x2="800" y2="446" marker-start="url(#ah)" marker-end="url(#ah)"/>
 
-    <rect class="opt" x="800" y="502" width="190" height="76" rx="6"/>
-    <text class="t" x="812" y="524">Supabase (opcional)</text><text class="s" x="812" y="543">Postgres + auth para apps</text><text class="s" x="812" y="558">novos, região São Paulo</text>
-    <line class="ld" x1="770" y1="540" x2="800" y2="540" marker-end="url(#ah)"/>
+    <rect class="ext" x="800" y="502" width="190" height="76" rx="6"/>
+    <text class="t" x="812" y="524">Monitor de uptime</text><text class="s" x="812" y="543">UptimeRobot ou similar, grátis:</text><text class="s" x="812" y="558">avisa se o site ou n8n caírem</text>
+    <line class="ln" x1="800" y1="540" x2="770" y2="540" marker-end="url(#ah)"/>
 
-    <rect class="ext" x="800" y="596" width="190" height="66" rx="6"/>
-    <text class="t" x="812" y="618">Planos pessoais</text><text class="s" x="812" y="636">Claude Pro e ChatGPT Plus,</text><text class="s" x="812" y="651">login nos apps do seu PC</text>
+    <rect class="opt" x="800" y="596" width="190" height="76" rx="6"/>
+    <text class="t" x="812" y="618">Supabase (opcional)</text><text class="s" x="812" y="637">Postgres + auth para apps</text><text class="s" x="812" y="652">novos, região São Paulo</text>
+    <line class="ld" x1="770" y1="634" x2="800" y2="634" marker-end="url(#ah)"/>
 
-    <!-- clientes -->
-    <rect class="opt" x="210" y="632" width="560" height="80" rx="6"/>
-    <text class="t" x="226" y="654">Futuro: 2ª instância de n8n para clientes, fora deste VPS</text>
-    <text class="s" x="226" y="673">VPS separado (KVM 2) com banco e chave de criptografia próprios, ou n8n Cloud por cliente.</text>
-    <text class="s" x="226" y="689">Confirmar a licença do n8n por escrito e definir contrato de tratamento de dados (LGPD).</text>
+    <rect class="ext" x="800" y="690" width="190" height="66" rx="6"/>
+    <text class="t" x="812" y="712">Assinaturas da empresa</text><text class="s" x="812" y="730">Claude Pro e ChatGPT Plus:</text><text class="s" x="812" y="745">uso interativo no VPS</text>
+
+    <rect class="opt" x="210" y="724" width="560" height="80" rx="6"/>
+    <text class="t" x="226" y="746">Futuro: 2ª instância de n8n para clientes, fora deste VPS</text>
+    <text class="s" x="226" y="765">VPS separado (KVM 2) com banco e chave de criptografia próprios, ou n8n Cloud por cliente.</text>
+    <text class="s" x="226" y="781">Confirmar a licença do n8n por escrito e definir contrato de tratamento de dados (LGPD).</text>
   </svg>
   </div>
-  <p class="note">Linha cheia: parte do desenho base. Tracejado: opcional ou futuro. Só o Caddy escuta na internet, e só para o site e os webhooks. Saíram do desenho o MySQL, o GO-Global e o WhisperX. Entraram os apps desktop, o GitHub, o Notion e o workspace de agentes. A seta tracejada à esquerda indica o acesso dos apps desktop ao Notion por MCP.</p>
+  <p class="note">Linha cheia: parte do desenho base. Tracejado: opcional ou futuro. Só o Caddy escuta na internet, e só para o site e os webhooks. Saíram do desenho o MySQL, o GO-Global e o WhisperX. Os apps desktop deixaram de ser peça do sistema: o PC e o celular são só clientes. Entraram os agentes de código no VPS, o GitHub, o Notion e o canal de chat do Hermes.</p>
 
   <h3>Orçamento de memória no KVM 4 (16 GB)</h3>
   <div class="tw"><table>
@@ -511,15 +568,15 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>Rundeck</td><td class="n">3,5 GB</td><td>JVM. O estudo anterior reservou 4 GB. Limitar o heap</td></tr>
       <tr><td>PostgreSQL (n8n + Rundeck + Paperclip)</td><td class="n">1,0 GB</td><td>uma instância, três bases</td></tr>
       <tr><td>Paperclip</td><td class="n">0,8 GB</td><td>mínimo de terceiros: 512 MB</td></tr>
-      <tr><td>Hermes Agent</td><td class="n">0,6 GB</td><td>modelos via API, sem inferência local</td></tr>
+      <tr><td>Hermes Agent</td><td class="n">0,8 GB</td><td>modelos via API, com o gateway de chat ligado</td></tr>
       <tr><td>Site</td><td class="n">0,3 GB</td><td>estático. WordPress + banco chegaria a ~1 GB</td></tr>
-      <tr class="tot"><td>Total em repouso</td><td class="n">8,1 GB</td><td>sobram ~7,9 GB de 16 GB</td></tr>
-      <tr><td>Claude Code CLI e Codex CLI (trabalhando)</td><td class="n">1,2 GB</td><td>só enquanto rodam uma tarefa. Limitar a 1 ou 2 agentes ao mesmo tempo</td></tr>
-      <tr><td>Ferramentas dos agentes (npm, testes, builds)</td><td class="n">1,5 GB</td><td>depende dos projetos. Medir na primeira semana</td></tr>
-      <tr class="tot"><td>Pico com agentes ativos</td><td class="n">10,8 GB</td><td>sobram ~5,2 GB de 16 GB</td></tr>
+      <tr class="tot"><td>Total em repouso</td><td class="n">8,3 GB</td><td>sobram ~7,7 GB de 16 GB</td></tr>
+      <tr><td>Claude Code CLI e Codex CLI (2 execuções simultâneas)</td><td class="n">2,0 GB</td><td>só enquanto rodam uma tarefa. Limite de 2 ao mesmo tempo</td></tr>
+      <tr><td>Ferramentas dos agentes (npm, testes, builds)</td><td class="n">2,5 GB</td><td>depende dos projetos. Medir na primeira semana</td></tr>
+      <tr class="tot"><td>Pico com 2 agentes ativos</td><td class="n">12,8 GB</td><td>sobram ~3,2 GB de 16 GB. Se faltar, KVM 8</td></tr>
     </tbody>
   </table></div>
-  <p class="note">São estimativas minhas, não medições. Medir no primeiro mês para decidir sobre o KVM 2 na renovação.</p>
+  <p class="note">São estimativas minhas, não medições. Medir no primeiro mês. Com o trabalho dos agentes, o KVM 2 deixou de ser opção. Se precisar de mais de 2 agentes ao mesmo tempo ou de builds pesados, o próximo passo é o KVM 8 (+R$ 60 no 1º ciclo; o botão de upgrade fica na conta Hostinger).</p>
 </section>
 
 <section id="atencao">
@@ -532,9 +589,9 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <div class="card"><div class="top"><h3>WhisperAI: manter e ligar ao n8n</h3><span class="chip c-ok">API confirmada</span></div>
       <p>6 a 10 h por semana são 26 a 43 h por mês, dentro dos minutos ilimitados do Pro. Como há API, o n8n pode enviar o áudio e receber transcrição, falantes e resumo. Falta conferir na documentação do WhisperAI como autenticar e se existe webhook de conclusão, para não ficar consultando o status. O Groq fica como plano B.</p></div>
     <div class="card"><div class="top"><h3>Renovação do VPS</h3><span class="chip c-warn">médio</span></div>
-      <p>R$ 59,99 vale por 24 meses. Depois, guias de terceiros apontam ~R$ 130. Marcar lembrete para o mês 22 para medir o uso e decidir entre KVM 4, KVM 2 ou outro provedor.</p></div>
+      <p>R$ 59,99 vale por 24 meses. Depois, guias de terceiros apontam ~R$ 130. Marcar lembrete para o mês 22 para medir o uso e decidir entre manter o KVM 4, subir para o KVM 8 ou trocar de provedor.</p></div>
     <div class="card"><div class="top"><h3>Custo de LLM não está na conta</h3><span class="chip c-warn">médio</span></div>
-      <p>Hermes, Paperclip e os CLIs de Claude Code e Codex no VPS consomem tokens de API, que são variáveis. As assinaturas (Claude Pro, ChatGPT Plus) ficam para o seu uso nos desktops. Defina um teto mensal por chave e um alerta de gasto. Veja a seção de agentes.</p></div>
+      <p>Hermes, Paperclip e os CLIs de Claude Code e Codex trabalhando sozinhos consomem tokens de API, que são variáveis. É o item que decide se a conta fecha. Ponto de partida: R$ 200 por mês (hipótese), com teto por agente no Paperclip e alerta de gasto. Reavalie após 60 dias com o custo real.</p></div>
     <div class="card"><div class="top"><h3>Dependências do Windows</h3><span class="chip c-info">fica para depois</span></div>
       <p>Inventariar jobs do Rundeck que chamam .bat, PowerShell ou WinRM, scripts Python/Node com caminhos <code>C:\</code>, Agendador de Tarefas e certificados. Esses itens precisam ser reescritos, e são o principal risco de prazo.</p></div>
     <div class="card"><div class="top"><h3>Encerrar MySQL e GO-Global</h3><span class="chip c-info">checklist</span></div>
@@ -548,11 +605,12 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
   <h2>Plano de migração</h2>
   <ol class="steps">
     <li><div><b>Inventário no OneX (1-2 dias)</b><span>Titular, registro e DNS do domínio (e como assumir o controle), fluxos do n8n e projetos do Rundeck para exportar, scripts e tarefas agendadas, dump final do MySQL. Não há multa de saída: o OneX pode ser cancelado quando você validar a migração.</span></div></li>
+    <li><div><b>Assinaturas para a PJ (semana 1)</b><span>Cartão corporativo com limite em dólar. Trocar cartão e dados de cobrança no Claude e no ChatGPT. Subir o Notion do Free para o Plus, com o e-mail corporativo. Alinhar com o contador o tratamento de faturas em dólar.</span></div></li>
     <li><div><b>Google Workspace (dias 1-7, em paralelo)</b><span>Contratar, criar as contas, verificar o domínio, migrar as caixas da OneX, configurar SPF, DKIM e DMARC e só então trocar o MX. Não depende do VPS.</span></div></li>
     <li><div><b>Base no Hostinger (3-5 dias)</b><span>Contratar o KVM 4 (garantia de 30 dias), região Brasil se houver. Instalar Ubuntu, Docker Compose, Caddy, PostgreSQL, VPN, firewall, backup para o Drive, snapshots e monitor de uptime. Nada de produção ainda.</span></div></li>
     <li><div><b>Mover o que já existe (semana 2)</b><span>n8n com a mesma <code>N8N_ENCRYPTION_KEY</code> e já no PostgreSQL, Rundeck por exportação de projeto, scripts Python e Node reescritos para Linux.</span></div></li>
     <li><div><b>Itens novos (semana 3)</b><span>Paperclip, Hermes, site com formulário ligado ao n8n, integração do n8n com o WhisperAI, teto de gasto em API de LLM.</span></div></li>
-    <li><div><b>Agentes e Notion (semanas 3-4)</b><span>Criar o workspace do Notion e a integração, repositórios no GitHub com branch protegido, instalar Claude Code Desktop e Codex Desktop no PC, ligar os CLIs ao Paperclip com chaves de API próprias e teto de gasto, testar com uma tarefa pequena de ponta a ponta.</span></div></li>
+    <li><div><b>Do PC para o VPS (semanas 3-5)</b><span>Inventariar e mover os arquivos locais (Git, Drive, dotfiles). Instalar os CLIs do Claude Code e do Codex no ambiente dos agentes. Login para uso ao vivo e chaves de API com teto para o autônomo. Configurar o Paperclip (adapters, orçamentos, aprovações) e o Hermes (canais de chat). Testar uma tarefa pequena de ponta a ponta e só então deixar o PC de fora.</span></div></li>
     <li><div><b>Corte e sobreposição (semana 4 e mês 2)</b><span>Trocar o DNS do site, manter o OneX em paralelo enquanto valida (sem multa, 2 a 4 semanas bastam), testar a restauração dos backups e só então cancelar o OneX. Confirmar antes que o domínio e o DNS não dependem dele. Custo da sobreposição: até um mês de R$ 495.</span></div></li>
   </ol>
 </section>
@@ -567,8 +625,11 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
       <tr><td>O domínio está registrado no seu nome (titular)? Prefere manter o DNS na OneX até o corte ou já mover para um serviço independente?</td><td>O DNS precisa estar fora do contrato que será cancelado antes do corte.</td></tr>
       <tr><td>O GO-Global tem licença ou contrato com cobrança própria?</td><td>Evita cobrança depois do cancelamento do OneX.</td></tr>
       
-      <tr><td>Você já assina o ChatGPT (Plus ou superior)? O PC é Windows ou Mac?</td><td>Define se entram R$ 116 por mês e qual versão do Codex Desktop usar.</td></tr>
-      <tr><td>Os repositórios ficam no GitHub? Já existe um workspace do Notion?</td><td>Define onde os agentes abrem pull requests e se o Notion é novo ou migração.</td></tr>
+      <tr><td>Qual o tamanho total e o tipo dos arquivos locais que vão para o VPS (código, documentos, mídia, dados de cliente)?</td><td>O disco tem 200 GB. Define o que vai para o Drive e se o KVM 8 será necessário.</td></tr>
+      <tr><td>Quanto de API por mês você aceita para os agentes (ponto de partida: R$ 200)?</td><td>É o valor que decide se a conta fecha e que vira orçamento no Paperclip.</td></tr>
+      <tr><td>Qual o regime tributário da IT Operation e o que o contador diz sobre faturas em dólar?</td><td>Pode acrescentar R$ 33 a R$ 41 por mês de tributos de importação.</td></tr>
+      <tr><td>Mais alguém vai usar Claude ou ChatGPT além de você?</td><td>Define se vale Claude Team e ChatGPT Business (mínimo de 2 vagas).</td></tr>
+      <tr><td>Os repositórios ficam no GitHub? O e-mail da conta do Notion é pessoal ou da empresa?</td><td>Define onde os agentes abrem pull requests e como trocar o titular do Notion.</td></tr>
       <tr><td>Clientes como serviço: quando, quantos e com que tipo de dado?</td><td>Decide entre VPS separado e nuvem, e o tratamento pela LGPD.</td></tr>
     </tbody>
   </table></div>
@@ -596,6 +657,13 @@ pre.cmd{background:var(--surface2);border:1px solid var(--line);border-radius:6p
     <li><a href="https://contabo.com/blog/what-is-paperclip-ai/">Contabo: Paperclip</a> e <a href="https://railway.com/deploy/paperclip-ai-company">template Railway</a> (Node 24+, Postgres)</li>
     <li><a href="https://hermes-agent.nousresearch.com/docs">Hermes Agent docs</a> (MIT, modelo via API)</li>
     <li><a href="https://docs.paperclip.ing/adapters/overview">Paperclip: visão geral dos adapters</a> e <a href="https://docs.paperclip.ing/reference/adapters/hermes-local">adapter do Hermes</a> (CLIs rodam na mesma máquina do Paperclip)</li>
+    <li><a href="https://code.claude.com/docs/en/authentication">Claude Code: autenticação</a> (token <code>setup-token</code> para servidor sem navegador) e <a href="https://autonomee.ai/blog/claude-code-terms-of-service-explained/">resumo dos termos</a> (secundário)</li>
+    <li><a href="https://developers.openai.com/codex/auth">Codex: autenticação</a> (<code>--device-auth</code> e <code>auth.json</code>)</li>
+    <li><a href="https://claude.com/resources/articles/claude-team-updates">Claude Team</a> (2 vagas mínimas, US$ 20 anual) e <a href="https://help.openai.com/en/articles/8792828-chatgpt-business-overview">ChatGPT Business</a> (2 vagas, US$ 20 anual, inclui Codex)</li>
+    <li><a href="https://www.anthropic.com/news/updates-to-our-consumer-terms">Anthropic: termos de consumo</a> (treinamento, 30 dias ou 5 anos de retenção)</li>
+    <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/">Hermes: gateway de mensagens</a> e <a href="https://raw.githubusercontent.com/paperclipai/paperclip/master/README.md">README do Paperclip</a> (orçamentos, aprovações, heartbeats)</li>
+    <li><a href="https://www.hostinger.com/support/1583232-how-to-back-up-or-restore-a-vps-server/">Hostinger: backup e snapshot</a> e <a href="https://hostinger.com/vps-hosting">página do VPS</a> (99,9% de uptime)</li>
+    <li><a href="https://www.rotinafiscal.com.br/operacoes-fiscais/importacao-de-servicos">Rotina Fiscal: importação de serviços</a> e <a href="https://www.contabeis.com.br/noticias/62078/compras-internacionais-de-servicos-e-softwares-3-coisas-que-voce-precisa-saber/">Contábeis: compras internacionais de serviços e softwares</a> (PIS/COFINS e ISS-importação)</li>
     <li><a href="https://code.claude.com/docs/en/desktop">Claude Code Desktop</a> e <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Claude Code com o plano Pro ou Max</a> (limites compartilhados, SSH)</li>
     <li><a href="https://openai.com/index/introducing-the-codex-app/">OpenAI: Codex app</a> e <a href="https://help.openai.com/en/articles/11369540-codex-rate-limits">limites do Codex</a> (acesso com ChatGPT Plus; Windows desde mar/2026)</li>
     <li><a href="https://www.notion.com/pricing">Notion pricing</a> e <a href="https://www.notion.com/guides/plans-and-pricing">guia de planos</a> (Free, Plus US$ 10, Business US$ 20; limite de convidados não confirmado)</li>
