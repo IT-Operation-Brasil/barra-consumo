@@ -1,0 +1,350 @@
+<title>Migração OneX para Hostinger</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: relatório de coluna única (até 1040px), resumo e veredito no topo, tabelas e diagrama em contêineres com rolagem própria. */
+:root{
+  --bg:#F4F7F8; --surface:#FFFFFF; --surface2:#EAF0F2; --fg:#13222C; --muted:#586B77; --line:#D0DAE0;
+  --accent:#0A6C6C; --accent-soft:#DAEFEC; --accent-fg:#FFFFFF;
+  --ok:#1B7A44; --ok-bg:#DFF3E7; --warn:#9A5B00; --warn-bg:#FBEBCD; --bad:#A5231B; --bad-bg:#F9DEDB;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1418; --surface:#141E24; --surface2:#1A272E; --fg:#E5EDF1; --muted:#92A5B0; --line:#2A3A43;
+  --accent:#4DC2BA; --accent-soft:#12302F; --accent-fg:#06201F;
+  --ok:#62C98B; --ok-bg:#12301F; --warn:#E8AA4F; --warn-bg:#35270D; --bad:#F2877F; --bad-bg:#3A1816; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1418; --surface:#141E24; --surface2:#1A272E; --fg:#E5EDF1; --muted:#92A5B0; --line:#2A3A43;
+  --accent:#4DC2BA; --accent-soft:#12302F; --accent-fg:#06201F;
+  --ok:#62C98B; --ok-bg:#12301F; --warn:#E8AA4F; --warn-bg:#35270D; --bad:#F2877F; --bad-bg:#3A1816; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+main{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(26px,4.4vw,36px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:21px;font-weight:600;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;font-weight:600}
+p{margin:0}
+.sub{color:var(--muted);max-width:68ch;margin-top:10px}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.kpi.main{background:var(--accent-soft);border-color:var(--accent)}
+.kpi .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kpi .v{font-family:var(--mono);font-size:26px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .n{font-size:13px;color:var(--muted);margin-top:2px}
+.verdict{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.verdict ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface2);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td{font-weight:600;background:var(--surface2)}
+td.rec,th.rec{background:var(--accent-soft)}
+th.rec{color:var(--accent)}
+tr.tot td.rec{background:var(--accent-soft)}
+.neg{color:var(--ok)} .pos{color:var(--bad)}
+.chip{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:99px;letter-spacing:.03em;white-space:nowrap}
+.c-ok{background:var(--ok-bg);color:var(--ok)} .c-warn{background:var(--warn-bg);color:var(--warn)} .c-bad{background:var(--bad-bg);color:var(--bad)} .c-info{background:var(--surface2);color:var(--muted)}
+.note{font-size:13px;color:var(--muted);max-width:90ch}
+.diagram{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:8px}
+.diagram svg{display:block;min-width:820px;width:100%;height:auto}
+svg text{fill:var(--fg);font-family:var(--font);font-size:12.5px}
+svg .t{font-weight:600;font-size:13px} svg .s{fill:var(--muted);font-size:11.5px} svg .h{font-size:15px;font-weight:700}
+svg .box{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
+svg .core{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.2}
+svg .host{fill:var(--surface2);stroke:var(--accent);stroke-width:1.6}
+svg .ext{fill:var(--surface2);stroke:var(--line);stroke-width:1.2}
+svg .opt{fill:none;stroke:var(--muted);stroke-width:1.3;stroke-dasharray:6 4}
+svg .ln{stroke:var(--muted);stroke-width:1.5;fill:none}
+svg .ld{stroke:var(--muted);stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+svg .ar{fill:var(--muted)}
+svg .lbl{fill:var(--accent);font-size:11px;font-weight:600;font-family:var(--mono)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card .top{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.card p{font-size:14px}
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:96px 1fr;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px}
+ol.steps li::before{content:"Fase " counter(s);font-family:var(--mono);font-weight:600;font-size:13px;color:var(--accent)}
+ol.steps li div{min-width:0}
+ol.steps b{display:block}
+ol.steps span{font-size:14px;color:var(--muted)}
+@media (max-width:560px){ol.steps li{grid-template-columns:1fr;gap:2px}}
+code{font-family:var(--mono);font-size:12.5px;background:var(--surface2);padding:1px 5px;border-radius:4px}
+a{color:var(--accent)}
+.src{columns:2 340px;gap:24px;font-size:13px;color:var(--muted);padding-left:18px;margin:0}
+.src li{break-inside:avoid;margin-bottom:4px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<main>
+<header>
+  <h1>Migração OneX para Hostinger</h1>
+  <p class="sub">Estudo de custo, capacidade e arquitetura para sair do VPS Windows (R$ 495/mês) e rodar n8n, WhisperX, Rundeck, Hermes, Paperclip, site e e-mail Google, deixando caixa para uma conta n8n Cloud e um Claude Pro.</p>
+  <p class="meta">19/11/2026 · câmbio assumido US$ 1 = R$ 5,60 · € 1 = R$ 6,20 · IOF 3,5% em cartão internacional</p>
+</header>
+
+<section id="resumo">
+  <h2>Resumo</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Hoje (OneX)</div><div class="v">R$ 495</div><div class="n">por mês, só o VPS</div></div>
+    <div class="kpi main"><div class="l">Proposta A, sem Google</div><div class="v">R$ 330</div><div class="n">VPS + n8n Cloud + Claude Pro, −33%</div></div>
+    <div class="kpi main"><div class="l">Proposta A, com Google</div><div class="v">R$ 428</div><div class="n">inclui Workspace, 3 contas, −13,5%</div></div>
+    <div class="kpi"><div class="l">VPS após o mês 24</div><div class="v">~R$ 130</div><div class="n">renovação (fonte de terceiros)</div></div>
+  </div>
+  <div class="verdict">
+    <h3>Veredito</h3>
+    <ul>
+      <li><b>Viável e mais barato.</b> O KVM 4 sai a R$ 59,99/mês no ciclo de 24 meses. A diferença para o OneX é R$ 435/mês. n8n Cloud Starter (R$ 154) e Claude Pro (R$ 116) usam R$ 270 e ainda sobram R$ 165.</li>
+      <li><b>A capacidade equivale ou melhora em CPU e RAM.</b> 4 vCPU e 16 GB contra 4 vCPU e 12 GB. Sem Windows Server, a RAM útil para aplicações passa de uns 9-10 GB para uns 15 GB.</li>
+      <li><b>O disco encolhe de 500 GB para 200 GB.</b> Só dá para decidir depois de medir o uso real no OneX. Se passar de uns 120 GB, o caminho é o KVM 8 ou tirar dados do servidor.</li>
+      <li><b>WhisperX é o ponto frágil.</b> Nenhum VPS da Hostinger tem GPU. Em CPU funciona em lote, mas devagar e disputando CPU com o resto. Recomendo um piloto antes de decidir entre CPU local e API.</li>
+      <li><b>O desconto some em parte depois de 24 meses.</b> Com a renovação, a Proposta A com Google fica em R$ 498, praticamente igual ao que se paga hoje. Sem Google, R$ 400.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="capacidade">
+  <h2>Capacidade: hoje contra proposta</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Item</th><th>OneX atual</th><th class="rec">Hostinger KVM 4 (recomendado)</th><th>Hostinger KVM 8 (folga)</th></tr></thead>
+    <tbody>
+      <tr><td>Sistema</td><td>Windows Server</td><td class="rec">Ubuntu 24.04 LTS + Docker</td><td>Ubuntu 24.04 LTS + Docker</td></tr>
+      <tr><td>vCPU</td><td>4 × 2,4 GHz</td><td class="rec">4 (AMD EPYC; clock a confirmar)</td><td>8</td></tr>
+      <tr><td>RAM</td><td>12 GB</td><td class="rec">16 GB (+33%)</td><td>32 GB (+167%)</td></tr>
+      <tr><td>RAM útil p/ aplicações</td><td>~9-10 GB (Windows ocupa 2-3 GB)</td><td class="rec">~15 GB (Linux ocupa ~0,8 GB)</td><td>~31 GB</td></tr>
+      <tr><td>Disco</td><td>500 GB SSD</td><td class="rec"><span class="chip c-warn">200 GB NVMe (−60%)</span></td><td>400 GB NVMe (−20%)</td></tr>
+      <tr><td>Custo/mês, 24 meses</td><td class="n">495,00</td><td class="rec n">59,99</td><td class="n">119,99</td></tr>
+      <tr><td>Custo/mês, renovação*</td><td class="n">495,00</td><td class="rec n">~129,99</td><td class="n">~259,99</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Interpretei "12MB RAM" como 12 GB, "MySWL" como MySQL, "Jason" como Node.js/JSON e "DBWeaver" como DBeaver. DBeaver é cliente de desktop: roda no seu PC e conecta ao MySQL por túnel SSH, não precisa ser instalado no servidor. Notion é SaaS: não há o que migrar, só as integrações no n8n. *Renovação vem de guias de terceiros (horadecodar.com.br), não da página oficial. Confirme no checkout.</p>
+</section>
+
+<section id="custos">
+  <h2>Comparativo de custos mensais</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Item (R$/mês)</th><th class="n">Hoje</th><th class="n rec">A. Enxuta (KVM 4)</th><th class="n">B. KVM 4 + STT em nuvem</th><th class="n">C. KVM 8</th></tr></thead>
+    <tbody>
+      <tr><td>VPS (ciclo 24 meses)</td><td class="n">495,00</td><td class="n rec">59,99</td><td class="n">59,99</td><td class="n">119,99</td></tr>
+      <tr><td>n8n Cloud Starter, € 24 mensal</td><td class="n">–</td><td class="n rec">154,01</td><td class="n">154,01</td><td class="n">154,01</td></tr>
+      <tr><td>Claude Pro, US$ 20 mensal</td><td class="n">–</td><td class="n rec">115,92</td><td class="n">115,92</td><td class="n">115,92</td></tr>
+      <tr><td>Transcrição em API (Groq, ~100 h de áudio/mês)</td><td class="n">–</td><td class="n rec">–</td><td class="n">23,18</td><td class="n">–</td></tr>
+      <tr><td>Supabase Free</td><td class="n">–</td><td class="n rec">0,00</td><td class="n">0,00</td><td class="n">0,00</td></tr>
+      <tr class="tot"><td>Subtotal sem Google Workspace</td><td class="n">495,00</td><td class="n rec">329,92</td><td class="n">353,10</td><td class="n">389,92</td></tr>
+      <tr><td>Google Workspace Starter, 3 contas, anual</td><td class="n">?</td><td class="n rec">98,16</td><td class="n">98,16</td><td class="n">98,16</td></tr>
+      <tr class="tot"><td>Total com Google Workspace</td><td class="n">495,00 + ?</td><td class="n rec">428,08</td><td class="n">451,26</td><td class="n">488,08</td></tr>
+      <tr><td>Diferença contra os R$ 495 (sem Google)</td><td class="n">–</td><td class="n rec neg">−165,08</td><td class="n neg">−141,90</td><td class="n neg">−105,08</td></tr>
+      <tr><td>Diferença contra os R$ 495 (com Google)</td><td class="n">–</td><td class="n rec neg">−66,92</td><td class="n neg">−43,74</td><td class="n neg">−6,92</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Depois do mês 24 (renovação do VPS)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>R$/mês</th><th class="n rec">A</th><th class="n">B</th><th class="n">C</th></tr></thead>
+    <tbody>
+      <tr><td>Sem Google Workspace</td><td class="n rec">399,92</td><td class="n">423,10</td><td class="n pos">529,92</td></tr>
+      <tr><td>Com Google Workspace</td><td class="n rec">498,08</td><td class="n pos">521,26</td><td class="n pos">628,08</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid2">
+    <div class="card"><div class="top"><h3>Total em 24 e 36 meses (A, com Google)</h3></div>
+      <p>24 meses: <b>R$ 10.274</b> contra R$ 11.880 hoje. Economia de <b>R$ 1.606</b>.<br>36 meses: <b>R$ 16.251</b> contra R$ 17.820. Economia de <b>R$ 1.569</b>, porque o ano 3 já paga a renovação.</p></div>
+    <div class="card"><div class="top"><h3>Se os planos forem anuais</h3></div>
+      <p>n8n Starter anual (€ 20) cai para R$ 128,34 e Claude Pro anual (US$ 17) para R$ 98,53. A Proposta A com Google vai a <b>R$ 385,02</b> nos 24 meses e <b>R$ 455,02</b> depois, abaixo dos R$ 495.</p></div>
+    <div class="card"><div class="top"><h3>Se o Supabase for Pro</h3><span class="chip c-bad">não recomendo agora</span></div>
+      <p>US$ 25/mês = R$ 144,90. A Proposta A sobe para R$ 572,98 com Google (R$ 474,82 sem). Estoura o objetivo. Use o Free para testes e Postgres em contêiner para produção até haver um app que justifique.</p></div>
+    <div class="card"><div class="top"><h3>Caixa no 1º ano com 12x no cartão</h3></div>
+      <p>O VPS de 24 meses (R$ 1.439,76) parcelado em 12x custa R$ 119,98 no 1º ano e R$ 0 no 2º. A Proposta A com Google fica em <b>R$ 488,07</b> no 1º ano e <b>R$ 368,09</b> no 2º.</p></div>
+  </div>
+  <p class="note">Premissas: Google Workspace aparece como custo novo porque não sei se vocês já pagam. Se já pagam, ignore essa linha dos dois lados. n8n e Claude estão no plano mensal sem fidelidade. Não entra o custo de tokens de LLM usados por Hermes e Paperclip, que é variável. Também não entra um mês de sobreposição com o OneX na virada (R$ 495 uma vez).</p>
+</section>
+
+<section id="arquitetura">
+  <h2>Arquitetura proposta</h2>
+  <div class="diagram">
+  <svg viewBox="0 0 1000 720" role="img" aria-label="Diagrama da arquitetura: um VPS Hostinger com Docker hospeda site, n8n, Rundeck, Paperclip, Hermes, MySQL e WhisperX; Google Workspace, n8n Cloud, APIs de LLM, Supabase e transcrição em nuvem ficam fora do servidor.">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ar" d="M0 0L10 5L0 10z"/></marker></defs>
+
+    <!-- DNS -->
+    <rect class="box" x="370" y="8" width="260" height="46" rx="6"/>
+    <text class="t" x="500" y="28" text-anchor="middle">DNS do domínio</text>
+    <text class="s" x="500" y="44" text-anchor="middle">registro A para o VPS · MX para o Google</text>
+    <line class="ln" x1="500" y1="54" x2="500" y2="90" marker-end="url(#ah)"/><text class="lbl" x="508" y="76">A</text>
+    <path class="ln" d="M630 31H880V90" marker-end="url(#ah)"/><text class="lbl" x="750" y="25">MX</text>
+
+    <!-- usuários -->
+    <rect class="box" x="10" y="130" width="170" height="96" rx="6"/>
+    <text class="t" x="95" y="156" text-anchor="middle">Equipe e clientes</text>
+    <text class="s" x="95" y="176" text-anchor="middle">site, webhooks,</text><text class="s" x="95" y="192" text-anchor="middle">painéis n8n e Rundeck</text>
+    <text class="s" x="95" y="208" text-anchor="middle">via HTTPS</text>
+    <line class="ln" x1="180" y1="178" x2="210" y2="178" marker-end="url(#ah)"/>
+    <rect class="box" x="10" y="250" width="170" height="96" rx="6"/>
+    <text class="t" x="95" y="276" text-anchor="middle">Administração</text>
+    <text class="s" x="95" y="296" text-anchor="middle">SSH com chave, DBeaver</text><text class="s" x="95" y="312" text-anchor="middle">por túnel SSH ou VPN</text>
+    <text class="s" x="95" y="328" text-anchor="middle">(MySQL nunca público)</text>
+    <line class="ln" x1="180" y1="298" x2="210" y2="298" marker-end="url(#ah)"/>
+
+    <!-- VPS -->
+    <rect class="host" x="210" y="92" width="560" height="530" rx="10"/>
+    <text class="h" x="230" y="118">Hostinger VPS KVM 4</text>
+    <text class="s" x="230" y="136">Ubuntu 24.04 LTS · Docker Compose · 4 vCPU · 16 GB · 200 GB NVMe</text>
+
+    <rect class="core" x="230" y="150" width="520" height="40" rx="6"/>
+    <text class="t" x="490" y="168" text-anchor="middle">Caddy (proxy reverso, HTTPS automático)</text>
+    <text class="s" x="490" y="183" text-anchor="middle">única porta pública: 80/443 (mais SSH restrito)</text>
+
+    <rect class="box" x="230" y="204" width="250" height="62" rx="6"/>
+    <text class="t" x="242" y="224">Site institucional</text><text class="s" x="242" y="242">estático (Astro/HTML) ou WordPress</text><text class="s" x="242" y="257">formulários disparam webhook no n8n</text>
+    <rect class="box" x="500" y="204" width="250" height="62" rx="6"/>
+    <text class="t" x="512" y="224">n8n (auto-hospedado)</text><text class="s" x="512" y="242">automações e agentes de IA</text><text class="s" x="512" y="257">Postgres próprio · guardar a chave</text>
+
+    <rect class="box" x="230" y="280" width="250" height="62" rx="6"/>
+    <text class="t" x="242" y="300">Rundeck</text><text class="s" x="242" y="318">orquestra jobs batch, backups e WhisperX</text><text class="s" x="242" y="333">limite de heap em 2 GB</text>
+    <rect class="box" x="500" y="280" width="250" height="62" rx="6"/>
+    <text class="t" x="512" y="300">Paperclip</text><text class="s" x="512" y="318">orquestra times de agentes (Node 24+)</text><text class="s" x="512" y="333">Postgres em contêiner</text>
+
+    <rect class="box" x="230" y="356" width="250" height="62" rx="6"/>
+    <text class="t" x="242" y="376">Hermes Agent</text><text class="s" x="242" y="394">agente com modelos via API</text><text class="s" x="242" y="409">como worker do Paperclip</text>
+    <rect class="box" x="500" y="356" width="250" height="62" rx="6"/>
+    <text class="t" x="512" y="376">MySQL 9.x (migrado do OneX)</text><text class="s" x="512" y="394">somente rede interna do Docker</text><text class="s" x="512" y="409">buffer pool ~1 GB</text>
+
+    <rect class="box" x="230" y="432" width="520" height="62" rx="6"/>
+    <text class="t" x="242" y="452">WhisperX worker (CPU, faster-whisper int8)</text>
+    <text class="s" x="242" y="470">1 job por vez, disparado pelo Rundeck fora do horário comercial, com limite de CPU e memória.</text>
+    <text class="s" x="242" y="485">Se o piloto ficar lento, a transcrição vai para API ou GPU sob demanda (ver à direita).</text>
+
+    <rect class="box" x="230" y="508" width="520" height="44" rx="6"/>
+    <text class="t" x="242" y="527">Backup diário (job Rundeck)</text><text class="s" x="242" y="543">dump do MySQL e Postgres + volumes, enviado ao Google Drive; snapshot semanal da Hostinger</text>
+    <rect class="box" x="230" y="564" width="520" height="44" rx="6"/>
+    <text class="t" x="242" y="583">Segurança</text><text class="s" x="242" y="599">UFW, fail2ban, login SSH só por chave, atualizações automáticas, segredos fora do repositório</text>
+
+    <!-- externos -->
+    <rect class="ext" x="800" y="92" width="190" height="110" rx="6"/>
+    <text class="t" x="812" y="114">Google Workspace</text><text class="s" x="812" y="134">Gmail (MX), Agenda, Drive</text><text class="s" x="812" y="150">contas @suaempresa</text><text class="s" x="812" y="170">n8n e Hermes usam as</text><text class="s" x="812" y="185">APIs Google (OAuth)</text>
+    <line class="ln" x1="770" y1="147" x2="800" y2="147" marker-start="url(#ah)" marker-end="url(#ah)"/>
+
+    <rect class="ext" x="800" y="220" width="190" height="76" rx="6"/>
+    <text class="t" x="812" y="242">n8n Cloud (Starter)</text><text class="s" x="812" y="261">vigia o VPS e roda fluxos</text><text class="s" x="812" y="276">que não podem cair junto</text>
+    <line class="ln" x1="770" y1="258" x2="800" y2="258" marker-start="url(#ah)" marker-end="url(#ah)"/>
+
+    <rect class="ext" x="800" y="314" width="190" height="76" rx="6"/>
+    <text class="t" x="812" y="336">APIs de LLM</text><text class="s" x="812" y="355">Claude API e outros modelos,</text><text class="s" x="812" y="370">para n8n, Hermes e Paperclip</text>
+    <line class="ln" x1="770" y1="352" x2="800" y2="352" marker-end="url(#ah)"/>
+
+    <rect class="opt" x="800" y="408" width="190" height="76" rx="6"/>
+    <text class="t" x="812" y="430">Supabase (fase 2)</text><text class="s" x="812" y="449">Postgres + auth para apps</text><text class="s" x="812" y="464">novos, região São Paulo</text>
+    <line class="ld" x1="770" y1="446" x2="800" y2="446" marker-end="url(#ah)"/>
+
+    <rect class="opt" x="800" y="502" width="190" height="76" rx="6"/>
+    <text class="t" x="812" y="524">Transcrição em nuvem</text><text class="s" x="812" y="543">Groq ou GPU sob demanda,</text><text class="s" x="812" y="558">só se o piloto em CPU falhar</text>
+    <line class="ld" x1="770" y1="540" x2="800" y2="540" marker-end="url(#ah)"/>
+
+    <rect class="ext" x="800" y="596" width="190" height="60" rx="6"/>
+    <text class="t" x="812" y="618">Claude Pro</text><text class="s" x="812" y="637">uso humano, no seu dia a dia</text>
+
+    <!-- GO-Global -->
+    <rect class="opt" x="210" y="646" width="560" height="62" rx="6"/>
+    <text class="t" x="226" y="668">Opcional: VPS Windows separado para o GO-Global</text>
+    <text class="s" x="226" y="686">só se ainda houver aplicação Windows a publicar. Não cabe no VPS Linux. Dimensionar após</text>
+    <text class="s" x="226" y="701">saber usuários simultâneos e qual aplicativo roda nele.</text>
+  </svg>
+  </div>
+  <p class="note">Linha cheia: parte do desenho base. Tracejado: fase posterior ou opcional. Nenhum serviço além do Caddy escuta na internet. O DNS aponta o site para o VPS e o e-mail para o Google, como já previa o seu estudo anterior.</p>
+
+  <h3>Orçamento de memória no KVM 4 (16 GB)</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Serviço</th><th class="n">RAM estimada</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Ubuntu + Docker + Caddy</td><td class="n">0,9 GB</td><td>base</td></tr>
+      <tr><td>n8n + Postgres</td><td class="n">1,5 GB</td><td>cresce com fluxos pesados e volume de execuções</td></tr>
+      <tr><td>Rundeck</td><td class="n">3,5 GB</td><td>JVM. O estudo anterior reservou 4 GB. Limitar heap</td></tr>
+      <tr><td>Paperclip + Postgres</td><td class="n">1,0 GB</td><td>mínimo de terceiros: 512 MB</td></tr>
+      <tr><td>Hermes Agent</td><td class="n">0,6 GB</td><td>modelos via API, sem inferência local</td></tr>
+      <tr><td>MySQL 9.x</td><td class="n">2,0 GB</td><td>depende do tamanho da base atual</td></tr>
+      <tr><td>Site</td><td class="n">0,3 GB</td><td>estático. WordPress + banco chegaria a ~1 GB</td></tr>
+      <tr class="tot"><td>Subtotal em repouso</td><td class="n">9,8 GB</td><td></td></tr>
+      <tr><td>WhisperX (pico)</td><td class="n">3 a 6 GB</td><td>small ou medium em int8 ~3 GB. Large + alinhamento + diarização ~6 GB</td></tr>
+      <tr class="tot"><td>Pico total</td><td class="n">12,8 a 15,8 GB</td><td>cabe, mas sem folga com o modelo grande. Criar 4 GB de swap</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">São estimativas minhas para dimensionar, não medições. O piloto da fase 3 deve medir. Se o WhisperX precisar do modelo grande com diarização, o KVM 8 ou uma API deixam de ser luxo.</p>
+</section>
+
+<section id="atencao">
+  <h2>Pontos de atenção</h2>
+  <div class="grid2">
+    <div class="card"><div class="top"><h3>Disco de 500 GB para 200 GB</h3><span class="chip c-bad">alto</span></div>
+      <p>Medir o uso real no OneX antes de contratar. Base MySQL, anexos, logs do Rundeck e histórico do n8n pesam. Opções: limpar retenção, mover arquivos para o Drive ou ir para o KVM 8 (R$ 119,99, mas ~R$ 260 na renovação).</p></div>
+    <div class="card"><div class="top"><h3>WhisperX sem GPU</h3><span class="chip c-bad">alto</span></div>
+      <p>CPU em int8 funciona para lote, mas a diarização (separar quem fala) é a parte lenta e mais pesada em CPU. Alternativas: Groq Whisper large-v3-turbo a US$ 0,04 por hora de áudio (~R$ 0,23, só transcrição, sem diarização, áudio sai do servidor) ou GPU sob demanda. Decidir após medir o tempo real do piloto com o seu áudio.</p></div>
+    <div class="card"><div class="top"><h3>Renovação do VPS</h3><span class="chip c-warn">médio</span></div>
+      <p>O preço de R$ 59,99 vale por 24 meses. Depois, guias de terceiros apontam ~R$ 130. Ainda é bem menos que R$ 495, mas o ganho com Google incluído cai para perto de zero. Marcar um lembrete para o mês 22.</p></div>
+    <div class="card"><div class="top"><h3>Preços do estudo anterior</h3><span class="chip c-warn">conferir</span></div>
+      <p>O documento cita o ciclo mensal avulso do KVM 4 a R$ 196,99. Guias de 2026 listam o preço cheio em R$ 159,99, e promocional entre R$ 49,49 e R$ 54,99. Os números mudam por promoção. Conferir o total final no checkout, com impostos.</p></div>
+    <div class="card"><div class="top"><h3>Custo de LLM não está na conta</h3><span class="chip c-warn">médio</span></div>
+      <p>Hermes e Paperclip consomem tokens de API, que são variáveis. Claude Pro é para uso humano. Antes de ligar uma assinatura Pro a agentes automáticos em servidor, ler os termos da Anthropic; o caminho usual para automação é chave de API paga por uso. Reserve um teto mensal.</p></div>
+    <div class="card"><div class="top"><h3>Qual o papel do n8n Cloud?</h3><span class="chip c-info">decisão sua</span></div>
+      <p>O n8n já roda no VPS sem custo de licença. A conta Starter (2.500 execuções/mês) só se justifica como instância externa: vigia o VPS, recebe webhooks críticos, assume se o servidor cair. Sem esse papel, R$ 154/mês rendem mais em API de LLM ou plano anual.</p></div>
+    <div class="card"><div class="top"><h3>Banco: MySQL não vira Supabase sem obra</h3><span class="chip c-warn">médio</span></div>
+      <p>Supabase é Postgres. Apps atuais em MySQL devem ir como estão para o VPS (mysqldump). Supabase entra para projetos novos. Free pausa após 7 dias sem uso e tem 500 MB, então não serve para produção. Pro custa US$ 25/mês.</p></div>
+    <div class="card"><div class="top"><h3>Dependências do Windows</h3><span class="chip c-warn">médio</span></div>
+      <p>Inventariar jobs do Rundeck que chamam .bat, PowerShell ou WinRM, scripts Python/Node com caminhos <code>C:\</code>, Agendador de Tarefas e certificados. Esses itens precisam ser reescritos, e são o principal risco de prazo.</p></div>
+    <div class="card"><div class="top"><h3>E-mail e entregabilidade</h3><span class="chip c-info">checklist</span></div>
+      <p>Configurar SPF, DKIM e DMARC no domínio. Não enviar e-mail direto do VPS: usar o Gmail/SMTP do Workspace ou um serviço transacional. Baixar o TTL do DNS 48 h antes do corte.</p></div>
+    <div class="card"><div class="top"><h3>GO-Global opcional</h3><span class="chip c-info">fora do custo</span></div>
+      <p>Exige Windows. Não entrou na conta. Se ainda for necessário, são duas saídas: um VPS Windows enxuto à parte ou manter o plano mínimo do OneX só para ele. Preciso de usuários simultâneos, aplicativo e licença para orçar.</p></div>
+  </div>
+</section>
+
+<section id="plano">
+  <h2>Plano de migração</h2>
+  <ol class="steps">
+    <li><div><b>Inventário no OneX (1-2 dias)</b><span>Uso de disco, RAM e CPU em pico; tamanho do MySQL; exportação dos projetos do Rundeck e dos fluxos do n8n; tarefas agendadas; portas e certificados; contrato e multa de saída.</span></div></li>
+    <li><div><b>Base no Hostinger (3-5 dias)</b><span>Contratar o KVM 4 (garantia de 30 dias), instalar Ubuntu e Docker Compose, Caddy, firewall, chave SSH, backup para o Drive, snapshots. Nada de produção ainda.</span></div></li>
+    <li><div><b>Mover o que já existe (semana 2)</b><span>n8n com a mesma <code>N8N_ENCRYPTION_KEY</code> (sem ela as credenciais não abrem), MySQL por dump e restore, Rundeck por exportação de projeto, scripts Python e Node reescritos para Linux.</span></div></li>
+    <li><div><b>Itens novos e pilotos (semana 3)</b><span>Paperclip e Hermes, piloto de WhisperX com o seu áudio real medindo tempo e RAM, site e formulário ligado ao n8n, Workspace com SPF, DKIM e DMARC.</span></div></li>
+    <li><div><b>Corte e sobreposição (semana 4 e mês 2)</b><span>Baixar TTL, trocar o DNS, manter o OneX 30 dias em paralelo, validar backups e restore e só então cancelar. Custo da sobreposição: um mês de R$ 495.</span></div></li>
+    <li><div><b>Opcionais</b><span>Supabase para apps novos, API ou GPU de transcrição conforme o piloto, VPS Windows para o GO-Global.</span></div></li>
+  </ol>
+</section>
+
+<section id="perguntas">
+  <h2>O que preciso saber para fechar o desenho</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Pergunta</th><th>Por que muda a proposta</th></tr></thead>
+    <tbody>
+      <tr><td>Quanto de disco e RAM o OneX usa de fato?</td><td>Decide entre KVM 4 e KVM 8.</td></tr>
+      <tr><td>Já existe Google Workspace? Quantas contas?</td><td>Muda o total em R$ 98 a R$ 164 por mês.</td></tr>
+      <tr><td>Quantas horas de áudio por mês no WhisperX e precisa de diarização?</td><td>Decide CPU local, API ou GPU sob demanda.</td></tr>
+      <tr><td>Quais aplicações usam o MySQL e rodam só em Windows?</td><td>Define o esforço de reescrita e o risco do corte.</td></tr>
+      <tr><td>Quem usa o GO-Global hoje e quantos ao mesmo tempo?</td><td>Orçamento do VPS Windows opcional.</td></tr>
+      <tr><td>Qual será o papel do n8n Cloud?</td><td>Justifica ou não os R$ 154/mês.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="fontes">
+  <h2>Fontes e grau de confiança</h2>
+  <p class="note">Preços do KVM 4 em 24 meses e do Google Workspace vêm do seu documento "Arquitetura VPS - 19Nov26" e não foram reconferidos. O resto veio de pesquisa em 19/11/2026 e, quando é de terceiros, está marcado. Nenhum preço foi lido direto de página oficial. Confira no checkout.</p>
+  <ul class="src">
+    <li><a href="https://horadecodar.com.br/valor-vps/">Hora de Codar: preço de VPS 2026</a> (renovação do KVM 4 e KVM 8)</li>
+    <li><a href="https://valebyte.com/en/vps/brazil/?provider=hostinger">Valebyte: Hostinger VPS</a> (preços em dólar, 3/nov/2026)</li>
+    <li><a href="https://n8n.io/pricing">n8n pricing</a> e <a href="https://dev.to/beton/n8n-pricing-teardown-2026-4oa">análise de 2026</a> (€ 20 anual, € 24 mensal, 2.500 execuções)</li>
+    <li><a href="https://canaltech.com.br/inteligencia-artificial/como-assinar-claude-mais-barato/">Canaltech</a> e <a href="https://www.ssdnodes.com/learn/claude-pro-in-brazil-what-you-pay">SSD Nodes</a> (Claude Pro US$ 20; há fonte indicando R$ 110 fixo)</li>
+    <li><a href="https://supabase.com/pricing.md">Supabase pricing</a> (Free pausa em 7 dias, Pro US$ 25)</li>
+    <li><a href="https://groq.com/pricing">Groq pricing</a> (Whisper large-v3-turbo, US$ 0,04 por hora)</li>
+    <li><a href="https://github.com/m-bain/whisperX">WhisperX no GitHub</a> e <a href="https://dev.to/dibi8/whisperx-22k-stars-production-asr-setup-guide-2026-3o13">guia de produção</a> (CPU e diarização; números de velocidade não verificados)</li>
+    <li><a href="https://contabo.com/blog/what-is-paperclip-ai/">Contabo: Paperclip</a> e <a href="https://railway.com/deploy/paperclip-ai-company">template Railway</a> (Node 24+, Postgres)</li>
+    <li><a href="https://hermes-agent.nousresearch.com/docs">Hermes Agent docs</a> (MIT, modelo via API)</li>
+    <li><a href="https://brasil61.com/n/dolar-fecha-cotado-a-r-5-56-com-mercado-atento-a-inflacao-dos-estados-unidos-bras2617456">Brasil 61: dólar a R$ 5,56 em 11/nov/2026</a> (câmbio de referência)</li>
+  </ul>
+</section>
+</main>
